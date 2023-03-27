@@ -51,15 +51,15 @@ export default function CallToAction() {
             position={'relative'}>
             <Heading
               fontWeight={600}
-              fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
+              fontSize={{ base: 'lg', sm: '2xl', md: '4xl' }}
               lineHeight={'110%'}>
               Find Alternative Education:
             </Heading>
-            <Stack direction={'row'} alignSelf={'center'}>
+            <Stack direction={{base: 'column', md: 'row'}} alignSelf={'center'}>
             <Button
               colorScheme={'gray'}
               bg={'gray.300'}
-              rounded={'full'}
+              rounded={'lg'}
               px={6}
               _hover={{
                 bg: 'gray.400',
@@ -69,7 +69,7 @@ export default function CallToAction() {
             <Button
               colorScheme={'linkedin'}
               // bg={'green.400'}
-              rounded={'full'}
+              rounded={'lg'}
               rightIcon={<ArrowForwardIcon />}
               px={6}
               _hover={{
@@ -82,21 +82,25 @@ export default function CallToAction() {
             <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               See All Alternatives
             </Button>
-            <Box>
+            <Box display={{base: 'none', md: 'contents'}}>
               <Icon
                 as={Arrow}
                 color={useColorModeValue('gray.800', 'gray.300')}
                 w={71}
                 position={'absolute'}
-                right={-71}
-                top={'80px'}
+                // right={-71}
+                right={{base: 15, sm: -45}}
+                // top={'80px'}
+                top={{base: '150px', sm: '90px'}}
               />
               <Text
                 fontSize={'lg'}
                 fontFamily={'Caveat'}
                 position={'absolute'}
-                right={'-125px'}
-                top={'60px'}
+                // right={'-100px'}
+                right={{base: '0px', sm: '-100px'}}
+                // top={'60px'}
+                top={{base:'120px', sm:'70px'}}
                 transform={'rotate(10deg)'}>
                 Click to Find!
               </Text>
