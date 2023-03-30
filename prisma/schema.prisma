@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model geolocation {
+  id                        Int             @id
+  region_name               String    
+  local_government_auth     String
+  postcode                  String
+  location                  String
+  longitude                 Float
+  latitude                  Float
+
+  provider                  provider[]
+}
+
+model course {
+  id                        Int             @id
+  course_title              String
+  course_code               String          @unique
+  qualification_level       String
+  course_type               String
+  government_subsidised     Int
+  apprenticeship            Int
+  traineeship               Int
+  entry_requirement         String
+  description               String
+
+  course_provider           course_provider[]
+  course_occupation         course_occupation[]
+  division_course           division_course[]
+}
+
+model occupation {
+  anzsco                    String          @id
+  job_name                  String    
+  skills_shortage           Int
+  special                   Int
+  is_job_outlook_valid      Int
+  job_outlook_url           String
+
+  course_occupation         course_occupation[]
+}
+
+model provider {
+  id                        Int             @id
+  asqa_code                 String
+  provider_name             String
+  site_name                 String
+  government_subsidised     String
+  address_line_1            String?
+  address_line_2            String?
+  suburb                    String
+  postcode                  String
+  geo_location              geolocation     @relation(fields: [geographic_id], references: [id])
+  geographic_id             Int       
+  latitude                  Float
+  longitude                 Float
+  url                       String
+  email                     String
+
+  course_provider           course_provider[]
+}
+
+model course_provider {
+  course                    course          @relation(fields: [course_id], references: [id])
+  course_id                 Int       
+  provider                  provider        @relation(fields: [campus_id], references: [id])
+  campus_id                 Int       
+  
+  @@id([course_id, campus_id])
+}
+
+model course_occupation {
+  occupation                occupation      @relation(fields: [anzsco], references: [anzsco])
+  anzsco                    String
+  course                    course          @relation(fields: [course_id], references: [id])
+  course_id                 Int
+  
+  @@id([anzsco, course_id])
+}
+
+model division_course {
+  anzsic_division           String
+  anzsco_unit_group         String
+  course                    course          @relation(fields: [course_code], references: [course_code])
+  course_code               String
+  course_name               String   
+
+  @@id([anzsic_division, course_code])
+}
+

@@ -9,8 +9,10 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  Link
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+import NextLink from 'next/link';
 
 export default function CallToAction() {
   return (
@@ -82,6 +84,11 @@ export default function CallToAction() {
             <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               See All Alternatives
             </Button>
+            <NextLink href={'/providers'} passHref legacyBehavior>
+              <Button as={'a'} variant={'link'} colorScheme={'gray'} size={'sm'}>
+                See All Providers
+              </Button>
+            </NextLink>
             <Box display={{base: 'none', md: 'contents'}}>
               <Icon
                 as={Arrow}
