@@ -5,6 +5,7 @@ import { GetStaticProps } from "next";
 
 export default function Providers(props: { providers: provider[] }) {
   return (
+    <>
   <Container
     alignItems={"start"}>
     <VStack
@@ -26,6 +27,7 @@ export default function Providers(props: { providers: provider[] }) {
       ))}
     </VStack>
   </Container>
+  </>
 )}
 
 export const getStaticProps: GetStaticProps = async () => {

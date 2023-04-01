@@ -68,23 +68,38 @@ export default function CallToAction() {
               }}>
               Inside Your School
             </Button>
-            <Button
-              colorScheme={'linkedin'}
-              // bg={'green.400'}
-              rounded={'lg'}
-              rightIcon={<ArrowForwardIcon />}
-              px={6}
-              _hover={{
-                bg: 'blue.500',
-              }}>
-              Outside of School
-            </Button>
+            <NextLink
+              href={'/find'}  // TODO: Change Link to dynamic props
+              passHref
+              legacyBehavior
+            >
+              <Button
+                as={'a'}
+                colorScheme={'linkedin'}
+                // bg={'green.400'}
+                rounded={'lg'}
+                rightIcon={<ArrowForwardIcon />}
+                px={6}
+                _hover={{
+                  bg: 'blue.500',
+                }}>
+                Outside of School
+              </Button>
+            </NextLink>
             </Stack>
             
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
+            <Button 
+              variant={'link'} 
+              colorScheme={'blue'} 
+              size={'sm'}
+            >
               See All Alternatives
             </Button>
-            <NextLink href={'/providers'} passHref legacyBehavior>
+            <NextLink 
+              href={'/providers'}  // TODO: Change Link to dynamic props
+              passHref 
+              legacyBehavior
+            > 
               <Button as={'a'} variant={'link'} colorScheme={'gray'} size={'sm'}>
                 See All Providers
               </Button>

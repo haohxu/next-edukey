@@ -31,8 +31,8 @@ model course {
   government_subsidised     Int
   apprenticeship            Int
   traineeship               Int
-  entry_requirement         String
-  description               String
+  entry_requirement         String?
+  description               String?
 
   course_provider           course_provider[]
   course_occupation         course_occupation[]
@@ -64,10 +64,20 @@ model provider {
   geographic_id             Int       
   latitude                  Float
   longitude                 Float
-  url                       String
+  url                       String?
   email                     String
 
   course_provider           course_provider[]
+}
+
+model division {
+  anzsic_division           String          @id
+  question_1                String        
+  question_2                String
+  question_3                String
+  question_4                String?
+
+  division_course           division_course[]
 }
 
 model course_provider {
@@ -89,6 +99,7 @@ model course_occupation {
 }
 
 model division_course {
+  division                  division        @relation(fields: [anzsic_division], references: [anzsic_division])
   anzsic_division           String
   anzsco_unit_group         String
   course                    course          @relation(fields: [course_code], references: [course_code])
@@ -97,4 +108,3 @@ model division_course {
 
   @@id([anzsic_division, course_code])
 }
-
