@@ -8,8 +8,7 @@ import {
   Stack,
   Icon,
   useColorModeValue,
-  createIcon,
-  Link
+  createIcon
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';

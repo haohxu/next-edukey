@@ -30,11 +30,11 @@ export default function Providers(props: { providers: provider[] }) {
   </>
 )}
 
-export const getStaticProps: GetStaticProps = async () => {
-  const providers = await prisma.provider.findMany({});
+// export const getStaticProps: GetStaticProps = async () => {
+//   const providers = await prisma.provider.findMany({});
 
-  return {
-    props: { providers },
-    revalidate: 10,
-  };
-};
+//   return {
+//     props: { providers },
+//     revalidate: 10,
+//   };
+// };
