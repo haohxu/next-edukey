@@ -1,10 +1,23 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Heading, Stack, Text } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Flex, Heading, Spacer, Stack, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { course } from "@prisma/client";
 
 
 const CourseItem = (props: any) => {
   return (
-    <Text>{props.course.course_title}</Text>
+    <>
+      <Flex>
+        <Box flex={'1'} textAlign={'left'}>
+          <Text>{props.course.course_title}</Text>
+        </Box>
+        <Spacer />
+        <Box>
+          <NextLink href={'/courses/'+props.course.course_code}>
+            See More
+          </NextLink>
+        </Box>
+      </Flex>
+    </>
   );
 }
 

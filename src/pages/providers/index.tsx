@@ -12,7 +12,7 @@ export default function Providers(props: { providers: provider[] }) {
       spacing={2}
       alignItems={"start"}>
       
-      {props.providers.map((item) => (
+      {/* {props.providers.map((item) => (
         <Box 
           key={"provider" + "-" + item.id + "-" + item.provider_name}
           border={"1px"}>
@@ -24,7 +24,7 @@ export default function Providers(props: { providers: provider[] }) {
             {item.address_line_1}
           </Text>
         </Box>
-      ))}
+      ))} */}
     </VStack>
   </Container>
   </>

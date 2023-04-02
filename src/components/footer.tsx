@@ -41,7 +41,7 @@ export default function Footer() {
         spacing={4}
         justify={'center'}
         align={'center'}>
-        <Logo />
+        {/* <Logo /> */}
         <Stack direction={'row'} spacing={6}>
           <Link href={'#'}>Link 1</Link>
           <Link href={'#'}>Link 2</Link>
@@ -62,7 +62,7 @@ export default function Footer() {
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-          <Text>{/* © 2023 Chakra Templates. */} All rights reserved</Text>
+          <Text>© 2023 EduKey. All rights reserved</Text>
           <Stack direction={'row'} spacing={3}>
             <Avatar size={'sm'} name='Jin Bao' src='https://bit.ly/broken-link' />
             <Avatar size={'sm'} name='Ding Ding' src='https://bit.ly/broken-link' />

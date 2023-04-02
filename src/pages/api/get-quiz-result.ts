@@ -2,9 +2,9 @@
 import prisma from '@/lib/prisma'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
-}
+// type Data = {
+//   name: string
+// }
 
 export default async function getQuizResult(
   req: NextApiRequest,
@@ -21,8 +21,29 @@ export default async function getQuizResult(
   
   // res.status(200).json({ name: 'John Doe' })
 
+  const inputOptions = req.body;
+
+  const divisionResult = await prisma.division.findMany({
+    where: {
+      question_1: { contains: inputOptions.q1 },
+      question_2: { contains: inputOptions.q2 },
+      question_3: { contains: inputOptions.q3 },
+      question_4: { contains: inputOptions.q4 },
+    }
+  })
+
+  console.log(divisionResult.length);
+
+  let divisionANZList;
+  if (divisionResult.length === 0) {
+    divisionANZList = ['Accommodation and Food Services'];
+  } else {
+    divisionANZList = divisionResult.map((item) => item.anzsic_division);
+  }
+
+
   const occupationResult = await prisma.division.findMany({
-    where: { anzsic_division: {in: ['Accommodation and Food Services']} },
+    where: { anzsic_division: {in: divisionANZList} },
     include: {
       division_course: {
         include : { 
@@ -30,7 +51,7 @@ export default async function getQuizResult(
             include : { 
               course_occupation: {
                 include: { 
-                  occupation: true }} }} }}},
+                  occupation: true }}}}}}},
     
   });
 
@@ -43,7 +64,7 @@ export default async function getQuizResult(
 
   let occupationANZList = occupationList.map((item) => item.anzsco);
 
-  const courseResult = await prisma.occupation.findMany({
+  const occupationCourseResult = await prisma.occupation.findMany({
     where: { anzsco: {in : occupationANZList} },
     include: {
       course_occupation: {
@@ -66,17 +87,21 @@ export default async function getQuizResult(
     }
   })
 
-  let newOccupationList = courseResult
-    .map((item) => {
-      {
-        item.course_occupation.map((t) => t.course);
-        return item;
-      }
-    });
+  // let newOccupationList = courseResult
+  //   .map((item) => {
+      
+  //       item.course_occupation.forEach((t) => (t.course));
+  //       console.log(item);
+  //       return item;
+      
+  //   });
   
-  console.log(JSON.stringify(courseResult));
+  // console.log(JSON.stringify(courseResult));
 
   res
     .status(200)
-    .json(newOccupationList);
+    .json({
+      divisionANZList: divisionANZList,
+      occupationCourseResult: occupationCourseResult,
+    });
 }

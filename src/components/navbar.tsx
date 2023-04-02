@@ -267,34 +267,36 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Link 1",
-    children: [
-      {
-        label: "Link 1.1",
-        subLabel: "Description 1.1",
-        href: "#",
-      },
-      {
-        label: "Link 1.2",
-        subLabel: "Description 1.2",
-        href: "#",
-      },
-    ],
+    label: "Home",
+    // children: [
+    //   {
+    //     label: "Link 1.1",
+    //     subLabel: "Description 1.1",
+    //     href: "#",
+    //   },
+    //   {
+    //     label: "Link 1.2",
+    //     subLabel: "Description 1.2",
+    //     href: "#",
+    //   },
+    // ],
+    href: "/"
   },
   {
-    label: "Link 2",
-    children: [
-      {
-        label: "Link 2.1",
-        subLabel: "Description 2.1",
-        href: "#",
-      },
-      {
-        label: "Link 2.2",
-        subLabel: "Description 2.2",
-        href: "#",
-      },
-    ],
+    label: "Find",
+    // children: [
+    //   {
+    //     label: "Link 2.1",
+    //     subLabel: "Description 2.1",
+    //     href: "#",
+    //   },
+    //   {
+    //     label: "Link 2.2",
+    //     subLabel: "Description 2.2",
+    //     href: "#",
+    //   },
+    // ],
+    href: "/find",
   },
   {
     label: "Link 3",
