@@ -6,10 +6,10 @@ type Data = {
   name: string
 }
 
-export default function testHandler(
+export default async function testHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const testResult = prisma.course.findFirst({});
+  const testResult = await prisma.course.findFirst({});
   res.status(200).json(testResult);
 }
