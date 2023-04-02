@@ -7,11 +7,11 @@ const CourseItem = (props: any) => {
   return (
     <>
       <Flex>
-        <Box flex={'1'} textAlign={'left'}>
-          <Text>{props.course.course_title}</Text>
+        <Box textAlign={'left'}>
+          <Text fontSize={'md'}>{props.course.course_title}</Text>
         </Box>
         <Spacer />
-        <Box>
+        <Box fontSize={'sm'} color={'blue.500'}>
           <NextLink href={'/courses/'+props.course.course_code}>
             See More
           </NextLink>
@@ -24,9 +24,9 @@ const CourseItem = (props: any) => {
 
 export default function OccupationItem(props: any) {
   return (
-  <Center py={3}>
+  <Center py={1}>
     <Box
-      maxW={'1600px'}
+      maxW={'2000px'}
       w={'full'}
       // bg={useColorModeValue('white', 'gray.900')}
       boxShadow={'lg'}
@@ -68,7 +68,7 @@ export default function OccupationItem(props: any) {
                 {props.job_name}
               </Heading>
               </Box>
-              <Text fontSize={'sm'}>See Available Courses: &nbsp; &nbsp;</Text>
+              <Text fontSize={'sm'}>See Available Courses: &nbsp;</Text>
               <AccordionIcon />
             </AccordionButton>
               
@@ -83,11 +83,13 @@ export default function OccupationItem(props: any) {
         </AccordionItem>
       </Accordion>
       <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-          <Text as={'a'} href={props.job_outlook_url} fontWeight={600} >
-            Government Website: {props.job_outlook_url}</Text>
+        <Text fontWeight={600}>Government Website: &nbsp;
+          <Text as={'a'} href={props.job_outlook_url} fontWeight={500} >
+             {props.job_outlook_url}
+          </Text></Text>
           
-        </Stack>
+          
+        
       </Stack>
     </Box>
   </Center>)
