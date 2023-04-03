@@ -376,14 +376,14 @@ export default function FindAnswerPage() {
     
     {resultShown ? (<>
       <Center>
-      <Heading marginY={'8'}>Division</Heading>
+      <Heading marginY={'8'}>Result</Heading>
       </Center>
-      <Container maxWidth={'1200px'}>
+      <Container maxWidth={'1600px'}>
         
           <Tabs isFitted variant='soft-rounded' colorScheme={'blue'} >
-            <TabList mb='1em'>
+            <TabList mb='1em' overflow={'auto'}>
             {divisionList.map( (item: any) => (
-            <Tab key={'division-'+ item.anzsic_division}>{item.anzsic_division}</Tab>
+            <Tab key={'division-'+ item.anzsic_division} minWidth={'200'}>{item.anzsic_division}</Tab>
             ) )}
             </TabList>
             <TabPanels>
