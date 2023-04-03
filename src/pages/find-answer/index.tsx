@@ -30,6 +30,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Container,
 } from '@chakra-ui/react';
 
 import { useToast } from '@chakra-ui/react';
@@ -39,9 +40,11 @@ import { occupation } from '@prisma/client';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+const setVariant = (input: boolean) => {
+  return input ? 'solid' : 'outline'
+}
 
-
-const Form4 = (props : {onAnswer: (event: any) => void}) => {
+const Form4 = (props : {onAnswer: (event: any) => void, varient: string}) => {
   return (
     <>
       <Center>
@@ -55,17 +58,17 @@ const Form4 = (props : {onAnswer: (event: any) => void}) => {
         <Stack direction={'row'} spacing={'8'}>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Factory'} src={'/static/4a.jpg'}/>
-            <Button id="q4-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+            <Button id="q4-a-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'a')}
             >A</Button>
           </Stack>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Office'} src={'/static/4b.jpg'}/>
-            <Button id="q4-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            <Button id="q4-b-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'b')}
             >B</Button>
           </Stack>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Laboratory'} src={'/static/4c.jpg'}/>
-            <Button id="q4-c-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            <Button id="q4-c-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'c')}
             >C</Button>
           </Stack>
         </Stack>
@@ -76,7 +79,7 @@ const Form4 = (props : {onAnswer: (event: any) => void}) => {
   );
 };
 
-const Form3 = (props : {onAnswer: (event: any) => void}) => {
+const Form3 = (props : {onAnswer: (event: any) => void, varient: string}) => {
   return (
     <>
       <Center>
@@ -90,12 +93,12 @@ const Form3 = (props : {onAnswer: (event: any) => void}) => {
         <Stack direction={'row'} spacing={'8'}>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Yes'} src={'/static/yes.png'}/>
-            <Button id="q3-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+            <Button id="q3-a-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'a')}
               >A</Button>
           </Stack>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'No'} src={'/static/No.png'}/>
-            <Button id="q3-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            <Button id="q3-b-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'b')}
               >B</Button>
           </Stack>
         </Stack>
@@ -106,7 +109,7 @@ const Form3 = (props : {onAnswer: (event: any) => void}) => {
   );
 };
 
-const Form2 = (props : {onAnswer: (event: any) => void}) => {
+const Form2 = (props : {onAnswer: (event: any) => void, varient: string}) => {
   return (
     <>
       <Center>
@@ -120,12 +123,12 @@ const Form2 = (props : {onAnswer: (event: any) => void}) => {
         <Stack direction={'row'} spacing={'8'}>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'to help people'} src={'/static/2a.jpeg'}/>
-            <Button id="q2-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+            <Button id="q2-a-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'a')}
               >A</Button>
           </Stack>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'to work solo'} src={'/static/2b.jpg'}/>
-            <Button id="q2-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            <Button id="q2-b-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'b')}
               >B</Button>
           </Stack>
         
@@ -139,7 +142,7 @@ const Form2 = (props : {onAnswer: (event: any) => void}) => {
   );
 };
 
-const Form1 = (props : {onAnswer: (event: any) => void}) => {
+const Form1 = (props : {onAnswer: (event: any) => void, varient: string}) => {
   return (
     <>
       <Center>
@@ -153,12 +156,12 @@ const Form1 = (props : {onAnswer: (event: any) => void}) => {
         <Stack direction={'row'} spacing={'8'}>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Indoor'} src={'/static/1a.jpeg'}/>
-            <Button id="q1-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a === 'a')}
+            <Button id="q1-a-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'a')}
               >A</Button>
           </Stack>
           <Stack direction={'column'} p={0}>
             <Image boxSize={'200px'} objectFit={'contain'} alt={'Outdoor'} src={'/static/1b.jpeg'}/>
-            <Button id="q1-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            <Button id="q1-b-my-quiz-option" onClick={props.onAnswer} variant={setVariant(props.varient === 'b')}
             >B</Button>
           </Stack>
           
@@ -317,10 +320,10 @@ export default function FindAnswerPage() {
         <Heading fontSize={'xs'}>Progress: {progress.toPrecision(5)}% </Heading>
         <Heading fontSize={'xs'}>Your Answer: {setYourAnswer()}</Heading>
         {
-          step === 1 ? <Form1 onAnswer={setAnsweredHandler}/> : 
-          step === 2 ? <Form2 onAnswer={setAnsweredHandler}/> : 
-          step === 3 ? <Form3 onAnswer={setAnsweredHandler}/> :
-          <Form4 onAnswer={setAnsweredHandler} />
+          step === 1 ? <Form1 onAnswer={setAnsweredHandler} varient={isAnswered.q1}/> : 
+          step === 2 ? <Form2 onAnswer={setAnsweredHandler} varient={isAnswered.q2}/> : 
+          step === 3 ? <Form3 onAnswer={setAnsweredHandler} varient={isAnswered.q3}/> :
+          <Form4 onAnswer={setAnsweredHandler} varient={isAnswered.q4}/>
         }
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -373,11 +376,11 @@ export default function FindAnswerPage() {
     
     {resultShown ? (<>
       <Center>
-      <Heading>Division</Heading>
+      <Heading marginY={'8'}>Division</Heading>
       </Center>
-      <Center paddingTop={'6'}>
-        <Box >
-          <Tabs isFitted variant='soft-rounded' colorScheme={'blue'} maxWidth={'1200px'}>
+      <Container maxWidth={'1200px'}>
+        
+          <Tabs isFitted variant='soft-rounded' colorScheme={'blue'} >
             <TabList mb='1em'>
             {divisionList.map( (item: any) => (
             <Tab key={'division-'+ item.anzsic_division}>{item.anzsic_division}</Tab>
@@ -397,8 +400,8 @@ export default function FindAnswerPage() {
             ) )}
             </TabPanels>
           </Tabs>
-        </Box>
-      </Center>
+        
+      </Container>
       </>
     ) : null}
 

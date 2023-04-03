@@ -1,32 +1,15 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Flex, Heading, Spacer, Stack, Text } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Box, Center, Stack, Accordion, AccordionItem, AccordionButton, Heading, AccordionIcon, AccordionPanel, Text, Button } from "@chakra-ui/react";
 import { course } from "@prisma/client";
+import NextLink from 'next/link';
 
 
-const CourseItem = (props: any) => {
+export default function CourseItem (props: {courseItem: course}) {
+  const courseItem = props.courseItem
+
   return (
-    <>
-      <Flex>
-        <Box textAlign={'left'}>
-          <Text fontSize={'md'}>{props.course.course_title}</Text>
-        </Box>
-        <Spacer />
-        <Box fontSize={'sm'} color={'blue.500'}>
-          <NextLink href={'/courses/'+props.course.course_code}>
-            See More
-          </NextLink>
-        </Box>
-      </Flex>
-    </>
-  );
-}
-
-
-export default function OccupationItem(props: any) {
-  return (
-  <Center py={1}>
+  <Center py={1} >
     <Box
-      maxW={'1200px'}
+      maxWidth={'1200px'}
       w={'full'}
       // bg={useColorModeValue('white', 'gray.900')}
       boxShadow={'lg'}
@@ -35,27 +18,27 @@ export default function OccupationItem(props: any) {
       overflow={'hidden'}>
       <Stack>
         <Text
-          color={'green.500'}
+          color={'blue.500'}
           textTransform={'uppercase'}
           fontWeight={800}
           fontSize={'sm'}
           letterSpacing={1.1}>
-          Occupation
+          Course
         </Text>
-        {/* <Heading
+        <Heading
           fontSize={'2xl'}
           fontFamily={'body'}>
-          {props.job_name}
-        </Heading> */}
-        {/* <Text color={'gray.500'}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-          et ea rebum.
-        </Text> */}
+          {courseItem.course_title}
+        </Heading>
+        <Text color={'gray.500'}>
+          {courseItem.description}
+        </Text>
+        <NextLink href={'/courses/' + courseItem.course_code} passHref legacyBehavior >
+          <Button as={'a'} variant={'link'} color={'blue.500'} width={'fit-content'}>See Detail</Button>
+        </NextLink>
         
       </Stack>
-      <Accordion allowToggle >
+      {/* <Accordion allowToggle >
         <AccordionItem border={'none'}>
           
             <AccordionButton 
@@ -81,8 +64,8 @@ export default function OccupationItem(props: any) {
               )}
           </AccordionPanel>
         </AccordionItem>
-      </Accordion>
-      <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
+      </Accordion> */}
+      {/* <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
         <Text fontWeight={600}>Government Website: &nbsp;
           <Text as={'a'} href={props.job_outlook_url} fontWeight={500} >
              {props.job_outlook_url}
@@ -90,7 +73,8 @@ export default function OccupationItem(props: any) {
           
           
         
-      </Stack>
+      </Stack> */}
     </Box>
-  </Center>)
+  </Center>
+  )
 }

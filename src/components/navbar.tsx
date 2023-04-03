@@ -300,11 +300,12 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/find-answer",
   },
   {
+    label: "Courses",
+    href: "/courses",
+  },
+  {
     label: "Statistics",
     href: "#",
   },
-  {
-    label: "",
-    href: "#",
-  },
+  
 ];

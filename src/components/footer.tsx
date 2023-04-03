@@ -58,8 +58,9 @@ export default function Footer() {
         <Stack direction={'row'} spacing={6}>
           <Link href={'/'}>Home</Link>
           <Link href={'/find-answer'}>Find</Link>
+          <Link href={'/courses'}>Courses</Link>
           <Link href={'#'}>Statistics</Link>
-          {/* <Link href={'#'}>Link 4</Link> */}
+          
         </Stack>
       </Container>
 
