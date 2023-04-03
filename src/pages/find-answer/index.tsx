@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useEffect, useState, } from 'react';
 import {
   Avatar,
   Progress,
@@ -39,6 +39,7 @@ import OccupationItem from '@/components/find/occupationItem';
 import { occupation } from '@prisma/client';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useQuizResultStore } from '../_app';
 
 const setVariant = (input: boolean) => {
   return input ? 'solid' : 'outline'
@@ -151,7 +152,7 @@ const Form1 = (props : {onAnswer: (event: any) => void, varient: string}) => {
           Question 1
         </Heading>
         <Heading w="100%" fontWeight="normal" mb="2%" p={'6'} textAlign={'center'}>
-          Is the job mostly inside or outside?
+          Is the job mostly indoor or outdoor?
         </Heading>
         <Stack direction={'row'} spacing={'8'}>
           <Stack direction={'column'} p={0}>
@@ -176,6 +177,8 @@ const Form1 = (props : {onAnswer: (event: any) => void, varient: string}) => {
 
 export default function FindAnswerPage() {
   const route = useRouter();
+  // for route and back to previous
+  const { quizResultResponse, setQuizResultResponse } = useQuizResultStore()
 
   const totalQuestionNum: number = 4
   const progressPercentage: number = 100 / totalQuestionNum;
@@ -279,6 +282,9 @@ export default function FindAnswerPage() {
       console.log(responseResult);
       
       setDivisionList(responseResult);
+      
+      setQuizResultResponse(responseResult);
+      
 
       setResultShown(true);
 
@@ -291,7 +297,7 @@ export default function FindAnswerPage() {
       });
 
       // TODO: use another page to display result
-      // route.push('/');
+      route.push('/find-answer/result');
     }
   }
 

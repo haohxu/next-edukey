@@ -6,6 +6,38 @@ import Footer from '@/components/footer'
 
 import { Inter, Genos } from 'next/font/google'
 
+import { createContext, ReactNode, useContext, useState } from "react";
+
+interface IQuizResult {
+
+}
+
+type QuizResultType = {
+  quizResultResponse: IQuizResult[]
+  setQuizResultResponse: any
+}
+
+export const QuizResultStoreContext = createContext<QuizResultType | null>(null);
+
+export const useQuizResultStore = () => {
+  const context = useContext(QuizResultStoreContext);
+  if (!context) {
+    throw new Error('useStore must be used within ');
+  }
+  return context;
+}
+
+
+export const QuizResultStoreProvider = ({ children }: {children: ReactNode}) => {
+  const [quizResultResponse, setQuizResultResponse] = useState<IQuizResult[]>([]);
+
+  return (
+    <QuizResultStoreContext.Provider value={{quizResultResponse, setQuizResultResponse}}>
+      {children}
+    </QuizResultStoreContext.Provider>
+  )
+}
+
 const inter = Inter({subsets: ['latin']});
 const genos = Genos({subsets: ['latin']});
 
@@ -24,7 +56,9 @@ export default function App({ Component, pageProps }: AppProps) {
       position={'relative'}
       paddingBottom={'200px'}>
     <Navbar />
-    <Component {...pageProps} />
+    <QuizResultStoreProvider>
+      <Component {...pageProps} />
+    </QuizResultStoreProvider>
     <Footer />
     </Box>
   </ChakraProvider>)

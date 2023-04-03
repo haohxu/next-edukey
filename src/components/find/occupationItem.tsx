@@ -1,4 +1,4 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Flex, Heading, Spacer, Stack, Text } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Box, Center, Flex, Heading, Link, Spacer, Stack, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { course } from "@prisma/client";
 
@@ -13,9 +13,15 @@ const CourseItem = (props: any) => {
         <Spacer />
         <Box fontSize={'sm'} color={'blue.500'}>
           <NextLink href={'/courses/'+props.course.course_code}>
-            See More
+            Show Detail
           </NextLink>
         </Box>
+        {/* <Link 
+          href={'/courses/'+props.course.course_code}
+          fontSize={'sm'} 
+          color={'blue.500'}>
+          Show Detail
+        </Link> */}
       </Flex>
     </>
   );
