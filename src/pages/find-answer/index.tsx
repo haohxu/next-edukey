@@ -380,10 +380,10 @@ export default function FindAnswerPage() {
       </Center>
       <Container maxWidth={'1600px'}>
         
-          <Tabs isFitted variant='soft-rounded' colorScheme={'blue'} >
+          <Tabs isFitted align='center' variant='soft-rounded' colorScheme={'blue'} >
             <TabList mb='1em' overflow={'auto'}>
             {divisionList.map( (item: any) => (
-            <Tab key={'division-'+ item.anzsic_division} minWidth={'200'}>{item.anzsic_division}</Tab>
+            <Tab key={'division-'+ item.anzsic_division} minWidth={'200'} maxWidth={'600'}>{item.anzsic_division}</Tab>
             ) )}
             </TabList>
             <TabPanels>

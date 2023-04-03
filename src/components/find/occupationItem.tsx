@@ -39,7 +39,8 @@ export default function OccupationItem(props: any) {
           textTransform={'uppercase'}
           fontWeight={800}
           fontSize={'sm'}
-          letterSpacing={1.1}>
+          letterSpacing={1.1}
+          align='start'>
           Occupation
         </Text>
         {/* <Heading
