@@ -21,29 +21,29 @@ export default async function getQuizResult(
   
   // res.status(200).json({ name: 'John Doe' })
 
-  // const inputOptions = req.body;
+  const inputOptions = req.body;
 
-  // const divisionResult = await prisma.division.findMany({
-  //   where: {
-  //     question_1: { contains: inputOptions.q1 },
-  //     question_2: { contains: inputOptions.q2 },
-  //     question_3: { contains: inputOptions.q3 },
-  //     question_4: { contains: inputOptions.q4 },
-  //   }
-  // })
+  const divisionResult = await prisma.division.findMany({
+    where: {
+      question_1: { contains: inputOptions.q1 },
+      question_2: { contains: inputOptions.q2 },
+      question_3: { contains: inputOptions.q3 },
+      question_4: { contains: inputOptions.q4 },
+    }
+  })
 
-  // console.log(divisionResult.length);
+  console.log(divisionResult.length);
 
-  // let divisionANZList;
-  // if (divisionResult.length === 0) {
-  //   divisionANZList = ['Accommodation and Food Services'];
-  // } else {
-  //   divisionANZList = divisionResult.map((item) => item.anzsic_division);
-  // }
+  let divisionANZList;
+  if (divisionResult.length === 0) {
+    divisionANZList = ['Other Services'];
+  } else {
+    divisionANZList = divisionResult.map((item) => item.anzsic_division);
+  }
 
 
   const occupationResult = await prisma.division.findMany({
-    where: { anzsic_division: {in: ['Accommodation and Food Services','Construction']} },
+    where: { anzsic_division: {in: divisionANZList} },
     include: {
       division_course: {
         include : { 

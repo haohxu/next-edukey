@@ -6,7 +6,8 @@ export default function IndexPage() {
     <>
     <Head >
       <title>EduKey</title>
-      <meta name="description" content="Find alternative education pathways for high school students in Australia" />
+      {/* <title>EduKey</title>
+      <meta name="description" content="Find alternative education pathways for high school students in Australia" /> */}
     </Head>
     <CallToAction ></CallToAction>
     </>

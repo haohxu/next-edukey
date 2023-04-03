@@ -4,7 +4,9 @@ import {
   AvatarGroup,
   Box,
   Container,
+  Flex,
   Link,
+  Spacer,
   Stack,
   Text,
   useColorModeValue,
@@ -31,9 +33,19 @@ const Logo = (props: any) => {
 
 export default function Footer() {
   return (
-    <Box
+    <Flex 
+      position={'absolute'}
+      direction={'column'}
+      justify={'center'}
+      width={'full'}
+      align={'center'}
       bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}>
+      color={useColorModeValue('gray.700', 'gray.200')}
+      bottom={0.5}
+      >
+    {/* <Box
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')}> */}
       <Container
         as={Stack}
         maxW={'6xl'}
@@ -42,15 +54,17 @@ export default function Footer() {
         justify={'center'}
         align={'center'}>
         {/* <Logo /> */}
+        
         <Stack direction={'row'} spacing={6}>
-          <Link href={'#'}>Link 1</Link>
-          <Link href={'#'}>Link 2</Link>
-          <Link href={'#'}>Link 3</Link>
-          <Link href={'#'}>Link 4</Link>
+          <Link href={'/'}>Home</Link>
+          <Link href={'/find-answer'}>Find</Link>
+          <Link href={'#'}>Statistics</Link>
+          {/* <Link href={'#'}>Link 4</Link> */}
         </Stack>
       </Container>
 
       <Box
+        width={'full'}
         borderTopWidth={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.700')}>
@@ -72,6 +86,7 @@ export default function Footer() {
           </Stack>
         </Container>
       </Box>
-    </Box>
+    {/* </Box> */}
+    </Flex>
   );
 }

@@ -68,7 +68,7 @@ export default function CallToAction() {
               Inside Your School
             </Button>
             <NextLink
-              href={'/find'}  // TODO: Change Link to dynamic props
+              href={'/find-answer'}  // TODO: Change Link to dynamic props
               passHref
               legacyBehavior
             >
@@ -94,7 +94,7 @@ export default function CallToAction() {
             >
               See All Alternatives
             </Button>
-            <NextLink 
+            {/* <NextLink 
               href={'/providers'}  // TODO: Change Link to dynamic props
               passHref 
               legacyBehavior
@@ -102,7 +102,7 @@ export default function CallToAction() {
               <Button as={'a'} variant={'link'} colorScheme={'gray'} size={'sm'}>
                 See All Providers
               </Button>
-            </NextLink>
+            </NextLink> */}
             <Box display={{base: 'none', md: 'contents'}}>
               <Icon
                 as={Arrow}

@@ -36,6 +36,8 @@ import { useToast } from '@chakra-ui/react';
 import { ObjectType } from 'typescript';
 import OccupationItem from '@/components/find/occupationItem';
 import { occupation } from '@prisma/client';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 
 
@@ -50,13 +52,22 @@ const Form4 = (props : {onAnswer: (event: any) => void}) => {
         <Heading w="100%" fontWeight="normal" mb="2%" p={'6'} textAlign={'center'}>
           Where do you look yourself to be satisfied working?
         </Heading>
-        <Stack direction={'row'}>
-        <Button id="q4-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
-          >A</Button>
-        <Button id="q4-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
-          >B</Button>
-        <Button id="q4-c-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
-          >C</Button>
+        <Stack direction={'row'} spacing={'8'}>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Factory'} src={'/static/4a.jpg'}/>
+            <Button id="q4-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+            >A</Button>
+          </Stack>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Office'} src={'/static/4b.jpg'}/>
+            <Button id="q4-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            >B</Button>
+          </Stack>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Laboratory'} src={'/static/4c.jpg'}/>
+            <Button id="q4-c-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            >C</Button>
+          </Stack>
         </Stack>
         </VStack>
       </Center>
@@ -76,11 +87,17 @@ const Form3 = (props : {onAnswer: (event: any) => void}) => {
         <Heading w="100%" fontWeight="normal" mb="2%" p={'6'} textAlign={'center'}>
           Do you like creating, selling, or managing products or services?
         </Heading>
-        <Stack direction={'row'}>
-        <Button id="q3-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
-          >A</Button>
-        <Button id="q3-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
-          >B</Button>
+        <Stack direction={'row'} spacing={'8'}>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Yes'} src={'/static/yes.png'}/>
+            <Button id="q3-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+              >A</Button>
+          </Stack>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'No'} src={'/static/No.png'}/>
+            <Button id="q3-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+              >B</Button>
+          </Stack>
         </Stack>
         </VStack>
       </Center>
@@ -100,11 +117,20 @@ const Form2 = (props : {onAnswer: (event: any) => void}) => {
         <Heading w="100%" fontWeight="normal" mb="2%" p={'6'} textAlign={'center'}>
           Is the job focused on caring for, teaching, or helping others?
         </Heading>
-        <Stack direction={'row'}>
-        <Button id="q2-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
-          >A</Button>
-        <Button id="q2-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
-          >B</Button>
+        <Stack direction={'row'} spacing={'8'}>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'to help people'} src={'/static/2a.jpeg'}/>
+            <Button id="q2-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
+              >A</Button>
+          </Stack>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'to work solo'} src={'/static/2b.jpg'}/>
+            <Button id="q2-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+              >B</Button>
+          </Stack>
+        
+        
+        
         </Stack>
         </VStack>
       </Center>
@@ -117,18 +143,26 @@ const Form1 = (props : {onAnswer: (event: any) => void}) => {
   return (
     <>
       <Center>
-        <VStack p={'6'}>
+        <VStack p={6}>
         <Heading w="100%" fontWeight="normal" mb="2%" p={'1'} textAlign={'center'}>
           Question 1
         </Heading>
         <Heading w="100%" fontWeight="normal" mb="2%" p={'6'} textAlign={'center'}>
           Is the job mostly inside or outside?
         </Heading>
-        <Stack direction={'row'}>
-        <Button id="q1-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a)}
-          >A</Button>
-        <Button id="q1-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
-          >B</Button>
+        <Stack direction={'row'} spacing={'8'}>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Indoor'} src={'/static/1a.jpeg'}/>
+            <Button id="q1-a-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.a === 'a')}
+              >A</Button>
+          </Stack>
+          <Stack direction={'column'} p={0}>
+            <Image boxSize={'200px'} objectFit={'contain'} alt={'Outdoor'} src={'/static/1b.jpeg'}/>
+            <Button id="q1-b-my-quiz-option" onClick={props.onAnswer} // variant={setVariant(isAnswered.q1.b)}
+            >B</Button>
+          </Stack>
+          
+          
         </Stack>
         </VStack>
       </Center>
@@ -138,6 +172,7 @@ const Form1 = (props : {onAnswer: (event: any) => void}) => {
 };
 
 export default function FindAnswerPage() {
+  const route = useRouter();
 
   const totalQuestionNum: number = 4
   const progressPercentage: number = 100 / totalQuestionNum;
@@ -171,6 +206,11 @@ export default function FindAnswerPage() {
       ...idObject,
     }));
   };
+
+  // display user's chosen button
+  const setVariant = (input: boolean) => {
+    return input ? 'solid' : 'outline'
+  }
 
   // display user's current answer
   const setYourAnswer = () => {
@@ -246,13 +286,20 @@ export default function FindAnswerPage() {
         duration: 2000,
         isClosable: true,
       });
+
+      // TODO: use another page to display result
+      // route.push('/');
     }
   }
 
   
 
   return (
-    <>{!resultShown ? (
+    <>
+    <Head>
+      <title>Find Alternative Education for You</title>
+    </Head>
+    {!resultShown ? (
       <Box
         borderWidth="1px"
         rounded="lg"
@@ -320,7 +367,7 @@ export default function FindAnswerPage() {
             ) : null}
           </Flex>
         </ButtonGroup>
-        <Heading fontSize={'x-small'}>{'DEV: ' + JSON.stringify(isAnswered)}</Heading>
+        {/* <Heading fontSize={'x-small'}>{'DEV: ' + JSON.stringify(isAnswered)}</Heading> */}
       </Box>
     ) : null}
     
