@@ -355,9 +355,9 @@ export default function FindAnswerPage() {
                 onClick={() => {
                   toast({
                     title: 'Quiz Finished',
-                    description: "We are searching a result for you.",
+                    description: "We are searching a result for you...",
                     status: 'loading',
-                    duration: 2400,
+                    duration: 5000,
                     isClosable: true,
                   });
 
