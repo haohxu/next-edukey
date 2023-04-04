@@ -55,14 +55,14 @@ export default function Navbar() {
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={'genos'}
-            fontSize={'2xl'}
-            fontWeight={'bold'}
+            fontFamily={"genos"}
+            fontSize={"2xl"}
+            fontWeight={"bold"}
           >
             EduKey
           </Text>
 
-          <Flex display={{ base: "none", md: "flex" }} ml={10} align={'center'}>
+          <Flex display={{ base: "none", md: "flex" }} ml={10} align={"center"}>
             <DesktopNav />
           </Flex>
         </Flex>
@@ -281,7 +281,7 @@ const NAV_ITEMS: Array<NavItem> = [
     //     href: "#",
     //   },
     // ],
-    href: "/"
+    href: "/",
   },
   {
     label: "Find",
@@ -305,7 +305,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Statistics",
-    href: "#",
+    href: "/statistics",
   },
-  
 ];

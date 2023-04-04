@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { 
+import {
   Box,
   chakra,
   Container,
@@ -21,48 +21,54 @@ import { course } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 
+export default function CourseDetailPage(props: { course_detail: course }) {
+  const course_detail = props.course_detail;
 
-export default function CourseDetailPage(props: {course_detail: course}) {
-  const course_detail = props.course_detail
-  
   return (
-    <Container maxW={'7xl'}>
+    <Container maxW={"7xl"}>
       <SimpleGrid
         columns={{ base: 1, lg: 1 }}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}>
+        py={{ base: 18, md: 24 }}
+      >
         <Stack spacing={{ base: 6, md: 10 }}>
-          <Box as={'header'}>
+          <Box as={"header"}>
             <Heading
-              color={'blue.500'}
-              textTransform={'uppercase'}
+              color={"blue.500"}
+              textTransform={"uppercase"}
               fontWeight={800}
-              fontSize={'lg'}
-              letterSpacing={1.1}>
-              Course Detail</Heading>
+              fontSize={"lg"}
+              letterSpacing={1.1}
+            >
+              Course Detail
+            </Heading>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
-              marginY={3}>
+              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+              marginY={3}
+            >
               {course_detail.course_title}
             </Heading>
             <Text
-              color={useColorModeValue('gray.900', 'gray.400')}
+              color={useColorModeValue("gray.900", "gray.400")}
               fontWeight={300}
-              fontSize={'2xl'}>
-              {course_detail.course_code}, {course_detail.qualification_level}, {course_detail.course_type}
+              fontSize={"2xl"}
+            >
+              {course_detail.course_code}, {course_detail.qualification_level},{" "}
+              {course_detail.course_type}
             </Text>
           </Box>
 
           <Stack
             spacing={{ base: 4, sm: 6 }}
-            direction={'column'}
+            direction={"column"}
             divider={
               <StackDivider
-                borderColor={useColorModeValue('gray.200', 'gray.600')}
+                borderColor={useColorModeValue("gray.200", "gray.600")}
               />
-            }>
+            }
+          >
             <VStack spacing={{ base: 4, sm: 6 }}>
               {/* <Text
                 color={useColorModeValue('gray.500', 'gray.400')}
@@ -71,9 +77,7 @@ export default function CourseDetailPage(props: {course_detail: course}) {
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                 diam nonumy eirmod tempor invidunt ut labore
               </Text> */}
-              <Text fontSize={'lg'}>
-                {course_detail.description}
-              </Text>
+              <Text fontSize={"lg"}>{course_detail.description}</Text>
             </VStack>
             {/* <Box>
               <Text
@@ -179,33 +183,19 @@ export default function CourseDetailPage(props: {course_detail: course}) {
         </Stack>
       </SimpleGrid>
     </Container>
-  )
+  );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 interface Params extends ParsedUrlQuery {
-  course_code: string,
+  course_code: string;
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params as Params;
   const course_code = params.course_code;
 
-  let course_detail : course = {
-    course_code: 'Not found',
+  let course_detail: course = {
+    course_code: "Not found",
     id: 0,
     course_title: "",
     qualification_level: "",
@@ -214,23 +204,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
     apprenticeship: 0,
     traineeship: 0,
     entry_requirement: "",
-    description: ""
-  }
+    description: "",
+  };
 
   const course_detail_res = await prisma.course.findUnique({
     where: {
       course_code: course_code,
-    }
-  })
+    },
+  });
 
   if (course_detail_res !== null) {
     course_detail = course_detail_res;
   }
 
   return {
-    props: { course_detail }
-  }
-}
+    props: { course_detail },
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const course_codes = await prisma.course.findMany({

@@ -1,4 +1,3 @@
-// import Head from 'next/head';
 import {
   Box,
   Heading,
@@ -8,90 +7,86 @@ import {
   Stack,
   Icon,
   useColorModeValue,
-  createIcon
-} from '@chakra-ui/react';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import NextLink from 'next/link';
+  createIcon,
+} from "@chakra-ui/react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
 
 export default function CallToAction() {
   return (
     <>
-      {/* already add this font to _document.tsx file
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head> */}
-
-      <Container maxW={'3xl'}>
+      <Container maxW={"3xl"}>
         <Stack
           as={Box}
-          textAlign={'center'}
+          textAlign={"center"}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}>
+          py={{ base: 20, md: 36 }}
+        >
           <Heading
             fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
+            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
+          >
             Considering Dropout from <br />
-            <Text as={'span'} color={'blue.400'}>
+            <Text as={"span"} color={"blue.400"}>
               High School?
             </Text>
           </Heading>
-          <Text color={'gray.500'}>
-            Don&apos;t worry!<br />
-            There are plenty of alternative education leading children to success!<br />
+          <Text color={"gray.500"}>
+            Don&apos;t worry!
+            <br />
+            There are plenty of alternative education leading children to
+            success!
+            <br />
             Find them based on interests and strengths!
           </Text>
           <Stack
-            direction={'column'}
+            direction={"column"}
             spacing={10}
-            align={'center'}
-            alignSelf={'center'}
-            position={'relative'}>
+            align={"center"}
+            alignSelf={"center"}
+            position={"relative"}
+          >
             <Heading
               fontWeight={600}
-              fontSize={{ base: 'lg', sm: '2xl', md: '4xl' }}
-              lineHeight={'110%'}>
+              fontSize={{ base: "lg", sm: "2xl", md: "4xl" }}
+              lineHeight={"110%"}
+            >
               Find Alternative Education:
             </Heading>
-            <Stack direction={{base: 'column', md: 'row'}} alignSelf={'center'}>
-            <Button
-              colorScheme={'gray'}
-              bg={'gray.300'}
-              rounded={'lg'}
-              px={6}
-              _hover={{
-                bg: 'gray.400',
-              }}>
-              Inside Your School
-            </Button>
-            <NextLink
-              href={'/find-answer'}  
-              passHref
-              legacyBehavior
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              alignSelf={"center"}
             >
               <Button
-                as={'a'}
-                colorScheme={'linkedin'}
-                // bg={'green.400'}
-                rounded={'lg'}
-                rightIcon={<ArrowForwardIcon />}
+                colorScheme={"gray"}
+                bg={"gray.300"}
+                rounded={"lg"}
                 px={6}
                 _hover={{
-                  bg: 'blue.500',
-                }}>
-                Outside of School
+                  bg: "gray.400",
+                }}
+              >
+                Inside Your School
               </Button>
-            </NextLink>
+              <NextLink href={"/find-answer"} passHref legacyBehavior>
+                <Button
+                  as={"a"}
+                  colorScheme={"linkedin"}
+                  // bg={'green.400'}
+                  rounded={"lg"}
+                  rightIcon={<ArrowForwardIcon />}
+                  px={6}
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                >
+                  Outside of School
+                </Button>
+              </NextLink>
             </Stack>
-            
-            <Button 
-              variant={'link'} 
-              colorScheme={'blue'} 
-              size={'sm'}
-            >
+
+            <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
               See All Alternatives
             </Button>
             {/* <NextLink 
@@ -103,26 +98,27 @@ export default function CallToAction() {
                 See All Providers
               </Button>
             </NextLink> */}
-            <Box display={{base: 'none', md: 'contents'}}>
+            <Box display={{ base: "none", md: "contents" }}>
               <Icon
                 as={Arrow}
-                color={useColorModeValue('gray.800', 'gray.300')}
+                color={useColorModeValue("gray.800", "gray.300")}
                 w={71}
-                position={'absolute'}
+                position={"absolute"}
                 // right={-71}
-                right={{base: 15, sm: -45}}
+                right={{ base: 15, sm: -45 }}
                 // top={'80px'}
-                top={{base: '150px', sm: '90px'}}
+                top={{ base: "150px", sm: "90px" }}
               />
               <Text
-                fontSize={'lg'}
-                fontFamily={'Caveat'}
-                position={'absolute'}
+                fontSize={"lg"}
+                fontFamily={"Caveat"}
+                position={"absolute"}
                 // right={'-100px'}
-                right={{base: '0px', sm: '-100px'}}
+                right={{ base: "0px", sm: "-100px" }}
                 // top={'60px'}
-                top={{base:'120px', sm:'70px'}}
-                transform={'rotate(10deg)'}>
+                top={{ base: "120px", sm: "70px" }}
+                transform={"rotate(10deg)"}
+              >
                 Click to Find!
               </Text>
             </Box>
@@ -134,8 +130,8 @@ export default function CallToAction() {
 }
 
 const Arrow = createIcon({
-  displayName: 'Arrow',
-  viewBox: '0 0 72 24',
+  displayName: "Arrow",
+  viewBox: "0 0 72 24",
   path: (
     <path
       fillRule="evenodd"
