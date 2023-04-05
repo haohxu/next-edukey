@@ -22,10 +22,13 @@ const CourseItem = (props: any) => {
     <>
       <Flex>
         <Box textAlign={"left"}>
-          <Text fontSize={"md"}>{props.course.course_title}</Text>
+          <Text fontSize={{ base: "sm", md: "md" }}>
+            {"- "}
+            {props.course.course_title}
+          </Text>
         </Box>
         <Spacer />
-        <Box fontSize={"sm"} color={"blue.500"}>
+        <Box fontSize={{ base: "sm", md: "md" }} color={"blue.500"}>
           <NextLink href={"/courses/" + props.course.course_code}>
             Show Detail
           </NextLink>
@@ -49,7 +52,7 @@ export default function OccupationItem(props: any) {
       >
         <Stack>
           <Text
-            color={"green.500"}
+            color={"blue.500"}
             textTransform={"uppercase"}
             fontWeight={800}
             fontSize={"sm"}
@@ -76,13 +79,15 @@ export default function OccupationItem(props: any) {
               <Box flex="1" textAlign="left">
                 <Heading
                   // color={useColorModeValue('gray.700', 'white')}
-                  fontSize={"2xl"}
+                  fontSize={{ base: "md", md: "2xl" }}
                   fontFamily={"body"}
                 >
                   {props.job_name}
                 </Heading>
               </Box>
-              <Text fontSize={"sm"}>See Available Courses: &nbsp;</Text>
+              <Text fontSize={{ base: "xs", md: "sm" }}>
+                See Available Courses: &nbsp;
+              </Text>
               <AccordionIcon />
             </AccordionButton>
 
@@ -97,12 +102,12 @@ export default function OccupationItem(props: any) {
           </AccordionItem>
         </Accordion>
         <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-          <Text fontWeight={600}>
+          {/* <Text fontWeight={600}>
             Government Website: &nbsp;
             <Text as={"a"} href={props.job_outlook_url} fontWeight={500}>
               {props.job_outlook_url}
             </Text>
-          </Text>
+          </Text> */}
         </Stack>
       </Box>
     </Center>

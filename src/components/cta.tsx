@@ -27,15 +27,20 @@ export default function CallToAction() {
             fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}
           >
-            Considering Dropout from <br />
-            <Text as={"span"} color={"blue.400"}>
-              High School?
+            Do You Wanna Explore
+            <Text color={"blue.400"} >
+            Offbeat Pathways 
             </Text>
+            <Text 
+              paddingTop={{base: "1", md: "2"}} 
+              fontSize={{ base: "md", sm: "xl", md: "3xl" }}
+            >After High School?</Text>
           </Heading>
+          
           <Text color={"gray.500"}>
             Don&apos;t worry!
             <br />
-            There are plenty of alternative education leading children to
+            There are plenty of alternative education leading students to
             success!
             <br />
             Find them based on interests and strengths!
@@ -47,18 +52,18 @@ export default function CallToAction() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Heading
+            {/* <Heading
               fontWeight={600}
               fontSize={{ base: "lg", sm: "2xl", md: "4xl" }}
               lineHeight={"110%"}
             >
               Find Alternative Education:
-            </Heading>
+            </Heading> */}
             <Stack
               direction={{ base: "column", md: "row" }}
               alignSelf={"center"}
             >
-              <Button
+              {/* <Button
                 colorScheme={"gray"}
                 bg={"gray.300"}
                 rounded={"lg"}
@@ -68,7 +73,7 @@ export default function CallToAction() {
                 }}
               >
                 Inside Your School
-              </Button>
+              </Button> */}
               <NextLink href={"/find-answer"} passHref legacyBehavior>
                 <Button
                   as={"a"}
@@ -81,14 +86,14 @@ export default function CallToAction() {
                     bg: "blue.500",
                   }}
                 >
-                  Outside of School
+                  Explore Here
                 </Button>
               </NextLink>
             </Stack>
 
-            <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
+            {/* <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
               See All Alternatives
-            </Button>
+            </Button> */}
             {/* <NextLink 
               href={'/providers'}  
               passHref 
@@ -101,22 +106,22 @@ export default function CallToAction() {
             <Box display={{ base: "none", md: "contents" }}>
               <Icon
                 as={Arrow}
-                color={useColorModeValue("gray.800", "gray.300")}
+                color={"gray.800"}
                 w={71}
                 position={"absolute"}
                 // right={-71}
-                right={{ base: 15, sm: -45 }}
+                right={{ base: "15px", sm: "75px", md: "-70px"}}
                 // top={'80px'}
-                top={{ base: "150px", sm: "90px" }}
+                top={{ base: "150px", sm: "90px", md: "15px" }}
               />
               <Text
                 fontSize={"lg"}
                 fontFamily={"Caveat"}
                 position={"absolute"}
                 // right={'-100px'}
-                right={{ base: "0px", sm: "-100px" }}
+                right={{ base: "0px", sm: "30px", md: "-100px" }}
                 // top={'60px'}
-                top={{ base: "120px", sm: "70px" }}
+                top={{ base: "120px", sm: "65px", md: "-10px" }}
                 transform={"rotate(10deg)"}
               >
                 Click to Find!

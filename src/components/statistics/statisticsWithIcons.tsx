@@ -1,80 +1,69 @@
 import {
-  Box,
-  chakra,
+  Container,
+  Grid,
+  GridItem,
   Flex,
-  SimpleGrid,
-  Stat,
-  StatLabel,
-  StatNumber,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
-import { BsPerson } from 'react-icons/bs';
-import { FiServer } from 'react-icons/fi';
-import { GoLocation } from 'react-icons/go';
+  Box,
+  Text,
+  Heading,
+} from "@chakra-ui/react";
 
-interface StatsCardProps {
-  title: string;
-  stat: string;
-  icon: ReactNode;
-}
-function StatsCard(props: StatsCardProps) {
-  const { title, stat, icon } = props;
+function statsTitleDescription() {
   return (
-    <Stat
-      px={{ base: 2, md: 4 }}
-      py={'5'}
-      shadow={'xl'}
-      border={'1px solid'}
-      borderColor={useColorModeValue('gray.800', 'gray.500')}
-      rounded={'lg'}>
-      <Flex justifyContent={'space-between'}>
-        <Box pl={{ base: 2, md: 4 }}>
-          <StatLabel fontWeight={'medium'} isTruncated>
-            {title}
-          </StatLabel>
-          <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
-            {stat}
-          </StatNumber>
-        </Box>
-        <Box
-          my={'auto'}
-          color={useColorModeValue('gray.800', 'gray.200')}
-          alignContent={'center'}>
-          {icon}
-        </Box>
-      </Flex>
-    </Stat>
+    <Container py={5} maxW={"container.lg"} paddingTop={"20"}>
+      <Grid
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+        }}
+        gap={6}
+      >
+        <GridItem w="100%" colSpan={{ base: 1, sm: 2, md: 3 }} marginBottom={6}>
+          <Heading as={"h2"} paddingBottom={4}>
+            Do You Know:{" "}
+          </Heading>
+          <Heading as={"h2"} paddingBottom={4}>
+            Among{" "}
+            <Text as={"span"} color={"blue.500"}>
+              All VET Students
+            </Text>{" "}
+            Graduated in 2022,
+          </Heading>
+        </GridItem>
+        <GridItem w="100%">
+          <Flex flexDirection={"column"}>
+            <Text fontSize={"4xl"} fontWeight={"bold"} color={"blue.500"}>
+              88%
+            </Text>
+            <Box fontSize={"lg"}>Get employed after training</Box>
+          </Flex>
+        </GridItem>
+        <GridItem w="100%">
+          <Flex flexDirection={"column"}>
+            <Text fontSize={"4xl"} fontWeight={"bold"} color={"blue.500"}>
+              74%
+            </Text>
+            <Box fontSize={"lg"}>
+              Get employed after training: found the training relevant to their
+              current job.
+            </Box>
+          </Flex>
+        </GridItem>
+        <GridItem w="100%">
+          <Flex flexDirection={"column"}>
+            <Text fontSize={"4xl"} fontWeight={"bold"} color={"blue.500"}>
+              78%
+            </Text>
+            <Box fontSize={"lg"}>
+              Get employed after training: received at least one job-related
+              benefit.
+            </Box>
+          </Flex>
+        </GridItem>
+      </Grid>
+    </Container>
   );
 }
 
-export default function BasicStatistics() {
-  return (
-    <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-      <chakra.h1
-        textAlign={'center'}
-        fontSize={'4xl'}
-        py={10}
-        fontWeight={'bold'}>
-        Do You Know 
-      </chakra.h1>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard
-          title={'Users'}
-          stat={'5,000'}
-          icon={<BsPerson size={'3em'} />}
-        />
-        <StatsCard
-          title={'Servers'}
-          stat={'1,000'}
-          icon={<FiServer size={'3em'} />}
-        />
-        <StatsCard
-          title={'Datacenters'}
-          stat={'7'}
-          icon={<GoLocation size={'3em'} />}
-        />
-      </SimpleGrid>
-    </Box>
-  );
-}
+export default statsTitleDescription;

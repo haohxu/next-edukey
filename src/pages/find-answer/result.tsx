@@ -37,6 +37,7 @@ export default function QuizResultPage() {
                 key={"division-" + item.anzsic_division}
                 // minWidth={"200"}
                 maxWidth={"500"}
+                fontSize={{base: "2xs", sm:"xs", md: "sm"}}
               >
                 {item.anzsic_division}
               </Tab>

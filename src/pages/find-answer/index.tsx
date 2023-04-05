@@ -50,7 +50,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"Factory"}
-                src={"/static/4a.jpg"}
+                src={"/static/4-a.png"}
               />
               <Button
                 id="q4-a-my-quiz-option"
@@ -65,7 +65,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"Office"}
-                src={"/static/4b.jpg"}
+                src={"/static/4-b.png"}
               />
               <Button
                 id="q4-b-my-quiz-option"
@@ -80,7 +80,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"Laboratory"}
-                src={"/static/4c.jpg"}
+                src={"/static/4-c.png"}
               />
               <Button
                 id="q4-c-my-quiz-option"
@@ -187,7 +187,7 @@ const Form2 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"to help people"}
-                src={"/static/2a.jpeg"}
+                src={"/static/2-a.png"}
               />
               <Button
                 id="q2-a-my-quiz-option"
@@ -202,7 +202,7 @@ const Form2 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"to work solo"}
-                src={"/static/2b.jpg"}
+                src={"/static/2-b.png"}
               />
               <Button
                 id="q2-b-my-quiz-option"
@@ -248,7 +248,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"Indoor"}
-                src={"/static/1a.jpeg"}
+                src={"/static/1-a.png"}
               />
               <Button
                 id="q1-a-my-quiz-option"
@@ -263,7 +263,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 boxSize={"200px"}
                 objectFit={"contain"}
                 alt={"Outdoor"}
-                src={"/static/1b.jpeg"}
+                src={"/static/1-b.png"}
               />
               <Button
                 id="q1-b-my-quiz-option"
@@ -315,18 +315,7 @@ export default function FindAnswerPage() {
     );
   };
 
-  const setAnsweredHandler = (event: any) => {
-    const inputArray = (event.target.id as string).split("-");
-    const questionId = inputArray[0];
-    const optionId = inputArray[1];
-
-    const idObject = { [questionId]: optionId };
-
-    setAnswered((isAnswered) => ({
-      ...isAnswered,
-      ...idObject,
-    }));
-  };
+  
 
   // get current question
   const currentQuestion = () => {
@@ -336,7 +325,9 @@ export default function FindAnswerPage() {
 
   // control Next button
   const nextButtonHandler = () => {
-    setStep(step + 1);
+    if (step !== totalQuestionNum) {
+      setStep(step + 1);
+    }
     if (step === totalQuestionNum) {
       setProgress(100);
     } else {
@@ -348,6 +339,21 @@ export default function FindAnswerPage() {
   const backButtonHandler = () => {
     setStep(step - 1);
     setProgress(progress - progressPercentage);
+  };
+
+  const setAnsweredHandler = (event: any) => {
+    const inputArray = (event.target.id as string).split("-");
+    const questionId = inputArray[0];
+    const optionId = inputArray[1];
+
+    const idObject = { [questionId]: optionId };
+
+    setAnswered((isAnswered) => ({
+      ...isAnswered,
+      ...idObject,
+    }));
+
+    nextButtonHandler();
   };
 
   // request quiz result from api (from database) based on answers
@@ -410,7 +416,7 @@ export default function FindAnswerPage() {
           mx="5%"
           isAnimated
         ></Progress>
-        <Heading fontSize={"xs"}>Progress: {progress.toPrecision(2)}% </Heading>
+        <Heading fontSize={"xs"}>Progress: {progress.toPrecision(3)}% </Heading>
         <Heading fontSize={"xs"}>{"Your Answer" + setYourAnswer()}</Heading>
         {step === 1 ? (
           <Form1 onAnswer={setAnsweredHandler} varient={isAnswered.q1} />
@@ -427,14 +433,14 @@ export default function FindAnswerPage() {
               <Button
                 onClick={backButtonHandler}
                 isDisabled={step === 1}
-                colorScheme="teal"
-                variant="solid"
+                colorScheme="blue"
+                variant="outline"
                 w="7rem"
                 mr="5%"
               >
                 Back
               </Button>
-              <Button
+              {/* <Button
                 w="7rem"
                 isDisabled={
                   step === totalQuestionNum ||
@@ -446,7 +452,7 @@ export default function FindAnswerPage() {
                 variant="outline"
               >
                 Next
-              </Button>
+              </Button> */}
             </Flex>
             {step === totalQuestionNum ? (
               <Button
@@ -461,10 +467,10 @@ export default function FindAnswerPage() {
                 }
                 onClick={() => {
                   toast({
-                    title: "Quiz Finished",
+                    title: "Interests Received!",
                     description: "We are searching a result for you...",
                     status: "loading",
-                    duration: 5000,
+                    duration: 4000,
                     isClosable: true,
                   });
 

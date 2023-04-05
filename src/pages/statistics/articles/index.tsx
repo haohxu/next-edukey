@@ -15,7 +15,7 @@ import {
   Container,
   VStack,
 } from "@chakra-ui/react";
-import all_statistic_articles from "@/lib/all_statistic_articles";
+import all_statistic_articles, { StatisticArticleType } from "@/lib/all_statistic_articles";
 
 interface IBlogTags {
   tags: Array<string>;
@@ -37,7 +37,7 @@ const BlogTags: React.FC<IBlogTags> = (props) => {
 };
 
 interface BlogAuthorProps {
-  date: Date;
+  date: string;
   name: string;
 }
 
@@ -52,12 +52,15 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
       />
       <Text fontWeight="medium">{props.name}</Text>
       <Text>—</Text>
-      <Text>{props.date.toDateString()}</Text>
+      <Text>{props.date}</Text>
     </HStack>
   );
 };
 
-const ArticleBlock = () => {
+const ArticleBlock = (props: {article: StatisticArticleType}) => {
+
+  const article = props.article;
+
   return (
     <Container maxW={"7xl"} p="10" marginY={'1'} paddingY={'1'}>
       <Box
@@ -113,7 +116,7 @@ const ArticleBlock = () => {
           {/* <BlogTags tags={['Engineering', 'Product']} /> */}
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-              Blog article title
+              {article.title}
             </Link>
           </Heading>
           <Text
@@ -122,12 +125,9 @@ const ArticleBlock = () => {
             color={useColorModeValue("gray.700", "gray.200")}
             fontSize="lg"
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the standard dummy text ever since
-            the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book.
+            {article.description}
           </Text>
-          <BlogAuthor name="John Doe" date={new Date("2021-04-06T19:01:27Z")} />
+          <BlogAuthor name="John Doe" date={article.dateTime} />
         </Box>
         <Box>
           <Divider color={'black.500'} paddingY={'3'}></Divider>
@@ -146,7 +146,7 @@ const StatisticsArticleList = () => {
         <Heading as="h1">Articles</Heading>
       </Container>
       {articleList.map( (item) => (
-        <ArticleBlock key={item.id}  />
+        <ArticleBlock key={item.id}  article={item}/>
       ) )}
     </>
   );
