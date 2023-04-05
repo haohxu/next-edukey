@@ -13,7 +13,7 @@ import {
 import { StatisticArticleType } from "@/lib/all_statistic_articles";
 import NextLink from "next/link";
 
-const BlogPostWithImage = (props: { article: StatisticArticleType }) => {
+export const BlogPostWithImage = (props: { article: StatisticArticleType }) => {
   const article = props.article;
 
   return (
@@ -28,14 +28,21 @@ const BlogPostWithImage = (props: { article: StatisticArticleType }) => {
         p={6}
         overflow={"hidden"}
       >
-        {/* <Box
-          h={"210px"}
-          bg={"gray.100"}
+        <Box
+          h={'210px'}
+          bg={'gray.100'}
           mt={-6}
           mx={-6}
           mb={6}
-          pos={"relative"}
-        ></Box> */}
+          pos={'relative'}>
+          <Image
+            src={
+              article.image
+            }
+            alt={article.title}
+            fill
+          />
+        </Box>
         <Stack>
           <Text
             color={"blue.500"}

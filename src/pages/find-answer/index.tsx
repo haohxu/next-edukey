@@ -47,7 +47,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
           <Stack direction={"row"} spacing={"8"}>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"Factory"}
                 src={"/static/4-a.png"}
@@ -62,7 +62,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
             </Stack>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"Office"}
                 src={"/static/4-b.png"}
@@ -77,7 +77,7 @@ const Form4 = (props: { onAnswer: (event: any) => void; varient: string }) => {
             </Stack>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"Laboratory"}
                 src={"/static/4-c.png"}
@@ -184,7 +184,7 @@ const Form2 = (props: { onAnswer: (event: any) => void; varient: string }) => {
           <Stack direction={"row"} spacing={"8"}>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"to help people"}
                 src={"/static/2-a.png"}
@@ -199,7 +199,7 @@ const Form2 = (props: { onAnswer: (event: any) => void; varient: string }) => {
             </Stack>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"to work solo"}
                 src={"/static/2-b.png"}
@@ -245,7 +245,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
           <Stack direction={"row"} spacing={"8"}>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"Indoor"}
                 src={"/static/1-a.png"}
@@ -260,7 +260,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
             </Stack>
             <Stack direction={"column"} p={0}>
               <Image
-                boxSize={"200px"}
+                boxSize={"300px"}
                 objectFit={"contain"}
                 alt={"Outdoor"}
                 src={"/static/1-b.png"}

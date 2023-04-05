@@ -16,6 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import all_statistic_articles, { StatisticArticleType } from "@/lib/all_statistic_articles";
+import NextLink from 'next/link';
 
 interface IBlogTags {
   tags: Array<string>;
@@ -82,28 +83,25 @@ const ArticleBlock = (props: {article: StatisticArticleType}) => {
             marginLeft={{ base: "0", sm: "5%" }}
             marginTop="5%"
           >
-            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+            
               <Image
                 borderRadius="lg"
-                src={
-                  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                }
+                src={article.image}
                 alt="some good alt text"
                 objectFit="contain"
               />
-            </Link>
+            
           </Box>
-          {/* <Box zIndex="1" width="100%" position="absolute" height="100%">
+          <Box zIndex="1" width="100%" position="absolute" height="100%">
             <Box
-              bgGradient={useColorModeValue(
-                'radial(orange.600 1px, transparent 1px)',
-                'radial(orange.300 1px, transparent 1px)'
-              )}
+              bgGradient={
+                'radial(blue.600 1px, transparent 1px)'
+              }
               backgroundSize="20px 20px"
               opacity="0.4"
               height="100%"
             />
-          </Box> */}
+          </Box>
         </Box>
         <Box
           display="flex"
@@ -114,11 +112,15 @@ const ArticleBlock = (props: {article: StatisticArticleType}) => {
           paddingTop={{base: "3", md: "0"}}
         >
           {/* <BlogTags tags={['Engineering', 'Product']} /> */}
-          <Heading marginTop="1">
-            <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+          <NextLink 
+            href={'/statistics/articles/'+ article.id}
+            passHref
+            legacyBehavior>
+          <Heading as={'a'} marginTop="1">
               {article.title}
-            </Link>
+            
           </Heading>
+          </NextLink>
           <Text
             as="p"
             marginTop="2"
@@ -127,7 +129,7 @@ const ArticleBlock = (props: {article: StatisticArticleType}) => {
           >
             {article.description}
           </Text>
-          <BlogAuthor name="John Doe" date={article.dateTime} />
+          {/* <BlogAuthor name="John Doe" date={article.dateTime} /> */}
         </Box>
         <Box>
           <Divider color={'black.500'} paddingY={'3'}></Divider>
@@ -143,7 +145,7 @@ const StatisticsArticleList = () => {
   return (
     <>
       <Container maxW={"7xl"} p="12">
-        <Heading as="h1">Articles</Heading>
+        <Heading as="h1">Informative Reads</Heading>
       </Container>
       {articleList.map( (item) => (
         <ArticleBlock key={item.id}  article={item}/>

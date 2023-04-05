@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Heading,
@@ -14,21 +14,31 @@ import {
   useColorModeValue,
   Container,
   VStack,
-} from '@chakra-ui/react';
+  Center,
+} from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import all_statistic_articles, { StatisticArticleType } from '@/lib/all_statistic_articles';
+import all_statistic_articles, {
+  StatisticArticleType,
+} from "@/lib/all_statistic_articles";
 
 const ArticleDetailPage = (props: { article: StatisticArticleType }) => {
-
   const article = props.article;
 
   return (
-    <Container maxW={'7xl'} p="12">
+    <Container maxW={"7xl"} p="12">
       <Heading as="h2" marginTop="5">
         {article.title}
       </Heading>
-      <Divider marginTop="5" />
+      <Divider marginY="5" />
+      <Center>
+      <Image
+        borderRadius="sm"
+        src={article.image}
+        alt="text"
+        objectFit="contain"
+      />
+      </Center>
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
         {/* <Heading as="h2">What we write about</Heading> */}
         {article.content.map((item, index) => (
@@ -43,7 +53,6 @@ const ArticleDetailPage = (props: { article: StatisticArticleType }) => {
 
 export default ArticleDetailPage;
 
-
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
@@ -53,9 +62,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const articleList = all_statistic_articles();
   const articleID: number = Number.parseInt(params.slug);
 
-  const article: StatisticArticleType = articleList[articleID]
-
-  
+  const article: StatisticArticleType = articleList[articleID];
 
   return {
     props: { article: article },
@@ -64,8 +71,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articleList = all_statistic_articles();
-  
-  const articleIDs = articleList.map( (item) => item.id )
+
+  const articleIDs = articleList.map((item) => item.id);
 
   return {
     paths: articleIDs.map((item) => ({

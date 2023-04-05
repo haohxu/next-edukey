@@ -6,13 +6,14 @@ export interface StatisticArticleType {
   dateTime: string,
   author: string,
   timeToRead: string,
+  image: string,
 }
 
 const articles: StatisticArticleType[] = [
   {
     id: 0,
     title: 'Non-conventional education pathways in Australia',
-    description: "If you're a parent or guardian looking for suitable courses and study options for your pupil, search no further you're at right place!",
+    description: "If you're a parent or guardian looking for suitable courses and study options for your pupil, search no further you're at right place! Conventional pathway to... ",
     content: [
       "If you're a parent or guardian looking for suitable courses and study options for your pupil, search no further you're at right place!",
       "Conventional pathway to pursue a University degree could be quite daunting at times! If you think it's overwhelming to take it in while you're in Highschool or know someone who's facing this challenge, ask them to take it easy, and not worry! Because there's ocean of opportunities ahead them apart from stereotypical educational degree, more suitable to their skills and interests.",
@@ -24,28 +25,28 @@ const articles: StatisticArticleType[] = [
     ],
     dateTime: 'April 5, 2023',
     author: '',
-    timeToRead: '3 min'
+    timeToRead: '3 min',
+    image: '/static/article-0.png'
   },
   {
     id: 1,
     title: 'Salary earnings for TAFE/VET grads',
-    description: "Considering high cost of university costs, you would think those students who go to the university would earn more than TAFE, but that is not in the case.",
-    content: ["Considering high cost of university costs, you would think those students who go to the university would earn more than TAFE, but that is not in the case. The average annual starting salary of VET/TAFE graduates is $2,000 higher than that of ordinary university students. For example, a qualified electricians can start out on $62,000, which is more than accountants and teachers. Those who has six months experience after completing a Certificate IV can earn an average of $63,000 with a full-time job. Although the average salary of Certificate III and Certificate II is about $48,400 and $44,200, which is much lower than Certificate IV. In comparison, under 25 graduates with bachelor\'s degrees earns a median starting salary about $52,350."],
+    description: "Considering the high cost of university costs, you would think those students who go to the university end up earning more than anyone else, but that is not the case.",
+    content: ["Considering the high cost of university costs, you would think those students who go to the university end up earning more than anyone else, but that is not the case. The average annual starting salary of VET/TAFE graduates is $2,000 higher than that of average university students. For example, a qualified electrician can start out on $62,000, which is more than accountants and teachers. Those who have six months experience after completing a Certificate IV can earn an average of $63,000 with a full-time job. In comparison, under 25 (year olds) graduates with bachelor’s degrees earn a median starting salary about $52,350."],
     dateTime: 'April 2, 2023',
     author: '',
-    timeToRead: '2 min'
+    timeToRead: '2 min', 
+    image: '/static/article-1.png', 
   },
   {
     id: 2,
     title: 'Success stories for TAFE/VET grads',
-    description: "Alex Nikielski is an apprentice of an Australian school in electrotechnology. He started his apprenticeship while he was still at school; it enabled him to complete his Year 12 Certificate and start the career early.", 
+    description: "An apprentice of the Australian school Apprenticeship program at St Patrick's Technical College in Adelaide started their apprenticeship while they were still at school", 
     content: [
-      "Alex Nikielski is an apprentice of an Australian school in electrotechnology. He started his apprenticeship while he was still at school; it enabled him to complete his Year 12 Certificate and start the career early.", 
-      "After he completed Year 10, he began on-site work with electricians in residential, commercial and industrial construction. Therefore when he finishes his Year 12, he has two years more work experience than his peers, which makes him more competitive in the job market.",
-      '"I knew the industry I wanted to be in, but I had no idea that there were so many careers and opportunities available in the field of electrotechnology." He said.',
-      "Finally, Alex found out he liked the industrial side, and now he realizes electrician is the type of job he likes.",
-      "Alex started his Australian School-based Apprenticeship at St Patrick's Technical College in Adelaide, and now he is studying for a Certificate III in Electrotechnology. He enjoyed his study since he is earning money to train for a career that he knows he will love. The best thing for him is that he knows he will have a high paying career and doing something he loves.",
-      "Another example is Caitlin Maher, who won the Australian Training Award 2014. She started a two-year VET course in allied health during Year 10, and then she found the health industry was suitable for her.", 
+      "An apprentice of the Australian school Apprenticeship program at St Patrick's Technical College in Adelaide started their apprenticeship while they were still at school; it enabled them to complete their Year 12 and start the career early.", 
+      "After they completed Year 10, they began on-site work with elec   tricians in residential, commercial and industrial construction. Therefore when they finished their Year 12, they had two years of work experience over their peers, which made them more competitive in the job market. 'I knew the industry I wanted to be in, but I had no idea that there were so many careers and opportunities available in the field of electrotechnology.' they said.",
+      "Finally, they found out what they liked and now they've decided that “electrician” is the type of job they like. Now they're studying for a Certificate III in Electrotechnology. They enjoyed their study since they're earning money to train themself for a career that they know will love.", 
+      "Another example is Caitlin, who won the Australian Training Award 2014. She started a two-year VET course in allied health during Year 10, and then she found the health industry was suitable for her.", 
       "She interviewed and became an Australian School Apprentice at Blue Cross Willowmeade Aged Care Home. She balanced her remainder study and a Certificate III in Aged Care.", 
       "'An Australian School-based Apprenticeship prepared me to become a nurse', Caitlin says.", 
       "She learned what is required in a health-related job and therefore grew the passion for caring elderly. She was supported at TAFE and at work, she is also encouraged to develop the ability to solve problems herself.", 
@@ -56,6 +57,23 @@ const articles: StatisticArticleType[] = [
     dateTime: 'April 1, 2023',
     author: '',
     timeToRead: '6 min',
+    image: '/static/article-2.png'
+  },
+  {
+    id: 3,
+    title: 'TAFE/VET vs University:',
+    description: "TAFE/VET is considered on the same level as University. It is alright for your children to attend TAFE/VET instead of attending the university.", 
+    content: [
+      "TAFE/VET is considered on the same level as University. It is alright for your children to attend TAFE/VET instead of attending the university. Here are the reasons:", 
+      "1. TAFE/VET is an education institute emphasising skill-based learning, while the university will focus on the theoretical aspects. If your children know they are suitable for this learning approach, it is a good idea for them to try it on VET. Also, you can go back to university in the future, if your child wants to enroll.",
+      "2. TAFE/VET requires around 6 months to 2 years to finish the course. On the other hand, the university requires 3 to 4 years to graduate. Regarding the following, the costs for these two education institutes are entirely different. The university costs more than TAFE/VET fee. Also, some TAFE/VET are government subsidised so some qualifications in these institutes are free. For university, to get a free tuition fee, the children need to get a scholarship. Considering the information above, TAFE/VET is considered one of the great options for your children if they do not prefer conventional education.",
+      "3. TAFE/VET is suitable for your children who want to do job that requires a skill-based approach only such as plumbers, electricians, and many more. They can do the same job as university students as well such as business administration, accountant, nursing, and many more careers.",
+      "According to all the provided information, it is a good idea to allow the children to enroll in TAFE/VET."
+    ],
+    dateTime: 'April 1, 2023',
+    author: '',
+    timeToRead: '6 min',
+    image: '/static/article-3.png'
   },
 ]
 
