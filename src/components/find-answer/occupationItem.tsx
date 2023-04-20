@@ -24,14 +24,10 @@ const CourseItem = (props: any) => {
         <Box textAlign={"left"}>
           <Text fontSize={{ base: "sm", md: "md" }}>
             {"- "}
-            {props.course.course_title}
+            <Link as={NextLink} href={"/courses/" + props.course.course_code}>
+              {props.course.course_title}
+            </Link>
           </Text>
-        </Box>
-        <Spacer />
-        <Box fontSize={{ base: "sm", md: "md" }} color={"blue.500"}>
-          <NextLink href={"/courses/" + props.course.course_code}>
-            Show Detail
-          </NextLink>
         </Box>
       </Flex>
     </>
