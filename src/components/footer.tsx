@@ -59,9 +59,9 @@ export default function Footer() {
 
         <Stack direction={"row"} spacing={6}>
           <Link href={"/"}>Home</Link>
-          <Link href={"/find-answer"}>Find</Link>
-          <Link href={"/courses"}>Courses</Link>
-          <Link href={"/statistics"}>Statistics</Link>
+          <Link href={"/find-answer"}>Find Suitable Pathways</Link>
+          {/* <Link href={"/courses"}>Courses</Link> */}
+          <Link href={"/statistics"}>Good Stats on VET Grads</Link>
         </Stack>
       </Container>
 
@@ -75,39 +75,13 @@ export default function Footer() {
           as={Stack}
           maxW={"6xl"}
           py={4}
-          direction={{ base: "column", md: "row" }}
+          // direction={{ base: "column", md: "row" }}
+          direction={"column"}
           spacing={4}
           justify={{ base: "center", md: "space-between" }}
           align={{ base: "center", md: "center" }}
         >
           <Text>© 2023 EduKey. All rights reserved</Text>
-          <Stack direction={"row"} spacing={3}>
-            <Avatar
-              size={"sm"}
-              name="Jin Bao"
-              src="https://bit.ly/broken-link"
-            />
-            <Avatar
-              size={"sm"}
-              name="Ding Ding"
-              src="https://bit.ly/broken-link"
-            />
-            <Avatar
-              size={"sm"}
-              name="Rishikesh Shetye"
-              src="https://bit.ly/broken-link"
-            />
-            <Avatar
-              size={"sm"}
-              name="Napoj Thanomkul"
-              src="https://bit.ly/broken-link"
-            />
-            <Avatar
-              size={"sm"}
-              name="Hao Xu"
-              src="https://bit.ly/broken-link"
-            />
-          </Stack>
         </Container>
       </Box>
       {/* </Box> */}

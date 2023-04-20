@@ -21,12 +21,11 @@ function statsTitleDescription() {
       >
         <GridItem w="100%" colSpan={{ base: 1, sm: 2, md: 3 }} marginBottom={6}>
           <Heading as={"h2"} paddingBottom={4}>
-            Do You Know:{" "}
+            Do You Know Among{" "}
           </Heading>
           <Heading as={"h2"} paddingBottom={4}>
-            Among{" "}
             <Text as={"span"} color={"blue.500"}>
-              All VET Students
+              All Vocational Education and Training (VET) Students
             </Text>{" "}
             Graduated in 2022,
           </Heading>

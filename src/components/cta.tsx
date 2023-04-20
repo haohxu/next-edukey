@@ -33,7 +33,7 @@ export default function CallToAction() {
             </Text>
             <Text 
               paddingTop={{base: "1", md: "2"}} 
-              fontSize={{ base: "md", sm: "xl", md: "3xl" }}
+              fontSize={{ base: "md", sm: "xl", md: "2xl" }}
             >After High School?</Text>
           </Heading>
           
@@ -86,7 +86,7 @@ export default function CallToAction() {
                     bg: "blue.500",
                   }}
                 >
-                  Explore Here
+                  Find Suitable Pathways
                 </Button>
               </NextLink>
             </Stack>
@@ -124,7 +124,7 @@ export default function CallToAction() {
                 top={{ base: "120px", sm: "65px", md: "-10px" }}
                 transform={"rotate(10deg)"}
               >
-                Click to Find!
+                Click Here!
               </Text>
             </Box>
           </Stack>

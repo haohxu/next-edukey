@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Spacer,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -21,6 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import NextLink from "next/link";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -59,9 +61,11 @@ export default function Navbar() {
             fontSize={"2xl"}
             fontWeight={"bold"}
           >
-            EduKey
+            <Link as={NextLink} href="/" legacyBehavior>
+              EduKey
+            </Link>
           </Text>
-
+          <Spacer display={{base: "none", md: "block"}}></Spacer>
           <Flex display={{ base: "none", md: "flex" }} ml={10} align={"center"}>
             <DesktopNav />
           </Flex>
@@ -117,19 +121,21 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
+              <NextLink href={navItem.href ?? "#"} legacyBehavior passHref>
+                <Link
+                  p={2}
+                  // href={navItem.href ?? "#"}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor,
+                  }}
+                >
+                  {navItem.label}
+                </Link>
+              </NextLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -284,7 +290,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/",
   },
   {
-    label: "Find",
+    label: "Find Suitable Pathways",
     // children: [
     //   {
     //     label: "Link 2.1",
@@ -299,12 +305,12 @@ const NAV_ITEMS: Array<NavItem> = [
     // ],
     href: "/find-answer",
   },
+  // {
+  //   label: "Courses",
+  //   href: "/courses",
+  // },
   {
-    label: "Courses",
-    href: "/courses",
-  },
-  {
-    label: "Statistics",
+    label: "Good Stats on VET Grads",
     href: "/statistics",
   },
 ];
