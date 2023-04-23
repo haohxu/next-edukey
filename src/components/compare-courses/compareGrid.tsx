@@ -1,4 +1,4 @@
-import { Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Container, Grid, GridItem, Heading } from "@chakra-ui/react";
 import { course } from "@prisma/client";
 import { Fragment } from "react";
 
@@ -6,9 +6,9 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
   const selectedCourses = props.selectedCourses;
 
   return (
-    <Fragment>
+    <Container maxWidth={"6xl"} overflowX={"auto"}>
       <Grid
-        templateRows="repeat(10, 1fr)"
+        templateRows="repeat(8, 1fr)"
         templateColumns={"repeat(" + selectedCourses.length + ", 1fr)"}
         marginY={6}
         columnGap={2}
@@ -23,7 +23,7 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             padding={4}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"}>{item.course_title}</Heading>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}}>{item.course_title}</Heading>
           </GridItem>
         ))}
 
@@ -40,10 +40,10 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Course Code
             </Heading>
-            <Heading fontSize={"2xl"} fontWeight={"normal"}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"normal"}>
               {item.course_code}
             </Heading>
           </GridItem>
@@ -62,10 +62,10 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Qualification
             </Heading>
-            <Heading fontSize={"2xl"} fontWeight={"normal"}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"normal"}>
               {item.qualification_level}
             </Heading>
           </GridItem>
@@ -84,7 +84,7 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Pre-requisite
             </Heading>
             <Heading fontSize={"lg"} fontWeight={"normal"}>
@@ -106,10 +106,10 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Course Type
             </Heading>
-            <Heading fontSize={"2xl"} fontWeight={"normal"}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"normal"}>
               {item.course_type}
             </Heading>
           </GridItem>
@@ -128,10 +128,10 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Apprenticeship
             </Heading>
-            <Heading fontSize={"2xl"} fontWeight={"normal"}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"normal"}>
               {item.apprenticeship === 1 ? "Yes" : "No"}
             </Heading>
           </GridItem>
@@ -150,15 +150,15 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             borderStyle={"solid"}
             boxShadow={"lg"}
           >
-            <Heading fontSize={"2xl"} fontWeight={"bold"} paddingBottom={3}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"bold"} paddingBottom={3}>
               Government Subsidized
             </Heading>
-            <Heading fontSize={"2xl"} fontWeight={"normal"}>
+            <Heading fontSize={{base: "md", sm: "lg" , md: "2xl"}} fontWeight={"normal"}>
               {item.government_subsidised === 1 ? "Yes" : "No"}
             </Heading>
           </GridItem>
         ))}
       </Grid>
-    </Fragment>
+    </Container>
   );
 }

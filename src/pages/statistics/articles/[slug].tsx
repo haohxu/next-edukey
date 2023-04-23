@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Box,
   Heading,
@@ -21,11 +21,17 @@ import { ParsedUrlQuery } from "querystring";
 import all_statistic_articles, {
   StatisticArticleType,
 } from "@/lib/all_statistic_articles";
+import Head from "next/head";
 
 const ArticleDetailPage = (props: { article: StatisticArticleType }) => {
   const article = props.article;
 
   return (
+    <Fragment>
+      <Head>
+        <title>Article - {article.title}</title>
+      </Head>
+    
     <Container maxW={"7xl"} p="12">
       <Heading as="h2" marginTop="5">
         {article.title}
@@ -48,6 +54,7 @@ const ArticleDetailPage = (props: { article: StatisticArticleType }) => {
         ))}
       </VStack>
     </Container>
+    </Fragment>
   );
 };
 

@@ -31,6 +31,8 @@ import {
   AvatarBadge,
   Badge,
   SimpleGrid,
+  Fade,
+  ScaleFade,
 } from "@chakra-ui/react";
 import { course } from "@prisma/client";
 
@@ -40,6 +42,7 @@ import {
   CreatableSelect,
   Select,
 } from "chakra-react-select";
+import Head from "next/head";
 import { Fragment, useState } from "react";
 
 export default function CompareCoursesPage(props: {
@@ -64,7 +67,7 @@ export default function CompareCoursesPage(props: {
   // manage useState of selected courses
   // lift this state to courseItem class
   const [selectedCourses, setSelectedCourses] = useState([
-    courseList[0]
+    courseList[0],
     // courseList[1],
     // courseList[2],
     // courseList[3],
@@ -142,31 +145,12 @@ export default function CompareCoursesPage(props: {
   };
 
   return (
-    <>
+    <Fragment>
+      <Head>
+        <title>Compare Courses</title>
+      </Head>
       <Container marginTop={{ base: "6" }} maxWidth={"6xl"}>
         <Stack direction={"column"}>
-          <Flex direction={{ base: "row" }} marginY={16}>
-            <Heading>Compare Different Courses</Heading>
-            <Spacer />
-
-            <Button
-              isDisabled={selectedCourses.length === 0 && !showCompare}
-              colorScheme={"blue"}
-              onClick={toggleShowCompareHandler}
-            >
-              {showCompare ? "Back to Search" : "Compare"}
-              <Badge
-                fontSize={"xs"}
-                marginLeft={2}
-                colorScheme={"red"}
-                variant={"solid"}
-                borderRadius={"full"}
-              >
-                {selectedCourses.length}
-              </Badge>
-            </Button>
-          </Flex>
-
           {/* TODO: for Testing */}
           {/* <HStack>
             <Text fontSize={"2xs"} color={"red.500"}>
@@ -186,68 +170,110 @@ export default function CompareCoursesPage(props: {
             ))}
           </HStack> */}
 
-          <Flex direction={{ base: "row" }}>
-            {selectedCourses.map((item) => (
-              <Tag
-                key={"tag-" + item.course_code}
-                size={"md"}
-                fontWeight={"bold"}
-                paddingRight={1}
-                marginRight={1}
-                borderRadius={"md"}
+          {/* Compare title and Compare button */}
+          <Flex
+            direction={{ base: "row", md: "row" }}
+            paddingY={{ base: 6, sm: 6, md: 12 }}
+          >
+            <Heading fontSize={{ base: "2xl", sm: "3xl", md: "3xl" }}>
+              Compare Different Courses
+            </Heading>
+            <Spacer />
+
+            <Button
+              isDisabled={selectedCourses.length <= 1 && !showCompare}
+              size={{ base: "sm", sm: "sm", md: "md" }}
+              width={"fit-content"}
+              alignSelf={"flex-end"}
+              colorScheme={"blue"}
+              onClick={toggleShowCompareHandler}
+            >
+              {showCompare ? "Back" : "Compare"}
+              <Badge
+                fontSize={"xs"}
+                marginLeft={2}
+                colorScheme={"red"}
                 variant={"solid"}
-                colorScheme={"blue"}
+                borderRadius={"full"}
               >
-                <TagLabel>{item.course_code} &nbsp;</TagLabel>
-                <TagCloseButton
-                  type={"button"}
-                  onClick={() => tagCloseDoer(item.course_code)}
-                />
-              </Tag>
-            ))}
+                {selectedCourses.length}
+              </Badge>
+            </Button>
+          </Flex>
+
+          <Flex direction={{ base: "column", md: "row" }}>
+            <Flex direction={"row"}>
+              {selectedCourses.map((item) => (
+                <Tag
+                  key={"tag-" + item.course_code}
+                  width={"fit-content"}
+                  fontSize={{ base: "xs", md: "md" }}
+                  fontWeight={"bold"}
+                  marginX={1}
+                  borderRadius={"md"}
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                >
+                  <TagLabel>{item.course_code} &nbsp;</TagLabel>
+                  <TagCloseButton
+                    type={"button"}
+                    onClick={() => tagCloseDoer(item.course_code)}
+                  />
+                </Tag>
+              ))}
+            </Flex>
 
             <Spacer />
-            {showCompare === false && (
-              <>
-                <InputGroup maxWidth={"sm"} marginX={1}>
-                  <InputLeftElement
-                    pointerEvents={"none"}
-                    // color={"gray.300"}
-                    // fontSize={"1.2em"}
+            {/* for showCase = false */}
+            {!showCompare && (
+              <Fade in={!showCompare}>
+                <Flex direction={"row"}>
+                  <InputGroup minWidth={{ md: "sm" }} marginX={1}>
+                    <InputLeftElement
+                      pointerEvents={"none"}
+                      // color={"gray.300"}
+                      // fontSize={"1.2em"}
+                    >
+                      <SearchIcon color={"gray.300"} />
+                    </InputLeftElement>
+                    <Input
+                      placeholder="Search a course here"
+                      size={{ base: "md" }}
+                      variant="outline"
+                      onChange={changeInputHandler}
+                    />
+                  </InputGroup>
+                  <ButtonGroup
+                    flexDirection={"row"}
+                    spacing={1}
+                    size={{ base: "xs", sm: "md" }}
+                    alignItems={"center"}
                   >
-                    <SearchIcon color={"gray.300"} />
-                  </InputLeftElement>
-                  <Input
-                    placeholder="Search a course here"
-                    size={{ base: "md" }}
-                    variant="outline"
-                    onChange={changeInputHandler}
-                  />
-                </InputGroup>
-                <ButtonGroup flexDirection={"row"} spacing={1}>
-                  <Button
-                    id="button-go-l-page-1314"
-                    onClick={changePageNumHandler}
-                  >
-                    <ChevronLeftIcon />
-                  </Button>
-                  <Button as={"p"}>
-                    {displayCourses.currentPageNum +
-                      " / " +
-                      Math.ceil(
-                        filteredCourses.length / displayCourses.maxNumPerPage
-                      )}
-                  </Button>
-                  <Button
-                    id="button-go-r-page-1314"
-                    onClick={changePageNumHandler}
-                  >
-                    <ChevronRightIcon />
-                  </Button>
-                </ButtonGroup>
-              </>
+                    <Button
+                      id="button-go-l-page-1314"
+                      onClick={changePageNumHandler}
+                    >
+                      <ChevronLeftIcon />
+                    </Button>
+                    <Button as={"p"}>
+                      {displayCourses.currentPageNum +
+                        " / " +
+                        Math.ceil(
+                          filteredCourses.length / displayCourses.maxNumPerPage
+                        )}
+                    </Button>
+                    <Button
+                      id="button-go-r-page-1314"
+                      onClick={changePageNumHandler}
+                    >
+                      <ChevronRightIcon />
+                    </Button>
+                  </ButtonGroup>
+                </Flex>
+              </Fade>
             )}
           </Flex>
+
           {/* for showCompare = false */}
           {!showCompare && filteredCourses.length === 0 && (
             <Center marginY={20} paddingY={20}>
@@ -255,24 +281,30 @@ export default function CompareCoursesPage(props: {
             </Center>
           )}
           {!showCompare && (
-            <SimpleGrid columns={3} spacingX={"20px"} spacingY={"20px"}>
-              {filteredCourses
-                .slice(
-                  displayCourses.leftIndex,
-                  Math.min(
-                    filteredCourses.length,
-                    displayCourses.leftIndex + displayCourses.maxNumPerPage
+            <ScaleFade in={!showCompare} initialScale={0.95}>
+              <SimpleGrid
+                columns={{ base: 1, sm: 2, md: 3 }}
+                spacingX={"20px"}
+                spacingY={"20px"}
+              >
+                {filteredCourses
+                  .slice(
+                    displayCourses.leftIndex,
+                    Math.min(
+                      filteredCourses.length,
+                      displayCourses.leftIndex + displayCourses.maxNumPerPage
+                    )
                   )
-                )
-                .map((course) => (
-                  <CourseItem
-                    key={"course-" + course.id + "-" + course.course_code}
-                    courseItem={course}
-                    selectedCourses={selectedCourses}
-                    setSelectedCourses={setSelectedCourses}
-                  />
-                ))}
-            </SimpleGrid>
+                  .map((course) => (
+                    <CourseItem
+                      key={"course-" + course.id + "-" + course.course_code}
+                      courseItem={course}
+                      selectedCourses={selectedCourses}
+                      setSelectedCourses={setSelectedCourses}
+                    />
+                  ))}
+              </SimpleGrid>
+            </ScaleFade>
           )}
         </Stack>
 
@@ -283,10 +315,12 @@ export default function CompareCoursesPage(props: {
           </Center>
         )}
         {selectedCourses.length !== 0 && showCompare && (
-          <CompareGrid selectedCourses={selectedCourses}></CompareGrid>
+          <ScaleFade in={showCompare} initialScale={0.95}>
+            <CompareGrid selectedCourses={selectedCourses}></CompareGrid>
+          </ScaleFade>
         )}
       </Container>
-    </>
+    </Fragment>
   );
 }
 

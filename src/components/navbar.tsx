@@ -23,6 +23,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import NextLink from "next/link";
+import ChakraNextLink from "./chakra-next-link";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -65,7 +66,7 @@ export default function Navbar() {
               EduKey
             </Link>
           </Text>
-          <Spacer display={{base: "none", md: "block"}}></Spacer>
+          <Spacer display={{ base: "none", md: "block" }}></Spacer>
           <Flex display={{ base: "none", md: "flex" }} ml={10} align={"center"}>
             <DesktopNav />
           </Flex>
@@ -121,7 +122,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? "#"} legacyBehavior passHref>
+              {/* <NextLink href={navItem.href ?? "#"} legacyBehavior passHref>
                 <Link
                   p={2}
                   // href={navItem.href ?? "#"}
@@ -135,7 +136,21 @@ const DesktopNav = () => {
                 >
                   {navItem.label}
                 </Link>
-              </NextLink>
+              </NextLink> */}
+              <ChakraNextLink
+                href={navItem.href ?? "#"}
+                p={2}
+                // href={navItem.href ?? "#"}
+                fontSize={"sm"}
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: "none",
+                  color: linkHoverColor,
+                }}
+              >
+                {navItem.label}
+              </ChakraNextLink>
             </PopoverTrigger>
 
             {navItem.children && (

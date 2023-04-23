@@ -69,7 +69,7 @@ export default function CourseItem(props: {
         minH={"360px"}
       >
         <Stack>
-          <Flex direction={{ base: "row" }}>
+          <Flex direction={{ base: "row", sm: "row", md: "row" }}>
             <Text
               color={"blue.500"}
               textTransform={"uppercase"}
@@ -88,7 +88,7 @@ export default function CourseItem(props: {
                 size={"xs"}
                 onClick={setSelectedCoursesHandler}
               >
-                Remove from Shortlist
+                Remove
               </Button>
             ) : (
               <Button
@@ -110,7 +110,7 @@ export default function CourseItem(props: {
             <Heading
               width={"fit-content"}
               as={"a"}
-              fontSize={"2xl"}
+              fontSize={{base: "lg", md: "2xl"}}
               fontFamily={"body"}
             >
               {courseItem.course_title}

@@ -3,6 +3,7 @@ import {
   AvatarBadge,
   AvatarGroup,
   Box,
+  Center,
   Container,
   Flex,
   Link,
@@ -11,6 +12,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import ChakraNextLink from "./chakra-next-link";
 
 const Logo = (props: any) => {
   return (
@@ -39,7 +41,7 @@ export default function Footer() {
       direction={"column"}
       justify={"center"}
       width={"full"}
-      align={"center"}
+      // align={"center"}
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
       bottom={0.5}
@@ -57,11 +59,30 @@ export default function Footer() {
       >
         {/* <Logo /> */}
 
-        <Stack direction={"row"} spacing={6}>
-          <Link href={"/"}>Home</Link>
-          <Link href={"/find-answer"}>Find Suitable Pathways</Link>
-          {/* <Link href={"/courses"}>Courses</Link> */}
-          <Link href={"/statistics"}>Good Stats on VET Grads</Link>
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          alignContent={{ base: "flex-start", md: "center"}}
+          spacing={{ base: 1, md: 6 }}
+        >
+          <Center>
+          <ChakraNextLink href={"/"}>Home</ChakraNextLink>
+          </Center>
+          <Center>
+          <ChakraNextLink href={"/find-answer"}>
+            Find Suitable Pathways
+          </ChakraNextLink>
+          </Center>
+          <Center>
+          <ChakraNextLink href={"/compare-courses"}>
+            Compare Courses
+          </ChakraNextLink>
+          </Center>
+          <Center>
+          <ChakraNextLink href={"/statistics"}>
+            Good Stats on VET Grads
+          </ChakraNextLink>
+          </Center>
+          
         </Stack>
       </Container>
 

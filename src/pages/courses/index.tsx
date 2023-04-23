@@ -5,7 +5,7 @@ import { Box, Center, Container, Heading } from "@chakra-ui/react";
 import { course } from "@prisma/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 export default function CoursesPage(props: { courseList: course[] }) {
   // Create state to store number of products to display
@@ -26,7 +26,7 @@ export default function CoursesPage(props: { courseList: course[] }) {
   const courseList = props.courseList;
 
   return (
-    <>
+    <Fragment>
       <Head>
         <title>Course List</title>
       </Head>
@@ -42,7 +42,7 @@ export default function CoursesPage(props: { courseList: course[] }) {
         ))}
         <Box id="courses-bottom-27149"></Box>
       </Container>
-    </>
+    </Fragment>
   );
 }
 

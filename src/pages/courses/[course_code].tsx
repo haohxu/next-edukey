@@ -19,67 +19,74 @@ import {
 } from "@chakra-ui/react";
 import { course } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
+import { Fragment } from "react";
 
 export default function CourseDetailPage(props: { course_detail: course }) {
   const course_detail = props.course_detail;
 
   return (
-    <Container maxW={"7xl"}>
-      <SimpleGrid
-        columns={{ base: 1, lg: 1 }}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}
-      >
-        <Stack spacing={{ base: 6, md: 10 }}>
-          <Box as={"header"}>
-            <Heading
-              color={"blue.500"}
-              textTransform={"uppercase"}
-              fontWeight={800}
-              fontSize={"lg"}
-              letterSpacing={1.1}
-            >
-              Course Detail
-            </Heading>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
-              marginY={3}
-            >
-              {course_detail.course_title}
-            </Heading>
-            <Text
-              color={useColorModeValue("gray.900", "gray.400")}
-              fontWeight={300}
-              fontSize={"2xl"}
-            >
-              {course_detail.course_code}, {course_detail.qualification_level},{" "}
-              {course_detail.course_type}
-            </Text>
-          </Box>
+    <Fragment>
+      <Head>
+        <title>Course - {course_detail.course_title}</title>
+      </Head>
 
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={"column"}
-            divider={
-              <StackDivider
-                borderColor={useColorModeValue("gray.200", "gray.600")}
-              />
-            }
-          >
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              {/* <Text
+      <Container maxW={"7xl"}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 1 }}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 18, md: 24 }}
+        >
+          <Stack spacing={{ base: 6, md: 10 }}>
+            <Box as={"header"}>
+              <Heading
+                color={"blue.500"}
+                textTransform={"uppercase"}
+                fontWeight={800}
+                fontSize={"lg"}
+                letterSpacing={1.1}
+              >
+                Course Detail
+              </Heading>
+              <Heading
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
+                marginY={3}
+              >
+                {course_detail.course_title}
+              </Heading>
+              <Text
+                color={useColorModeValue("gray.900", "gray.400")}
+                fontWeight={300}
+                fontSize={"2xl"}
+              >
+                {course_detail.course_code}, {course_detail.qualification_level}
+                , {course_detail.course_type}
+              </Text>
+            </Box>
+
+            <Stack
+              spacing={{ base: 4, sm: 6 }}
+              direction={"column"}
+              divider={
+                <StackDivider
+                  borderColor={useColorModeValue("gray.200", "gray.600")}
+                />
+              }
+            >
+              <VStack spacing={{ base: 4, sm: 6 }}>
+                {/* <Text
                 color={useColorModeValue('gray.500', 'gray.400')}
                 fontSize={'2xl'}
                 fontWeight={'300'}>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                 diam nonumy eirmod tempor invidunt ut labore
               </Text> */}
-              <Text fontSize={"lg"}>{course_detail.description}</Text>
-            </VStack>
-            {/* <Box>
+                <Text fontSize={"lg"}>{course_detail.description}</Text>
+              </VStack>
+              {/* <Box>
               <Text
                 fontSize={{ base: '16px', lg: '18px' }}
                 color={useColorModeValue('yellow.500', 'yellow.300')}
@@ -158,9 +165,9 @@ export default function CourseDetailPage(props: { course_detail: course }) {
                 </ListItem>
               </List>
             </Box> */}
-          </Stack>
+            </Stack>
 
-          {/* <Button
+            {/* <Button
             rounded={'none'}
             w={'full'}
             mt={8}
@@ -176,13 +183,14 @@ export default function CourseDetailPage(props: { course_detail: course }) {
             Add to cart
           </Button> */}
 
-          {/* <Stack direction="row" alignItems="center" justifyContent={'center'}>
+            {/* <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
             <Text>2-3 business days delivery</Text>
           </Stack> */}
-        </Stack>
-      </SimpleGrid>
-    </Container>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+    </Fragment>
   );
 }
 
