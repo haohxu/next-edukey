@@ -1,44 +1,60 @@
-import { Box, Center, Stack, Accordion, AccordionItem, AccordionButton, Heading, AccordionIcon, AccordionPanel, Text, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Stack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  Heading,
+  AccordionIcon,
+  AccordionPanel,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 import { course } from "@prisma/client";
-import NextLink from 'next/link';
+import NextLink from "next/link";
 
-
-export default function CourseItem (props: {courseItem: course}) {
-  const courseItem = props.courseItem
+export default function CourseItem(props: { courseItem: course }) {
+  const courseItem = props.courseItem;
 
   return (
-  <Center py={1} >
-    <Box
-      maxWidth={'1200px'}
-      w={'full'}
-      // bg={useColorModeValue('white', 'gray.900')}
-      boxShadow={'lg'}
-      rounded={'md'}
-      p={6}
-      overflow={'hidden'}>
-      <Stack>
-        <Text
-          color={'blue.500'}
-          textTransform={'uppercase'}
-          fontWeight={800}
-          fontSize={'sm'}
-          letterSpacing={1.1}>
-          Course
-        </Text>
-        <Heading
-          fontSize={'2xl'}
-          fontFamily={'body'}>
-          {courseItem.course_title}
-        </Heading>
-        <Text color={'gray.500'}>
-          {courseItem.description}
-        </Text>
-        <NextLink href={'/courses/' + courseItem.course_code} passHref legacyBehavior >
-          <Button as={'a'} variant={'link'} color={'blue.500'} width={'fit-content'}>See Detail</Button>
-        </NextLink>
-        
-      </Stack>
-      {/* <Accordion allowToggle >
+    <Center py={1}>
+      <Box
+        maxWidth={"1200px"}
+        w={"full"}
+        // bg={useColorModeValue('white', 'gray.900')}
+        boxShadow={"lg"}
+        rounded={"md"}
+        p={6}
+        overflow={"hidden"}
+      >
+        <Stack>
+          <Text
+            color={"blue.500"}
+            textTransform={"uppercase"}
+            fontWeight={800}
+            fontSize={"sm"}
+            letterSpacing={1.1}
+          >
+            Course: {courseItem.qualification_level}
+          </Text>
+          <NextLink
+            href={"/courses/" + courseItem.course_code}
+            passHref
+            legacyBehavior
+          >
+            <Heading
+              width={"fit-content"}
+              as={"a"}
+              fontSize={"2xl"}
+              fontFamily={"body"}
+            >
+              {courseItem.course_title}
+            </Heading>
+          </NextLink>
+          <Text color={"gray.500"}>{courseItem.description}</Text>
+        </Stack>
+        {/* <Accordion allowToggle >
         <AccordionItem border={'none'}>
           
             <AccordionButton 
@@ -65,7 +81,7 @@ export default function CourseItem (props: {courseItem: course}) {
           </AccordionPanel>
         </AccordionItem>
       </Accordion> */}
-      {/* <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
+        {/* <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
         <Text fontWeight={600}>Government Website: &nbsp;
           <Text as={'a'} href={props.job_outlook_url} fontWeight={500} >
              {props.job_outlook_url}
@@ -74,7 +90,7 @@ export default function CourseItem (props: {courseItem: course}) {
           
         
       </Stack> */}
-    </Box>
-  </Center>
-  )
+      </Box>
+    </Center>
+  );
 }

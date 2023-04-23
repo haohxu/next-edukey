@@ -305,10 +305,10 @@ const NAV_ITEMS: Array<NavItem> = [
     // ],
     href: "/find-answer",
   },
-  // {
-  //   label: "Courses",
-  //   href: "/courses",
-  // },
+  {
+    label: "Compare Courses",
+    href: "/compare-courses",
+  },
   {
     label: "Good Stats on VET Grads",
     href: "/statistics",
