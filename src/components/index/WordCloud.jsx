@@ -11,7 +11,7 @@ import Script from "next/script";
 import AnyChart from "anychart-react";
 import { Fragment, useState } from "react";
 
-export default function WordCloud({width, height}) {
+export default function WordCloud() {
   const [selectedChart, setSelectedChart] = useState(1);
 
   return (
