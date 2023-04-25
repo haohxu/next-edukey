@@ -11,7 +11,7 @@ import Script from "next/script";
 import AnyChart from "anychart-react";
 import { Fragment, useState } from "react";
 
-export default function WordCloud() {
+export default function WordCloud({width, height}) {
   const [selectedChart, setSelectedChart] = useState(1);
 
   return (
@@ -34,7 +34,7 @@ export default function WordCloud() {
         </Select>
         <Spacer />
       </Flex>
-      <Center>
+      <Center overflow={"auto"}>
         <AnyChart
           width={800}
           height={400}
