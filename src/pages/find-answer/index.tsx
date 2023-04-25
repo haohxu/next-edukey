@@ -369,6 +369,9 @@ export default function FindAnswerPage() {
     const responseResult = await response.json();
 
     if (!response.ok) {
+      if (toast.isActive("find-answer-loading")) {
+        toast.close("find-answer-loading");
+      }
       toast({
         title: "Warning!",
         description: "We cannot search anything for you",
@@ -381,7 +384,9 @@ export default function FindAnswerPage() {
       console.log(responseResult);
 
       setQuizResultResponse(responseResult);
-
+      if (toast.isActive("find-answer-loading")) {
+        toast.close("find-answer-loading");
+      }
       toast({
         title: "Done!",
         description: "The result is here!",
@@ -467,10 +472,11 @@ export default function FindAnswerPage() {
                 }
                 onClick={() => {
                   toast({
+                    id: "find-answer-loading",
                     title: "Interests Received!",
                     description: "We are searching a result for you...",
                     status: "loading",
-                    duration: 4000,
+                    duration: 10000,
                     isClosable: true,
                   });
 

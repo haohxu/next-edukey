@@ -57,7 +57,7 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             key={item.course_code + item.qualification_level}
             paddingX={4}
             paddingY={6}
-            backgroundColor={"gray.100"}
+            backgroundColor={"gray.200"}
             borderY={"2px lightGray"}
             borderStyle={"solid"}
             boxShadow={"lg"}
@@ -101,7 +101,7 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             key={item.course_code + item.course_type}
             paddingX={4}
             paddingY={6}
-            backgroundColor={"gray.100"}
+            backgroundColor={"gray.200"}
             borderY={"2px lightGray"}
             borderStyle={"solid"}
             boxShadow={"lg"}
@@ -145,7 +145,7 @@ export default function CompareGrid(props: { selectedCourses: course[] }) {
             key={item.course_code + item.government_subsidised}
             paddingX={4}
             paddingY={6}
-            backgroundColor={"gray.100"}
+            backgroundColor={"gray.200"}
             borderY={"2px lightGray"}
             borderStyle={"solid"}
             boxShadow={"lg"}
