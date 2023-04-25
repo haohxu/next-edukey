@@ -204,10 +204,11 @@ export default function CompareCoursesPage(props: {
           <Flex direction={{ base: "column", md: "row" }}>
             <Flex direction={"row"}>
               {selectedCourses.map((item) => (
+                <ScaleFade key={"fade-tag-" + item.course_code} in={true} initialScale={0.95}>
                 <Tag
                   key={"tag-" + item.course_code}
                   width={"fit-content"}
-                  fontSize={{ base: "xs", md: "md" }}
+                  fontSize={{ base: "xs", md: "sm" }}
                   fontWeight={"bold"}
                   marginX={1}
                   borderRadius={"md"}
@@ -220,6 +221,7 @@ export default function CompareCoursesPage(props: {
                     onClick={() => tagCloseDoer(item.course_code)}
                   />
                 </Tag>
+                </ScaleFade>
               ))}
             </Flex>
 
@@ -253,7 +255,7 @@ export default function CompareCoursesPage(props: {
                       id="button-go-l-page-1314"
                       onClick={changePageNumHandler}
                     >
-                      <ChevronLeftIcon />
+                      {"<"}{/* <ChevronLeftIcon /> */}
                     </Button>
                     <Button as={"p"}>
                       {displayCourses.currentPageNum +
@@ -266,7 +268,7 @@ export default function CompareCoursesPage(props: {
                       id="button-go-r-page-1314"
                       onClick={changePageNumHandler}
                     >
-                      <ChevronRightIcon />
+                      {">"}{/* <ChevronRightIcon /> */}
                     </Button>
                   </ButtonGroup>
                 </Flex>

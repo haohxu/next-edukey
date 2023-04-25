@@ -12,6 +12,7 @@ import {
   Text,
   Button,
   Spacer,
+  useToast,
 } from "@chakra-ui/react";
 import { course } from "@prisma/client";
 import NextLink from "next/link";
@@ -27,6 +28,23 @@ export default function CourseItem(props: {
   const courseItem = props.courseItem;
   const selectedCourses = props.selectedCourses;
   const setSelectedCourses = props.setSelectedCourses;
+
+  // create custom Toast() to notify no more than 3 can be chosen
+  const toast = useToast();
+  const toastNotification = () => {
+    if (! toast.isActive("no-more-than-3")){
+      toast({
+        id: "no-more-than-3",
+        position: "top-right",
+        title: "You Cannot Select More Than 3 Courses",
+        status: "info",
+        variant: "left-accent",
+        duration: 2500,
+        isClosable: true,
+      });
+    }
+    
+  };
 
   // check if this course is already in selected courses
   const isInSelectedCourses =
@@ -47,7 +65,8 @@ export default function CourseItem(props: {
           (item) => item.course_code != checkSelectedCourses.course_code
         );
         return newState;
-      } else if (prevState.length === 3) {
+      } else if (prevState.length >= 3) {
+        toastNotification();
         return prevState;
       } else {
         const newState = [...prevState, courseItem];
