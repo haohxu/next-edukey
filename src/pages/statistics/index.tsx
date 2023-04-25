@@ -13,7 +13,7 @@ export default function StatisticsPage() {
       <Head>
         <title>Statistics on VET Graduates</title>
       </Head>
-      <Container maxWidth={"1600px"}>
+      <Container maxWidth={"6xl"}>
         {/* Three Key Points */}
         <BasicStatistics></BasicStatistics>
         <Divider marginY={20}></Divider>

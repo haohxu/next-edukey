@@ -15,6 +15,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   Spacer,
+  Center,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -29,16 +30,20 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box
+      borderBottom={1}
+      borderStyle={"solid"}
+      borderColor={useColorModeValue("gray.200", "gray.900")}
+    >
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        // borderBottom={1}
+        // borderStyle={"solid"}
+        // borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
         <Flex
@@ -55,7 +60,13 @@ export default function Navbar() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Center width={"full"} >
+        <Flex
+          flex={{ base: 1 }}
+          // justify={{ base: "center", md: "start" }}
+          justify={{ base: "center" }}
+          maxWidth={"6xl"}
+        >
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"genos"}
@@ -71,14 +82,15 @@ export default function Navbar() {
             <DesktopNav />
           </Flex>
         </Flex>
+        </Center>
 
-        <Stack
+        {/* <Stack
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
           spacing={6}
         >
-          {/* <Button
+          <Button
             as={"a"}
             fontSize={"sm"}
             fontWeight={400}
@@ -100,8 +112,8 @@ export default function Navbar() {
             }}
           >
             Sign Up
-          </Button> */}
-        </Stack>
+          </Button>
+        </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -122,27 +134,12 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              {/* <NextLink href={navItem.href ?? "#"} legacyBehavior passHref>
-                <Link
-                  p={2}
-                  // href={navItem.href ?? "#"}
-                  fontSize={"sm"}
-                  fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: "none",
-                    color: linkHoverColor,
-                  }}
-                >
-                  {navItem.label}
-                </Link>
-              </NextLink> */}
               <ChakraNextLink
                 href={navItem.href ?? "#"}
                 p={2}
                 // href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
+                fontSize={"md"}
+                fontWeight={"semibold"}
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
@@ -178,20 +175,20 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Link
-      href={href}
+    <ChakraNextLink
+      href={href ?? "#"}
       role={"group"}
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("blue.50", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
+            _groupHover={{ color: "blue.400" }}
+            fontWeight={"semibold"}
           >
             {label}
           </Text>
@@ -206,10 +203,10 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           align={"center"}
           flex={1}
         >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={"blue.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Link>
+    </ChakraNextLink>
   );
 };
 
@@ -234,8 +231,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? "#"}
+        // as={Link}
+        // href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -268,9 +265,9 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderColor={useColorModeValue("gray.200", "gray.700")}
           align={"start"}
         >
-          {children &&
+          {children && // TODO: use ChakraNextLink to improve loading
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link key={child.label} py={2} href={child.href ?? ""}>
                 {child.label}
               </Link>
             ))}
@@ -290,42 +287,42 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
-    // children: [
-    //   {
-    //     label: "Link 1.1",
-    //     subLabel: "Description 1.1",
-    //     href: "#",
-    //   },
-    //   {
-    //     label: "Link 1.2",
-    //     subLabel: "Description 1.2",
-    //     href: "#",
-    //   },
-    // ],
     href: "/",
   },
   {
-    label: "Find Suitable Pathways",
-    // children: [
-    //   {
-    //     label: "Link 2.1",
-    //     subLabel: "Description 2.1",
-    //     href: "#",
-    //   },
-    //   {
-    //     label: "Link 2.2",
-    //     subLabel: "Description 2.2",
-    //     href: "#",
-    //   },
-    // ],
-    href: "/find-answer",
+    label: "Find Pathways",
+    children: [
+      {
+        label: "Find Suitable Pathways",
+        subLabel: "Based on your interests and strengths",
+        href: "/find-answer",
+      },
+      {
+        label: "Compare Courses",
+        subLabel: "Between at most 3 different courses",
+        href: "/compare-courses",
+      },
+    ],
+    href: "",
   },
   {
-    label: "Compare Courses",
-    href: "/compare-courses",
+    label: "Insights",
+    children: [
+      {
+        label: "Good Stats on VET Grads",
+        subLabel: "To see how VET Graduates work",
+        href: "/#homepage-stats-1-1412",
+      },
+      {
+        label: "Good Stats on Qualifications",
+        subLabel: "To see how qualifications impact occupations",
+        href: "/#homepage-stats-2-1412",
+      },
+    ],
+    href: "",
   },
-  {
-    label: "Good Stats on VET Grads",
-    href: "/statistics",
-  },
+  // {
+  //   label: "Good Stats on VET Grads",
+  //   href: "/statistics",
+  // },
 ];

@@ -108,3 +108,15 @@ model division_course {
 
   @@id([anzsic_division, course_code])
 }
+
+model eduation_employment_data {
+  anzsco_code           String        @id
+  occupation            String?
+  graduate              Float?
+  bachelor_degree       Float?
+  diploma               Float?
+  certificate_iii_iv    Float?
+  year_xii              Float?
+  year_xi               Float?
+  year_x_and_below      Float?
+}

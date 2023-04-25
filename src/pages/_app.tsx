@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 
 import { Inter, Genos } from "next/font/google";
 import { createContext, ReactNode, useContext, useState } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const inter = Inter({ subsets: ["latin"] });
 const genos = Genos({ subsets: ["latin"] });
@@ -61,6 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <Box minHeight={"100vh"} position={"relative"} paddingBottom={"200px"}>
         <Navbar />
+        <Breadcrumbs />
         <QuizResultStoreProvider>
           <Component {...pageProps} />
         </QuizResultStoreProvider>

@@ -14,8 +14,7 @@ import NextLink from "next/link";
 
 export default function CallToAction() {
   return (
-    <>
-      <Container maxW={"3xl"}>
+      
         <Stack
           as={Box}
           textAlign={"center"}
@@ -52,13 +51,6 @@ export default function CallToAction() {
             alignSelf={"center"}
             position={"relative"}
           >
-            {/* <Heading
-              fontWeight={600}
-              fontSize={{ base: "lg", sm: "2xl", md: "4xl" }}
-              lineHeight={"110%"}
-            >
-              Find Alternative Education:
-            </Heading> */}
             <Stack
               direction={{ base: "column", md: "row" }}
               alignSelf={"center"}
@@ -77,60 +69,46 @@ export default function CallToAction() {
               <NextLink href={"/find-answer"} passHref legacyBehavior>
                 <Button
                   as={"a"}
-                  colorScheme={"linkedin"}
+                  colorScheme={"blue"}
                   // bg={'green.400'}
                   rounded={"lg"}
                   rightIcon={<ArrowForwardIcon />}
                   px={6}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
+                  
                 >
                   Find Suitable Pathways
                 </Button>
               </NextLink>
             </Stack>
 
-            {/* <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
-              See All Alternatives
-            </Button> */}
-            {/* <NextLink 
-              href={'/providers'}  
-              passHref 
-              legacyBehavior
-            > 
-              <Button as={'a'} variant={'link'} colorScheme={'gray'} size={'sm'}>
-                See All Providers
-              </Button>
-            </NextLink> */}
-            <Box display={{ base: "none", md: "contents" }}>
+            <Box display={{ base: "none", sm: "none", md: "contents" }}>
               <Icon
                 as={Arrow}
+                transform={{base: "rotate(90deg)", md: "none"}}
                 color={"gray.800"}
                 w={71}
                 position={"absolute"}
                 // right={-71}
-                right={{ base: "15px", sm: "75px", md: "-70px"}}
+                right={{ base: "15px", sm: "210px", md: "-70px"}}
                 // top={'80px'}
-                top={{ base: "150px", sm: "90px", md: "15px" }}
+                top={{ base: "150px", sm: "50px", md: "15px" }}
               />
               <Text
                 fontSize={"lg"}
                 fontFamily={"Caveat"}
                 position={"absolute"}
                 // right={'-100px'}
-                right={{ base: "0px", sm: "30px", md: "-100px" }}
+                right={{ base: "0px", sm: "200px", md: "-100px" }}
                 // top={'60px'}
-                top={{ base: "120px", sm: "65px", md: "-10px" }}
-                transform={"rotate(10deg)"}
+                top={{ base: "120px", sm: "40px", md: "-10px" }}
+                transform={{base: "rotate(-10deg)", md: "rotate(10deg)"}}
               >
                 Click Here!
               </Text>
             </Box>
           </Stack>
         </Stack>
-      </Container>
-    </>
+      
   );
 }
 
