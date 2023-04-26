@@ -1,25 +1,24 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Container, Divider } from "@chakra-ui/react";
-import prisma from "@/lib/prisma";
-import { eduation_employment_data } from "@prisma/client";
 import CallToAction from "@/components/index/CallToAction";
 import DiagramAndTableLink from "@/components/index/DiagramAndTableLink";
-import PieChart from "@/components/index/PieChart";
 import ArticlePreview from "@/components/index/ArticlePreview";
 import StatsTitleDescription from "@/components/index/StatsTitleDescription";
 
 import { top_three_articles } from "@/lib/all_statistic_articles";
+import Script from "next/script";
 
 export default function IndexPage() {
-  
-
   const statisticArticleList = top_three_articles();
 
   return (
     <>
       <Head>
         <title>EduKey</title>
+        {/* <Script
+          type="text/javascript"
+          src="src=”https://public.tableau.com/javascripts/api/tableau-2.min.js"
+        ></Script> */}
       </Head>
       <Container maxWidth={"6xl"}>
         <CallToAction></CallToAction>
@@ -29,10 +28,7 @@ export default function IndexPage() {
         <DiagramAndTableLink />
         <Divider marginY={10}></Divider>
         <ArticlePreview articlePreview={statisticArticleList} />
-        
       </Container>
     </>
   );
 }
-
-

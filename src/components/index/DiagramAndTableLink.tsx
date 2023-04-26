@@ -10,12 +10,13 @@ import {
   Tag,
   Spacer,
 } from "@chakra-ui/react";
-import { eduation_employment_data } from "@prisma/client";
 import { Fragment, useState } from "react";
-import DataTableComponent from "@/components/detailed-table/DataTableComponent";
-import WordCloud from "./WordCloud";
 import { MdBarChart } from "react-icons/md";
 import ChakraNextLink from "../chakra-next-link";
+// import TableauReact from "./Tableau";
+import dynamic from "next/dynamic";
+
+const TableauReact = dynamic(() => import("./Tableau"), { ssr: false });
 
 export default function DiagramAndTableLink() {
   const [isTable, setIsTable] = useState(false);
@@ -64,13 +65,22 @@ export default function DiagramAndTableLink() {
             <Center>
               <Tag size={"lg"}>
                 {" "}
-                <MdBarChart /> &nbsp; This will be a Stacked Bar Chart{" "}
+                <MdBarChart /> &nbsp;{" "}
+                {"(Under Testing) This will be a Stacked Bar Chart"}{" "}
               </Tag>
             </Center>
             <Spacer />
+            <TableauReact />
           </Flex>
           <Center>
-            <ChakraNextLink href={"/detailed-table"} color={"blue.500"} fontWeight={"semibold"} fontSize={"md"}>Show Detailed Table</ChakraNextLink>
+            <ChakraNextLink
+              href={"/detailed-table"}
+              color={"blue.500"}
+              fontWeight={"semibold"}
+              fontSize={"md"}
+            >
+              Show Detailed Table
+            </ChakraNextLink>
           </Center>
         </Stack>
       </Container>
