@@ -20,6 +20,7 @@
     "@types/react-dom": "18.0.11",
     "anychart-react": "^1.4.1",
     "chakra-react-select": "^4.6.0",
+    "d3": "^7.8.4",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.9.1",

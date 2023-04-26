@@ -98,7 +98,7 @@ export default function ArticlePreview(props: {
         ))}
       </SimpleGrid>
       <Center marginY={'6'}>
-        <NextLink href={"/statistics/articles"} passHref legacyBehavior>
+        <NextLink href={"/articles"} passHref legacyBehavior>
           <Button variant={"link"} color={"blue.500"} fontSize={'lg'}>
             Read More
           </Button>

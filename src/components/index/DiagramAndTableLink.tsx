@@ -5,17 +5,19 @@ import {
   Stack,
   ButtonGroup,
   Button,
+  Center,
+  Badge,
+  Tag,
+  Spacer,
 } from "@chakra-ui/react";
 import { eduation_employment_data } from "@prisma/client";
 import { Fragment, useState } from "react";
-import DataTableComponent from "./DataTableComponent";
+import DataTableComponent from "@/components/detailed-table/DataTableComponent";
 import WordCloud from "./WordCloud";
+import { MdBarChart } from "react-icons/md";
+import ChakraNextLink from "../chakra-next-link";
 
-export default function DiagramAndTable({
-  tableData,
-}: {
-  tableData: eduation_employment_data[];
-}) {
+export default function DiagramAndTableLink() {
   const [isTable, setIsTable] = useState(false);
 
   return (
@@ -23,7 +25,7 @@ export default function DiagramAndTable({
       <Container maxWidth={"6xl"}>
         <Stack direction={"column"}>
           <Heading alignSelf={"center"}>Diagram and Table</Heading>
-          <Flex direction={"row"}>
+          {/* <Flex direction={"row"}>
             <ButtonGroup spacing={0} id={"homepage-stats-2-1412"}>
               <Button
                 borderRightRadius={"none"}
@@ -51,7 +53,25 @@ export default function DiagramAndTable({
             <DataTableComponent allTableData={tableData} />
           ) : (
             <WordCloud />
-          )}
+          )} */}
+          <Flex
+            minHeight={"30vh"}
+            maxHeight={"2xl"}
+            maxWidth={"6xl"}
+            direction={"column"}
+          >
+            <Spacer />
+            <Center>
+              <Tag size={"lg"}>
+                {" "}
+                <MdBarChart /> &nbsp; This will be a Stacked Bar Chart{" "}
+              </Tag>
+            </Center>
+            <Spacer />
+          </Flex>
+          <Center>
+            <ChakraNextLink href={"/detailed-table"} color={"blue.500"} fontWeight={"semibold"} fontSize={"md"}>Show Detailed Table</ChakraNextLink>
+          </Center>
         </Stack>
       </Container>
     </Fragment>

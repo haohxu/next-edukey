@@ -4,16 +4,15 @@ import { Container, Divider } from "@chakra-ui/react";
 import prisma from "@/lib/prisma";
 import { eduation_employment_data } from "@prisma/client";
 import CallToAction from "@/components/index/CallToAction";
-import DiagramAndTable from "@/components/index/DiagramAndTable";
+import DiagramAndTableLink from "@/components/index/DiagramAndTableLink";
+import PieChart from "@/components/index/PieChart";
 import ArticlePreview from "@/components/index/ArticlePreview";
 import StatsTitleDescription from "@/components/index/StatsTitleDescription";
 
 import { top_three_articles } from "@/lib/all_statistic_articles";
 
-export default function IndexPage(props: {
-  tableData: eduation_employment_data[];
-}) {
-  const tableData = props.tableData;
+export default function IndexPage() {
+  
 
   const statisticArticleList = top_three_articles();
 
@@ -27,7 +26,7 @@ export default function IndexPage(props: {
         <Divider marginY={10}></Divider>
         <StatsTitleDescription />
         <Divider marginY={10}></Divider>
-        <DiagramAndTable tableData={tableData} />
+        <DiagramAndTableLink />
         <Divider marginY={10}></Divider>
         <ArticlePreview articlePreview={statisticArticleList} />
         
@@ -36,11 +35,4 @@ export default function IndexPage(props: {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  // TODO: only find 18 items
-  const tableData = await prisma.eduation_employment_data.findMany({});
 
-  return {
-    props: { tableData: tableData },
-  };
-};

@@ -18,9 +18,12 @@ import {
   Select,
   Container,
   HStack,
+  InputProps as ChakraInputProps,
 } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import {
+  Column,
+  Table as ReactTable,
   useReactTable,
   flexRender,
   getCoreRowModel,
@@ -51,7 +54,7 @@ export function DataTable<Data extends object>({
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
-        pageSize: 5,
+        pageSize: 10,
       },
     },
     state: {
@@ -59,8 +62,22 @@ export function DataTable<Data extends object>({
     },
   });
 
+  const occupationColumn = table
+    .getHeaderGroups()[0]
+    ?.headers.find((header) => header.id === "occupation")?.column;
+  console.log(occupationColumn);
+
   return (
     <Stack direction={"column"}>
+      <Flex direction={"row"}>
+        <Spacer />
+        <Filter
+          maxWidth={{base:"80vw", md:"40vw"}}
+          column={occupationColumn!}
+          table={table}
+          placeholder={'Search "Occupation" here...'}
+        />
+      </Flex>
       <Container overflow={"auto"} maxWidth={"6xl"}>
         <Table>
           <Thead>
@@ -180,3 +197,51 @@ export function DataTable<Data extends object>({
     </Stack>
   );
 }
+
+type FilterType = {
+  column: Column<any, any>;
+  table: ReactTable<any>;
+} & ChakraInputProps;
+
+const Filter = ({ column, table, ...props }: FilterType) => {
+  const firstValue = table
+    .getPreFilteredRowModel()
+    .flatRows[0]?.getValue(column.id);
+
+  const columnFilterValue = column.getFilterValue();
+  return typeof firstValue === "number" ? (
+    <Flex direction={"row"}>
+      <Input
+        type="number"
+        value={(columnFilterValue as [number, number])?.[0] ?? ""}
+        onChange={(e) =>
+          column.setFilterValue((old: [number, number]) => [
+            e.target.value,
+            old?.[1],
+          ])
+        }
+        placeholder={`Min`}
+      />
+      <Spacer />
+      <Input
+        type="number"
+        value={(columnFilterValue as [number, number])?.[1] ?? ""}
+        onChange={(e) =>
+          column.setFilterValue((old: [number, number]) => [
+            old?.[0],
+            e.target.value,
+          ])
+        }
+        placeholder={`Max`}
+      />
+    </Flex>
+  ) : (
+    <Input
+      type="text"
+      value={(columnFilterValue ?? "") as string}
+      onChange={(e) => column.setFilterValue(e.target.value)}
+      // placeholder={`Search...`}
+      {...props}
+    />
+  );
+};
