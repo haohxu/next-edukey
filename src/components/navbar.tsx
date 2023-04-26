@@ -309,12 +309,12 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Insights",
     children: [
       {
-        label: "Good Stats on VET Grads",
+        label: "Statistics on VET Graduates",
         subLabel: "To see how VET Graduates work",
         href: "/#homepage-stats-1-1412",
       },
       {
-        label: "Good Stats on Qualifications",
+        label: "Statistics on Qualifications",
         subLabel: "To see how qualifications impact occupations",
         href: "/#homepage-stats-2-1412",
       },
