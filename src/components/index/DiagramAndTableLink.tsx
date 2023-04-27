@@ -23,9 +23,10 @@ export default function DiagramAndTableLink() {
 
   return (
     <Fragment>
-      <Container maxWidth={"6xl"}>
+      <Container maxWidth={"6xl"} minHeight={"2xl"}>
         <Stack direction={"column"}>
-          <Heading alignSelf={"center"}>Diagram and Table</Heading>
+          <Heading alignSelf={"center"}>Occupation VS Qualification</Heading>
+          <Heading fontSize={"md"}></Heading>
           {/* <Flex direction={"row"}>
             <ButtonGroup spacing={0} id={"homepage-stats-2-1412"}>
               <Button
@@ -62,15 +63,16 @@ export default function DiagramAndTableLink() {
             direction={"column"}
           >
             <Spacer />
-            <Center>
+            {/* <Center>
               <Tag size={"lg"}>
                 {" "}
                 <MdBarChart /> &nbsp;{" "}
                 {"(Under Testing) This will be a Stacked Bar Chart"}{" "}
               </Tag>
-            </Center>
-            <Spacer />
+            </Center> */}
+            
             <TableauReact />
+            <Spacer />
           </Flex>
           <Center>
             <ChakraNextLink
