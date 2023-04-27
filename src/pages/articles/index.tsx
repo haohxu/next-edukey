@@ -115,7 +115,7 @@ const ArticleBlock = (props: { article: StatisticArticleType }) => {
           >
             {/* <BlogTags tags={['Engineering', 'Product']} /> */}
             <NextLink
-              href={"/statistics/articles/" + article.id}
+              href={"/articles/" + article.id}
               passHref
               legacyBehavior
             >

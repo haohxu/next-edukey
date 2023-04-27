@@ -16,12 +16,12 @@ export default function DetailedTablePage(props: {
   return (
     <Fragment>
       <Head>
-        <title>Detailed Table for Percentage of Different Qualification on One Occupation - EduKey </title>
+        <title>Detailed Table - Occupation vs Qualification - EduKey </title>
       </Head>
     <Container maxWidth={"6xl"}>
-      <Stack direction={"column"}>
-        <Heading alignSelf={"center"}>Detailed Table</Heading>
-        <Heading alignSelf={"center"} fontSize={"xl"}>for Percentage of Different Qualification on One Occupation</Heading>
+      <Stack direction={"column"} spacing={"20px"}>
+        <Heading alignSelf={"center"}>Detailed Table - Occupation vs Qualification</Heading>
+        <Heading alignSelf={"center"} fontSize={"xl"} paddingBottom={"30px"}>for Percentage of Different Qualification on One Occupation</Heading>
         <DataTableComponent allTableData={tableData}/>
       </Stack>
     </Container>

@@ -138,7 +138,7 @@ const DesktopNav = () => {
                 href={navItem.href ?? "#"}
                 p={2}
                 // href={navItem.href ?? "#"}
-                fontSize={"md"}
+                fontSize={"lg"}
                 fontWeight={"semibold"}
                 color={linkColor}
                 _hover={{

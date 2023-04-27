@@ -53,7 +53,7 @@ export const BlogPostWithImage = (props: { article: StatisticArticleType }) => {
           >
             Reads
           </Text>
-          <NextLink href={'/statistics/articles/' + article.id} passHref legacyBehavior >
+          <NextLink href={'/articles/' + article.id} passHref legacyBehavior >
           <Heading as={'a'} color={"gray.700"} fontSize={"2xl"} fontFamily={"body"}>
             {article.title}
             {/* Boost your conversion rate */}

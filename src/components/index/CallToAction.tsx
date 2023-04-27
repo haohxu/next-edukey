@@ -12,56 +12,72 @@ import {
   Center,
   Spacer,
 } from "@chakra-ui/react";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 export default function CallToAction() {
   return (
-    <Flex direction={"column"} minHeight={{ base: "75vh", md: "90vh" }}>
-      <Spacer />
-      <Center>
-        <Stack
-          direction={"column"}
-          textAlign={"center"}
-          // minHeight={"90vh"}
-          spacing={{ base: 8, md: 14 }}
-          // py={{ base: 20, md: 36 }}
-        >
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-          >
-            Do You Wanna Explore
-            <Text color={"blue.400"}>Offbeat Pathways</Text>
-            <Text
-              paddingTop={{ base: "1", md: "2" }}
-              fontSize={{ base: "md", sm: "xl", md: "2xl" }}
-            >
-              After High School?
-            </Text>
-          </Heading>
-
-          <Text color={"gray.500"}>
-            Don&apos;t worry!
-            <br />
-            There are plenty of alternative education leading students to
-            success!
-            <br />
-            Find them based on interests and strengths!
-          </Text>
+    <Flex
+      direction={"column"}
+      minHeight={{ base: "75vh", md: "90vh" }}
+      backgroundImage={"/static/homePg-Carousel.jpg"}
+      backgroundSize={"cover"}
+      backgroundPosition={"top center"}
+    >
+      <Flex
+        direction={"column"}
+        minHeight={"inherit"}
+        backdropFilter={"auto"}
+        backdropBlur={"8px"}
+        backdropBrightness={"62%"}
+      >
+        <Spacer />
+        <Center>
           <Stack
             direction={"column"}
-            spacing={10}
-            align={"center"}
-            alignSelf={"center"}
-            position={"relative"}
+            textAlign={"center"}
+            // minHeight={"90vh"}
+            spacing={{ base: 8, md: "60px" }}
+            // py={{ base: 20, md: 36 }}
           >
-            <Stack
-              direction={{ base: "column", md: "row" }}
-              alignSelf={"center"}
+            <Heading
+              fontWeight={"semibold"}
+              fontSize={{ base: "3xl", sm: "5xl", md: "7xl" }}
+              textColor={"white"}
+              lineHeight={"130%"}
             >
-              {/* <Button
+              Do You Wanna Explore
+              <Text fontWeight={"bold"} color={"blue.300"}>
+                Offbeat Pathways
+              </Text>
+              <Text
+                paddingTop={{ base: "1", md: "2" }}
+                fontSize={{ base: "md", sm: "xl", md: "2xl" }}
+              >
+                After High School?
+              </Text>
+            </Heading>
+
+            <Text color={"whiteAlpha.700"}>
+              Don&apos;t worry!
+              <br />
+              There are plenty of alternative education leading students to
+              success!
+              <br />
+              Find them based on interests and strengths!
+            </Text>
+            <Stack
+              direction={"column"}
+              spacing={10}
+              align={"center"}
+              alignSelf={"center"}
+              position={"relative"}
+            >
+              <Stack
+                direction={{ base: "column", md: "row" }}
+                alignSelf={"center"}
+              >
+                {/* <Button
                 colorScheme={"gray"}
                 bg={"gray.300"}
                 rounded={"lg"}
@@ -72,49 +88,56 @@ export default function CallToAction() {
               >
                 Inside Your School
               </Button> */}
-              <NextLink href={"/find-answer"} passHref legacyBehavior>
-                <Button
-                  as={"a"}
-                  colorScheme={"blue"}
-                  // bg={'green.400'}
-                  rounded={"lg"}
-                  rightIcon={<ArrowForwardIcon />}
-                  px={6}
-                >
-                  Find Suitable Pathways
-                </Button>
-              </NextLink>
-            </Stack>
+                <NextLink href={"/find-answer"} passHref legacyBehavior>
+                  <Button
+                    as={"a"}
+                    colorScheme={"blue"}
+                    // bg={'green.400'}
+                    rounded={"lg"}
+                    rightIcon={<ArrowForwardIcon />}
+                    px={6}
+                  >
+                    Find Suitable Pathways
+                  </Button>
+                </NextLink>
+              </Stack>
 
-            <Box display={{ base: "none", sm: "none", md: "contents" }}>
-              <Icon
-                as={Arrow}
-                transform={{ base: "rotate(90deg)", md: "none" }}
-                color={"gray.800"}
-                w={71}
-                position={"absolute"}
-                // right={-71}
-                right={{ base: "15px", sm: "210px", md: "-70px" }}
-                // top={'80px'}
-                top={{ base: "150px", sm: "50px", md: "15px" }}
-              />
-              <Text
-                fontSize={"lg"}
-                fontFamily={"Caveat"}
-                position={"absolute"}
-                // right={'-100px'}
-                right={{ base: "0px", sm: "200px", md: "-100px" }}
-                // top={'60px'}
-                top={{ base: "120px", sm: "40px", md: "-10px" }}
-                transform={{ base: "rotate(-10deg)", md: "rotate(10deg)" }}
-              >
-                Click Here!
-              </Text>
-            </Box>
+              <Box display={{ base: "none", sm: "none", md: "contents" }}>
+                <Icon
+                  as={Arrow}
+                  transform={{ base: "rotate(90deg)", md: "none" }}
+                  color={"white"}
+                  w={71}
+                  position={"absolute"}
+                  // right={-71}
+                  right={{ base: "15px", sm: "210px", md: "-70px" }}
+                  // top={'80px'}
+                  top={{ base: "150px", sm: "50px", md: "15px" }}
+                />
+                <Text
+                  fontSize={"lg"}
+                  fontFamily={"Caveat"}
+                  position={"absolute"}
+                  color={"white"}
+                  right={{ base: "0px", sm: "200px", md: "-100px" }}
+                  top={{ base: "120px", sm: "40px", md: "-10px" }}
+                  transform={{ base: "rotate(-10deg)", md: "rotate(10deg)" }}
+                >
+                  Click Here!
+                </Text>
+              </Box>
+            </Stack>
+            <Center>
+            <NextLink href={"/#homepage-stats-1-1412"} passHref legacyBehavior>
+              <Button variant={"ghost"} size={"lg"} textColor={"white"} _hover={{bg: "whiteAlpha.100"}}>
+                <ArrowDownIcon />
+              </Button>
+              </NextLink >
+            </Center>
           </Stack>
-        </Stack>
-      </Center>
-      <Spacer />
+        </Center>
+        <Spacer />
+      </Flex>
     </Flex>
   );
 }

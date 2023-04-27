@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
+import NextLink from "next/link";
 
 export default function Breadcrumbs() {
   const router = useRouter();
@@ -14,6 +15,8 @@ export default function Breadcrumbs() {
   const nameMapping = [
     { oldName: "compare-courses", newName: "Compare Courses" },
     { oldName: "find-answer", newName: "Find Suitable Pathways" },
+    { oldName: "detailed-table", newName: "Detailed Table - Occupation vs Qualification" },
+    { oldName: "articles", newName: "Informative Reads" }
   ];
 
   const changeToMeaningfulName = (oldName: string) => {
@@ -73,7 +76,7 @@ export default function Breadcrumbs() {
           >
             {breadcrumbList.map((item, idx) => (
               <BreadcrumbItem key={"breadcrumb-" + idx + item.title}>
-                <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+                <BreadcrumbLink as={NextLink} href={item.href}>{item.title}</BreadcrumbLink>
               </BreadcrumbItem>
             ))}
           </Breadcrumb>

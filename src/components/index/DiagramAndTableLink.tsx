@@ -25,7 +25,7 @@ export default function DiagramAndTableLink() {
     <Fragment>
       <Container maxWidth={"6xl"} minHeight={"2xl"}>
         <Stack direction={"column"}>
-          <Heading alignSelf={"center"}>Occupation VS Qualification</Heading>
+          <Heading alignSelf={"center"} id={"homepage-stats-2-1412"}>Occupation VS Qualification</Heading>
           <Heading fontSize={"md"}></Heading>
           {/* <Flex direction={"row"}>
             <ButtonGroup spacing={0} id={"homepage-stats-2-1412"}>
