@@ -1,5 +1,14 @@
 import ChakraNextLink from "@/components/chakra-next-link";
-import { Box, Button, Center, Container, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Fragment, useEffect, useRef, useState } from "react";
 
@@ -7,21 +16,31 @@ export default function FourOhFourPage() {
   return (
     <Fragment>
       <Container maxWidth={"6xl"}>
-        
         <Flex paddingTop={"40px"} width={"inherit"} direction={"column"}>
+          <Center paddingBottom={"20px"}>
+            <Heading>
+              404 - Page Not Found -{" "}
+              <ChakraNextLink href={"/"} textColor={"blue.500"}>
+                Click to Home Page
+              </ChakraNextLink>{" "}
+            </Heading>
+          </Center>
+          <Center paddingBottom={"40px"}>
+            <Heading fontSize={"lg"}>
+              You mistakenly entered the void space, but we provide you this Ester Egg!
+            </Heading>
+          </Center>
+          <Center paddingBottom={"40px"}>
+            <Heading fontSize={"lg"}>
+              You can play this relaxing, simple and beautiful 2048 game. Have
+              Fun!
+            </Heading>
+          </Center>
           <Center>
-        <Heading paddingBottom={"20px"}>404 - Page Not Found -  <ChakraNextLink href={"/"} textColor={"blue.500"}>Click to Home Page</ChakraNextLink> </Heading>
-        </Center>
-        <Center>
-        <Heading fontSize={"lg"} paddingBottom={"40px"}>However, you can also play this simple, beautiful 2048 game. Have Fun!</Heading>
-        </Center>
-          <Center>
-          
-          <Game />
+            <Game />
           </Center>
         </Flex>
       </Container>
-      
     </Fragment>
   );
 }
@@ -72,14 +91,12 @@ const Score = ({ value }: { value: number }) => {
   );
 };
 
-
-
 interface TileProps {
   value: number;
 }
 
 const Tile = ({ value }: TileProps) => {
-  const colors : { [key: string]: string } = {
+  const colors: { [key: string]: string } = {
     "2": "gray.400",
     "4": "green.400",
     "8": "purple.400",
@@ -102,15 +119,15 @@ const Tile = ({ value }: TileProps) => {
       transition={{ duration: 0.1 }}
     >
       <Box
-        w={{base: "20px", md: "60px"}}
-        h={{base: "20px", md: "60px"}}
+        w={{ base: "20px", md: "60px" }}
+        h={{ base: "20px", md: "60px" }}
         bg={colors[value.toString()]}
-        borderRadius={{md: "8px"}}
+        borderRadius={{ md: "8px" }}
         display="flex"
         justifyContent="center"
         alignItems="center"
         fontWeight="bold"
-        fontSize={{base:"sm", md: "3xl"}}
+        fontSize={{ base: "sm", md: "3xl" }}
         color="white"
       >
         {value}
@@ -296,11 +313,14 @@ const Game = () => {
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Score value={score} />
         <Button
-        colorScheme="blue"
-        onClick={() => {
-          // setBoard(getInitialBoard())
-          setBoard(generateTile(getInitialBoard()))
-        }}>New Game</Button>
+          colorScheme="blue"
+          onClick={() => {
+            // setBoard(getInitialBoard())
+            setBoard(generateTile(getInitialBoard()));
+          }}
+        >
+          New Game
+        </Button>
       </Box>
       <Board board={board} />
     </Box>
