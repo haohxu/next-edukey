@@ -7,14 +7,20 @@ import {
   Flex,
   Grid,
   Heading,
+  Kbd,
+  Tag,
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Head from "next/head";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 export default function FourOhFourPage() {
   return (
     <Fragment>
+      <Head>
+        <title>404 - Page Not Found - EduKey</title>
+      </Head>
       <Container maxWidth={"6xl"}>
         <Flex paddingTop={"40px"} width={"inherit"} direction={"column"}>
           <Center paddingBottom={"20px"}>
@@ -25,12 +31,13 @@ export default function FourOhFourPage() {
               </ChakraNextLink>{" "}
             </Heading>
           </Center>
-          <Center paddingBottom={"40px"}>
+          <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
-              You mistakenly entered the void space, but we provide you this Ester Egg!
+              You mistakenly entered the void space, but we provide you this
+              Easter Egg!
             </Heading>
           </Center>
-          <Center paddingBottom={"40px"}>
+          <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
               You can play this relaxing, simple and beautiful 2048 game. Have
               Fun!
@@ -38,7 +45,11 @@ export default function FourOhFourPage() {
           </Center>
           <Center paddingBottom={"40px"}>
             <Heading fontSize={"lg"}>
-              LEFT: ←, A, H | RIGHT: →, D, L | UP: ↑, W, K | DOWN: ↓, S, J
+              <Tag>LEFT</Tag> : <Kbd>←</Kbd>, <Kbd>A</Kbd>, <Kbd>H</Kbd>{" | "}
+              <Tag>DOWN</Tag> : <Kbd>↓</Kbd>, <Kbd>S</Kbd>, <Kbd>J</Kbd> {" | "}
+              <Tag>UP</Tag> : <Kbd>↑</Kbd>, <Kbd>W</Kbd>, <Kbd>K</Kbd>{" | "}
+              <Tag>RIGHT</Tag> : <Kbd>→</Kbd>, <Kbd>D</Kbd>, <Kbd>L</Kbd>
+              
             </Heading>
           </Center>
           <Center>
