@@ -36,6 +36,11 @@ export default function FourOhFourPage() {
               Fun!
             </Heading>
           </Center>
+          <Center paddingBottom={"40px"}>
+            <Heading fontSize={"lg"}>
+              LEFT: ←, A, H | RIGHT: →, D, L | UP: ↑, W, K | DOWN: ↓, S, J
+            </Heading>
+          </Center>
           <Center>
             <Game />
           </Center>
@@ -168,6 +173,8 @@ const Game = () => {
 
       switch (event.key) {
         case "ArrowUp":
+        case "w":
+        case "k":
           for (let col = 0; col < 4; col++) {
             for (let row = 1; row < 4; row++) {
               if (newBoard[row][col] !== 0) {
@@ -198,6 +205,8 @@ const Game = () => {
           }
           break;
         case "ArrowDown":
+        case "s":
+        case "j":
           for (let col = 0; col < 4; col++) {
             for (let row = 2; row >= 0; row--) {
               if (newBoard[row][col] !== 0) {
@@ -228,6 +237,8 @@ const Game = () => {
           }
           break;
         case "ArrowLeft":
+        case "a":
+        case "h":
           for (let row = 0; row < 4; row++) {
             for (let col = 1; col < 4; col++) {
               if (newBoard[row][col] !== 0) {
@@ -258,6 +269,8 @@ const Game = () => {
           }
           break;
         case "ArrowRight":
+        case "d":
+        case "l":
           for (let row = 0; row < 4; row++) {
             for (let col = 2; col >= 0; col--) {
               if (newBoard[row][col] !== 0) {
