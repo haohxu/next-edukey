@@ -239,7 +239,7 @@ export default function CompareCoursesPage(props: {
                       <SearchIcon color={"gray.300"} />
                     </InputLeftElement>
                     <Input
-                      placeholder="Search a course here"
+                      placeholder="Search a Course Name..."
                       size={{ base: "md" }}
                       variant="outline"
                       onChange={changeInputHandler}

@@ -19,12 +19,12 @@ export default function QuizResultPage() {
   return (
     <>
       <Head>
-        <title>Quiz Result</title>
+        <title>Result - Find Course - EduKey</title>
       </Head>
       <Center>
-        <Heading marginY={"8"}>Result</Heading>
+        <Heading marginY={"8"}>Result of Occupation and Courses</Heading>
       </Center>
-      <Container maxWidth={"1200px"}>
+      <Container maxWidth={"6xl"}>
         <Tabs
           isFitted
           align="center"
