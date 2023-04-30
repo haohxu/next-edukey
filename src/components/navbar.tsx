@@ -16,6 +16,7 @@ import {
   useDisclosure,
   Spacer,
   Center,
+  Image,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -38,7 +39,7 @@ export default function Navbar() {
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
-        maxH={"50px"}
+        maxH={"8vh"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         // borderBottom={1}
@@ -60,29 +61,64 @@ export default function Navbar() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Center width={"full"} >
-        <Flex
-          flex={{ base: 1 }}
-          // justify={{ base: "center", md: "start" }}
-          justify={{ base: "center" }}
-          maxWidth={"6xl"}
-        >
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"genos"}
-            fontSize={"2xl"}
-            fontWeight={"bold"}
+        <Center width={"full"}>
+          <Flex
+            flex={{ base: 1 }}
+            // justify={{ base: "center", md: "start" }}
+            justify={{ base: "center" }}
+            maxWidth={"6xl"}
           >
-            <Link as={NextLink} href="/" legacyBehavior>
-              EduKey
-            </Link>
-          </Text>
-          <Spacer display={{ base: "none", md: "block" }}></Spacer>
-          <Flex display={{ base: "none", md: "flex" }} ml={10} align={"center"}>
-            <DesktopNav />
+            <ChakraNextLink href={"/"}>
+              <Image
+                boxSize={"6vh"}
+                objectFit={"contain"}
+                src="/static/EDUKEY_Logo.png"
+                alt="EduKey Logo"
+              />
+            </ChakraNextLink>
+
+            <Text
+              paddingLeft={1}
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"genos"}
+              fontSize={"2xl"}
+              fontWeight={"bold"}
+              alignSelf={"center"}
+            >
+              <Link as={NextLink} href="/" legacyBehavior>
+                EduKey
+              </Link>
+            </Text>
+            <Spacer display={{ base: "none", md: "block" }}></Spacer>
+            <Flex
+              display={{ base: "none", md: "flex" }}
+              ml={10}
+              align={"center"}
+            >
+              <DesktopNav />
+            </Flex>
           </Flex>
-        </Flex>
         </Center>
+
+        <Flex
+          // flex={{ base: 1, md: "auto" }}
+          mr={{ base: -2 }}
+          display={{ base: "flex", md: "none" }}
+        >
+          <IconButton
+            cursor={"default"}
+            color={"white"}
+            opacity={0}
+            isDisabled
+            _disabled={{ opacity: 0, color: "white" }}
+            onClick={onToggle}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
+            variant={"ghost"}
+            aria-label={"Toggle Navigation 2"}
+          />
+        </Flex>
 
         {/* <Stack
           flex={{ base: 1, md: 0 }}
