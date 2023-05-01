@@ -6,6 +6,14 @@ EduKey is a university project, powered by [Next.js](https://nextjs.org/) and bo
 - [Chakra UI](https://chakra-ui.com/), a simple, modular and accessible UI component library for React. 
 - [Vercel](https://vercel.com/), a platform to deploy NextJS application. 
 
+## FAQs
+#### Q: What are the main functions of this project?
+##### A: Finding courses based on your interests, comparing courses and showing informative diagrams and articles. 
+
+#### Q: Is it any good? 
+##### A: Yes.
+
+
 ## Getting Started
 
 First, run the development server:

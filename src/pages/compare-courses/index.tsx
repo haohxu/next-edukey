@@ -1,13 +1,11 @@
+import ChakraNextLink from "@/components/chakra-next-link";
 import CompareGrid from "@/components/compare-courses/compareGrid";
 import CourseItem from "@/components/compare-courses/courseItem";
+import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
+import { useQuizResultStore } from "@/context/QuizResultStore";
 import prisma from "@/lib/prisma";
 import { findAllCourseNames } from "@/lib/read_database";
-import {
-  SearchIcon,
-  Search2Icon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Heading,
   Container,
@@ -43,6 +41,7 @@ import {
   Select,
 } from "chakra-react-select";
 import Head from "next/head";
+import NextLink from "next/link";
 import { Fragment, useState } from "react";
 
 export default function CompareCoursesPage(props: {
@@ -66,16 +65,20 @@ export default function CompareCoursesPage(props: {
 
   // manage useState of selected courses
   // lift this state to courseItem class
-  const [selectedCourses, setSelectedCourses] = useState([
-    courseList[0],
-    // courseList[1],
-    // courseList[2],
-    // courseList[3],
-  ]);
+  const {
+    compareCoursesResponse: selectedCourses,
+    setCompareCoursesResponse: setSelectedCourses,
+  } = useCompareCoursesStore();
+
+  const { quizResultResponse, setQuizResultResponse } = useQuizResultStore();
+
+  // const [selectedCourses, setSelectedCourses] = useState([
+  //   courseList[0],
+  // ]);
 
   // with above, handle event of tag cancel button
   const tagCloseDoer = (currentButtonLable: string) => {
-    setSelectedCourses((prevState) => {
+    setSelectedCourses((prevState: course[]) => {
       const newState = prevState.filter(
         (item) => item.course_code != currentButtonLable
       );
@@ -149,7 +152,7 @@ export default function CompareCoursesPage(props: {
       <Head>
         <title>Compare Courses</title>
       </Head>
-      <Container marginTop={{ base: "6" }} maxWidth={"6xl"}>
+      <Container marginTop={{ base: "6px" }} maxWidth={"6xl"}>
         <Stack direction={"column"}>
           {/* TODO: for Testing */}
           {/* <HStack>
@@ -172,55 +175,71 @@ export default function CompareCoursesPage(props: {
 
           {/* Compare title and Compare button */}
           <Flex
-            direction={{ base: "row", md: "row" }}
-            paddingY={{ base: 6, sm: 6, md: 12 }}
+            direction={{ base: "column", md: "row" }}
           >
-            <Heading fontSize={{ base: "2xl", sm: "3xl", md: "3xl" }}>
+            <Heading fontSize={{ base: "2xl", sm: "3xl", md: "3xl" }} paddingY={"5px"}>
               Compare Different Courses
             </Heading>
             <Spacer />
+            <ButtonGroup spacing={0} alignSelf={"flex-end"}>
+              <NextLink href={"/find-answer/result"} passHref legacyBehavior>
+                <Button
+                  display={quizResultResponse.length === 0 ? "none" : "block"}
+                  size={"sm"}
+                  width={"fit-content"}
+                  colorScheme={"blue"}
+                  variant={"outline"}
+                >
+                  Back To Quiz Result
+                </Button>
+              </NextLink>
+              
 
-            <Button
-              isDisabled={selectedCourses.length <= 1 && !showCompare}
-              size={{ base: "sm", sm: "sm", md: "md" }}
-              width={"fit-content"}
-              alignSelf={"flex-end"}
-              colorScheme={"blue"}
-              onClick={toggleShowCompareHandler}
-            >
-              {showCompare ? "Back" : "Compare"}
-              <Badge
-                fontSize={"xs"}
-                marginLeft={2}
-                colorScheme={"red"}
-                variant={"solid"}
-                borderRadius={"full"}
+              <Button
+                isDisabled={selectedCourses.length <= 1 && !showCompare}
+                size={"sm"}
+                width={"fit-content"}
+                colorScheme={"blue"}
+                onClick={toggleShowCompareHandler}
               >
-                {selectedCourses.length}
-              </Badge>
-            </Button>
+                {showCompare ? "Back" : "Compare"}
+                <Badge
+                  fontSize={"xs"}
+                  marginLeft={2}
+                  colorScheme={"red"}
+                  variant={"solid"}
+                  borderRadius={"full"}
+                >
+                  {selectedCourses.length}
+                </Badge>
+              </Button>
+            </ButtonGroup>
           </Flex>
 
           <Flex direction={{ base: "column", md: "row" }}>
             <Flex direction={"row"}>
               {selectedCourses.map((item) => (
-                <ScaleFade key={"fade-tag-" + item.course_code} in={true} initialScale={0.95}>
-                <Tag
-                  key={"tag-" + item.course_code}
-                  width={"fit-content"}
-                  fontSize={{ base: "xs", md: "sm" }}
-                  fontWeight={"bold"}
-                  marginX={1}
-                  borderRadius={"md"}
-                  variant={"solid"}
-                  colorScheme={"blue"}
+                <ScaleFade
+                  key={"fade-tag-" + item.course_code}
+                  in={true}
+                  initialScale={0.95}
                 >
-                  <TagLabel>{item.course_code} &nbsp;</TagLabel>
-                  <TagCloseButton
-                    type={"button"}
-                    onClick={() => tagCloseDoer(item.course_code)}
-                  />
-                </Tag>
+                  <Tag
+                    key={"tag-" + item.course_code}
+                    width={"fit-content"}
+                    fontSize={{ base: "xs", md: "sm" }}
+                    fontWeight={"bold"}
+                    marginX={1}
+                    borderRadius={"md"}
+                    variant={"solid"}
+                    colorScheme={"blue"}
+                  >
+                    <TagLabel>{item.course_code} &nbsp;</TagLabel>
+                    <TagCloseButton
+                      type={"button"}
+                      onClick={() => tagCloseDoer(item.course_code)}
+                    />
+                  </Tag>
                 </ScaleFade>
               ))}
             </Flex>
@@ -255,7 +274,8 @@ export default function CompareCoursesPage(props: {
                       id="button-go-l-page-1314"
                       onClick={changePageNumHandler}
                     >
-                      {"<"}{/* <ChevronLeftIcon /> */}
+                      {"<"}
+                      {/* <ChevronLeftIcon /> */}
                     </Button>
                     <Button as={"p"}>
                       {displayCourses.currentPageNum +
@@ -268,7 +288,8 @@ export default function CompareCoursesPage(props: {
                       id="button-go-r-page-1314"
                       onClick={changePageNumHandler}
                     >
-                      {">"}{/* <ChevronRightIcon /> */}
+                      {">"}
+                      {/* <ChevronRightIcon /> */}
                     </Button>
                   </ButtonGroup>
                 </Flex>

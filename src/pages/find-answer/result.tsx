@@ -8,23 +8,103 @@ import {
   Tab,
   TabPanels,
   TabPanel,
+  Flex,
+  Button,
+  Badge,
+  Spacer,
+  ScaleFade,
+  Tag,
+  TagCloseButton,
+  TagLabel,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { useQuizResultStore } from "../_app";
+import NextLink from "next/link";
+import { useQuizResultStore } from "@/context/QuizResultStore";
+import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
+import { course } from "@prisma/client";
 
 export default function QuizResultPage() {
-  const { quizResultResponse, setQuizResultResponse } = useQuizResultStore();
-  const divisionList = quizResultResponse;
+  const { quizResultResponse: divisionList, setQuizResultResponse } =
+    useQuizResultStore();
+  const {
+    compareCoursesResponse: selectedCourses,
+    setCompareCoursesResponse: setSelectedCourses,
+  } = useCompareCoursesStore();
+
+  // with above, handle event of tag cancel button
+  const tagCloseDoer = (currentButtonLable: string) => {
+    setSelectedCourses((prevState: course[]) => {
+      const newState = prevState.filter(
+        (item) => item.course_code != currentButtonLable
+      );
+      return newState;
+    });
+  };
 
   return (
     <>
       <Head>
         <title>Result - Find Course - EduKey</title>
       </Head>
-      <Center>
-        <Heading marginY={"8"}>Result of Occupation and Courses</Heading>
-      </Center>
       <Container maxWidth={"6xl"}>
+        <Center>
+          <Heading marginY={"8"}>Result of Occupation and Courses</Heading>
+        </Center>
+        <Flex
+          width={"inherit"}
+          direction={{ base: "column", md: "row" }}
+          paddingY={"10px"}
+          
+        >
+          <Flex direction={"row"} paddingY={"5px"}>
+            {selectedCourses.map((item) => (
+              <ScaleFade
+                key={"fade-tag-" + item.course_code}
+                in={true}
+                initialScale={0.95}
+              >
+                <Tag
+                  key={"tag-" + item.course_code}
+                  width={"fit-content"}
+                  fontSize={{ base: "xs", md: "sm" }}
+                  fontWeight={"bold"}
+                  marginX={1}
+                  borderRadius={"md"}
+                  variant={"solid"}
+                  colorScheme={"blue"}
+                >
+                  <TagLabel>{item.course_code} &nbsp;</TagLabel>
+                  <TagCloseButton
+                    type={"button"}
+                    onClick={() => tagCloseDoer(item.course_code)}
+                  />
+                </Tag>
+              </ScaleFade>
+            ))}
+          </Flex>
+          <Spacer />
+          <Button
+            as={NextLink}
+            href={"/compare-courses"}
+            isDisabled={selectedCourses.length <= 1}
+            size={"sm"}
+            width={"fit-content"}
+            alignSelf={"flex-end"}
+            colorScheme={"blue"}
+          >
+            {"Go To Compare"}
+            <Badge
+              fontSize={"xs"}
+              marginLeft={2}
+              colorScheme={"red"}
+              variant={"solid"}
+              borderRadius={"full"}
+            >
+              {selectedCourses.length}
+            </Badge>
+          </Button>
+        </Flex>
+
         <Tabs
           isFitted
           align="center"
@@ -37,7 +117,7 @@ export default function QuizResultPage() {
                 key={"division-" + item.anzsic_division}
                 // minWidth={"200"}
                 maxWidth={"500"}
-                fontSize={{base: "2xs", sm:"xs", md: "sm"}}
+                fontSize={{ base: "2xs", sm: "xs", md: "sm" }}
               >
                 {item.anzsic_division}
               </Tab>

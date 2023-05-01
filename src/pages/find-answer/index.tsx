@@ -10,12 +10,14 @@ import {
   Image,
   Stack,
   VStack,
+  Spacer,
 } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useQuizResultStore } from "../_app";
+import { useQuizResultStore } from "@/context/QuizResultStore";
+import ChakraNextLink from "@/components/chakra-next-link";
 
 const setVariant = (input: boolean) => {
   return input ? "solid" : "outline";
@@ -241,14 +243,13 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 A: Indoor
               </Button>
               <Image
-              id="q1-a-my-quiz-option-image"
+                id="q1-a-my-quiz-option-image"
                 boxSize={"300px"}
                 objectFit={"contain"}
                 objectPosition={"top center"}
                 alt={"Indoor"}
                 src={"/static/1-a.png"}
                 onClick={props.onAnswer}
-                
               />
             </Stack>
             <Stack direction={"column"} p={0}>
@@ -260,7 +261,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 B: Outdoor
               </Button>
               <Image
-              id="q1-b-my-quiz-option-image"
+                id="q1-b-my-quiz-option-image"
                 boxSize={"300px"}
                 objectFit={"contain"}
                 objectPosition={"top center"}
@@ -285,18 +286,18 @@ export default function FindAnswerPage() {
 
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(progressPercentage);
-  const [isAnswered, setAnswered] : [{[key: string]: string }, any] = useState({
+  const [isAnswered, setAnswered]: [{ [key: string]: string }, any] = useState({
     q1: "null",
     q2: "null",
     q3: "null",
     q4: "null",
   });
 
-  const answerMapping : {[key: string]: {[key:string]: string}} = {
-    "q1": {"a": "Indoor", "b": "Outdoor"},
-    "q2": {"a": "Caring & Helping Others", "b": "Independent Work"},
-    "q3": {"a": "Like", "b": "Unlike"},
-    "q4": {"a": "Manufacturing", "b": "Business", "c": "Scientific Research"},
+  const answerMapping: { [key: string]: { [key: string]: string } } = {
+    q1: { a: "Indoor", b: "Outdoor" },
+    q2: { a: "Caring & Helping Others", b: "Independent Work" },
+    q3: { a: "Like", b: "Unlike" },
+    q4: { a: "Manufacturing", b: "Business", c: "Scientific Research" },
   };
 
   // for route and back to previous
@@ -307,14 +308,16 @@ export default function FindAnswerPage() {
     return (
       (isAnswered.q1 === "null"
         ? ""
-        : " -> Q1: " + answerMapping.q1[isAnswered.q1] ) +
+        : " -> Q1: " + answerMapping.q1[isAnswered.q1]) +
       (isAnswered.q2 === "null"
         ? ""
         : " -> Q2: " + answerMapping.q2[isAnswered.q2]) +
       (isAnswered.q3 === "null"
         ? ""
         : " -> Q3: " + answerMapping.q3[isAnswered.q3]) +
-      (isAnswered.q4 === "null" ? "" : " -> Q4: " + answerMapping.q4[isAnswered.q4])
+      (isAnswered.q4 === "null"
+        ? ""
+        : " -> Q4: " + answerMapping.q4[isAnswered.q4])
     );
   };
 
@@ -349,7 +352,7 @@ export default function FindAnswerPage() {
 
     const idObject = { [questionId]: optionId };
 
-    setAnswered((isAnswered: {[key: string]: string }) => ({
+    setAnswered((isAnswered: { [key: string]: string }) => ({
       ...isAnswered,
       ...idObject,
     }));
@@ -424,7 +427,28 @@ export default function FindAnswerPage() {
           mx="5%"
           isAnimated
         ></Progress>
-        <Heading fontSize={"xs"}>{"Progress: " + step + " / " + totalQuestionNum} </Heading>
+        <Flex
+          w="100%"
+          justifyContent="space-between"
+          direction={"row"}
+          margin={0}
+          display={quizResultResponse.length === 0 ? "none" : "flex"}
+        >
+          <Spacer/>
+          <ChakraNextLink
+            textAlign={"end"}
+            href={"/find-answer/result"}
+            fontSize={"sm"}
+            fontWeight={"semibold"}
+            color={"blue.500"}
+          >
+            Back To Previous Result
+          </ChakraNextLink>
+        </Flex>
+
+        <Heading fontSize={"xs"}>
+          {"Progress: " + step + " / " + totalQuestionNum}{" "}
+        </Heading>
         <Heading fontSize={"xs"}>{"Your Answer" + setYourAnswer()}</Heading>
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -491,7 +515,6 @@ export default function FindAnswerPage() {
         ) : (
           <Form4 onAnswer={setAnsweredHandler} varient={isAnswered.q4} />
         )}
-        
       </Box>
     </>
   );
