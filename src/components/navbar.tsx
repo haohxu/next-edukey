@@ -39,7 +39,7 @@ export default function Navbar() {
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
-        maxH={"8vh"}
+        maxH={"100px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         // borderBottom={1}
@@ -70,7 +70,7 @@ export default function Navbar() {
           >
             <ChakraNextLink href={"/"}>
               <Image
-                boxSize={"6vh"}
+                boxSize={"60px"}
                 objectFit={"contain"}
                 src="/static/EDUKEY_Logo.png"
                 alt="EduKey Logo"
@@ -80,7 +80,7 @@ export default function Navbar() {
             <Text
               paddingLeft={1}
               textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              fontFamily={"genos"}
+              fontFamily={"kelly_slab"}
               fontSize={"2xl"}
               fontWeight={"bold"}
               alignSelf={"center"}

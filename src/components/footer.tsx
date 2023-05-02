@@ -64,7 +64,7 @@ export default function Footer() {
           alignContent={{ base: "flex-start", md: "center"}}
           spacing={{ base: 1, md: 6 }}
         >
-          <Center>
+          {/* <Center>
           <ChakraNextLink href={"/"}>Home</ChakraNextLink>
           </Center>
           <Center>
@@ -81,7 +81,7 @@ export default function Footer() {
           <ChakraNextLink href={"/statistics"}>
             Good Stats on VET Grads
           </ChakraNextLink>
-          </Center>
+          </Center> */}
           
         </Stack>
       </Container>

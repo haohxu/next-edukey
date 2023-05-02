@@ -23,33 +23,36 @@ export default function FourOhFourPage() {
       </Head>
       <Container maxWidth={"6xl"}>
         <Flex paddingTop={"40px"} width={"inherit"} direction={"column"}>
+          <Heading paddingBottom={"40px"}>
+            404 - Page Not Found -{" "}
+            <ChakraNextLink href={"/"} textColor={"blue.500"}>
+              Click to Home Page
+            </ChakraNextLink>{" "}
+          </Heading>
+
           <Center paddingBottom={"20px"}>
-            <Heading>
-              404 - Page Not Found -{" "}
-              <ChakraNextLink href={"/"} textColor={"blue.500"}>
-                Click to Home Page
-              </ChakraNextLink>{" "}
+            <Heading fontSize={"lg"}>
+              You mistakenly entered the void space, but we prepare this Easter
+              Egg to you!
             </Heading>
           </Center>
           <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
-              You mistakenly entered the void space, but we provide you this
-              Easter Egg!
-            </Heading>
-          </Center>
-          <Center paddingBottom={"20px"}>
-            <Heading fontSize={"lg"}>
-              You can play this relaxing, simple and beautiful 2048 game. Have
-              Fun!
+              You can play this{" "}
+              <Heading as={"span"} color={"red.500"} fontSize={"lg"} fontWeight={"semibold"}>
+                {" brain-training "}
+              </Heading>{" "}
+              2048 game. Have Fun!
             </Heading>
           </Center>
           <Center paddingBottom={"40px"}>
             <Heading fontSize={"lg"}>
-              <Tag>LEFT</Tag> : <Kbd>←</Kbd>, <Kbd>A</Kbd>, <Kbd>H</Kbd>{" | "}
+              <Tag>LEFT</Tag> : <Kbd>←</Kbd>, <Kbd>A</Kbd>, <Kbd>H</Kbd>
+              {" | "}
               <Tag>DOWN</Tag> : <Kbd>↓</Kbd>, <Kbd>S</Kbd>, <Kbd>J</Kbd> {" | "}
-              <Tag>UP</Tag> : <Kbd>↑</Kbd>, <Kbd>W</Kbd>, <Kbd>K</Kbd>{" | "}
+              <Tag>UP</Tag> : <Kbd>↑</Kbd>, <Kbd>W</Kbd>, <Kbd>K</Kbd>
+              {" | "}
               <Tag>RIGHT</Tag> : <Kbd>→</Kbd>, <Kbd>D</Kbd>, <Kbd>L</Kbd>
-              
             </Heading>
           </Center>
           <Center>
@@ -135,8 +138,8 @@ const Tile = ({ value }: TileProps) => {
       transition={{ duration: 0.1 }}
     >
       <Box
-        w={{ base: "20px", md: "60px" }}
-        h={{ base: "20px", md: "60px" }}
+        w={{ base: "50px", md: "60px" }}
+        h={{ base: "50px", md: "60px" }}
         bg={colors[value.toString()]}
         borderRadius={{ md: "8px" }}
         display="flex"
