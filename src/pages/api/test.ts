@@ -10,6 +10,8 @@ export default async function testHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const testResult = await prisma.course.findFirst({});
+  const testResult = await prisma.course.findFirst({
+    include: { course_provider: true },
+  });
   res.status(200).json(testResult);
 }

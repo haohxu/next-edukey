@@ -12,7 +12,7 @@ class TableauReact extends Component {
   }  
 
   initViz() {  
-    const vizUrl = 'https://public.tableau.com/views/StackedBarchart_16825907189930/Sheet1?:language=en-AU&:display_count=n&:origin=viz_share_link';
+    const vizUrl = 'https://public.tableau.com/views/test_16830895070840/Sheet1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link';
     const vizContainer = this.vizContainer;  
     const options = {
       width: "100%",

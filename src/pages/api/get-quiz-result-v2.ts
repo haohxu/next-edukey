@@ -9,7 +9,10 @@ export default async function getQuizResult(
 ) {
   if (req.method === "POST") {
     console.log(req.body);
-  }
+  } else { 
+    console.log("Not POST method!");
+    console.log(req.body);
+   }
 
   // TODO: add error handling
 
@@ -48,7 +51,13 @@ export default async function getQuizResult(
                     include: {
                       course_occupation: {
                         include: {
-                          course: true, // {
+                          course: true
+                          // {select: {
+                          //   id: true,
+                          //   course_title: true,
+                          //   course_code: true,
+                          // }}, 
+                          // {
                           //   include: {
                           //     course_provider: {
                           //       include: {
