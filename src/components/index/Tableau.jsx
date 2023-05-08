@@ -16,7 +16,7 @@ class TableauReact extends Component {
     const vizContainer = this.vizContainer;  
     const options = {
       width: "100%",
-      height: "400px",
+      height: "1000px",
     };
     if (viz != undefined) {viz.dispose();}
     viz = new window.tableau.Viz(vizContainer, vizUrl, options); 

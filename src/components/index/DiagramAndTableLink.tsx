@@ -58,7 +58,7 @@ export default function DiagramAndTableLink() {
           )} */}
           <Flex
             minHeight={"30vh"}
-            maxHeight={"2xl"}
+            // maxHeight={"2xl"}
             maxWidth={"6xl"}
             direction={"column"}
           >
