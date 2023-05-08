@@ -21,7 +21,7 @@ import Head from "next/head";
 import NextLink from "next/link";
 import { useQuizResultStore } from "@/context/QuizResultStore";
 import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
-import { course } from "@prisma/client";
+import { course, occupation_growth } from "@prisma/client";
 
 export default function QuizResultPage() {
   const { quizResultResponse: divisionList, setQuizResultResponse } =
@@ -128,18 +128,18 @@ export default function QuizResultPage() {
               <TabPanel key={"division-tabpanel" + item.anzsic_division}>
                 {item.division_course.map(
                   (occupation: {
-                    anzsco: any;
-                    job_name: any;
-                    job_outlook_url: any;
+                    anzsco: string;
+                    job_name: string;
                     course_occupation: any;
+                    occupation_growth: occupation_growth;
                   }) => (
                     <OccupationItem
                       key={
                         "occupation" + item.anzsic_division + occupation.anzsco
                       }
                       job_name={occupation.job_name}
-                      job_outlook_url={occupation.job_outlook_url}
                       course_occupation={occupation.course_occupation}
+                      occupation_growth={occupation.occupation_growth}
                     ></OccupationItem>
                   )
                 )}

@@ -39,13 +39,27 @@ model course {
   division_course           division_course[]
 }
 
+model occupation_growth {
+  anzsco_code             String          @id
+  occupation              String
+  projected_employment_level_nov_2026       Float?
+  projected_employment_growth_nov_2026      Float?
+  growth_rate_2026                          Float?
+  future_growth_rate                        String?
+
+  occupation_six_digits   occupation[]
+}
+
 model occupation {
   anzsco                    String          @id
   job_name                  String    
   skills_shortage           Int
   special                   Int
-  is_job_outlook_valid      Int
-  job_outlook_url           String
+  // is_job_outlook_valid      Int
+  // job_outlook_url           String
+  anzsco_four_digits        String
+
+  occupation_growth         occupation_growth        @relation(fields: [anzsco_four_digits], references: [anzsco_code])
 
   course_occupation         course_occupation[]
 }

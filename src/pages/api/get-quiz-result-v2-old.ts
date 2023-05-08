@@ -49,7 +49,6 @@ export default async function getQuizResult(
                 include: {
                   occupation: {
                     include: {
-                      occupation_growth: true,
                       course_occupation: {
                         include: {
                           course: true

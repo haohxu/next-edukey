@@ -6,26 +6,49 @@ import {
   AccordionPanel,
   Avatar,
   Box,
+  Button,
   Center,
+  Divider,
   Flex,
   Heading,
   IconButton,
   Link,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  SimpleGrid,
   Spacer,
   Stack,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
   Text,
+  Tooltip,
   useToast,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { course } from "@prisma/client";
+import { course, occupation_growth } from "@prisma/client";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
+import { Fragment } from "react";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  InfoIcon,
+  MinusIcon,
+} from "@chakra-ui/icons";
+import { MdPeople } from "react-icons/md";
 
-const SelectFavIconButton = ({ course } : {course: course}) => {
+const SelectFavIconButton = ({ course }: { course: course }) => {
   // create custom Toast() to notify no more than 3 can be chosen
   const toast = useToast();
   const toastNotification = () => {
-    if (! toast.isActive("no-more-than-3")){
+    if (!toast.isActive("no-more-than-3")) {
       toast({
         id: "no-more-than-3",
         position: "top-right",
@@ -36,9 +59,8 @@ const SelectFavIconButton = ({ course } : {course: course}) => {
         isClosable: true,
       });
     }
-    
   };
-  
+
   const {
     compareCoursesResponse: selectedCourses,
     setCompareCoursesResponse: setSelectedCourses,
@@ -51,7 +73,7 @@ const SelectFavIconButton = ({ course } : {course: course}) => {
       : true;
 
   const setSelectedCoursesHandler = () => {
-    setSelectedCourses((prevState : course[]) => {
+    setSelectedCourses((prevState: course[]) => {
       const checkSelectedCourses = prevState.find(
         (item) => item.course_code == course.course_code
       );
@@ -87,7 +109,6 @@ const SelectFavIconButton = ({ course } : {course: course}) => {
   );
 };
 
-
 const CourseItem = (props: { course: course }) => {
   return (
     <>
@@ -97,12 +118,105 @@ const CourseItem = (props: { course: course }) => {
             <SelectFavIconButton course={props.course} />
             {" - "}
             <Link as={NextLink} href={"/courses/" + props.course.course_code}>
-              {props.course.course_title + " " + "(" + props.course.course_code + ")" }
+              {props.course.course_title +
+                " " +
+                "(" +
+                props.course.course_code +
+                ")"}
             </Link>
           </Text>
         </Box>
       </Flex>
     </>
+  );
+};
+
+const OccupationGrowth = (props: { occupation_growth: occupation_growth }) => {
+  const occupation_growth = props.occupation_growth;
+  const {
+    growth_rate_2026,
+    projected_employment_growth_nov_2026,
+    future_growth_rate,
+  } = occupation_growth;
+
+  return (
+    <Fragment>
+      <Flex direction={{ base: "column", md: "row" }}>
+        {growth_rate_2026 !== null && (
+          <Tag
+            size={{ base: "lg" }}
+            width={"fit-content"}
+            variant={"outline"}
+            colorScheme={growth_rate_2026 >= 0 ? "green" : "red"}
+            margin={"5px"}
+          >
+            <TagLabel fontWeight={"bold"}>{growth_rate_2026 + "%"}</TagLabel>
+            <TagRightIcon
+              as={growth_rate_2026 >= 0 ? ArrowUpIcon : ArrowDownIcon}
+            />
+          </Tag>
+        )}
+        {projected_employment_growth_nov_2026 !== null && (
+          <Tag
+            size={{ base: "lg" }}
+            width={"fit-content"}
+            variant={"solid"}
+            colorScheme={
+              projected_employment_growth_nov_2026 >= 0 ? "green" : "red"
+            }
+            margin={"5px"}
+          >
+            <TagLeftIcon as={MdPeople} />
+            <TagLabel fontWeight={"bold"}>
+              {(projected_employment_growth_nov_2026 > 0 ? "+" : "") +
+                projected_employment_growth_nov_2026}
+            </TagLabel>
+          </Tag>
+        )}
+
+        {future_growth_rate !== null && (
+          <Tag
+            size={{ base: "lg" }}
+            width={"fit-content"}
+            variant={"solid"}
+            colorScheme={"blue"}
+            margin={"5px"}
+          >
+            <TagLabel fontWeight={"bold"}>{future_growth_rate}</TagLabel>
+          </Tag>
+        )}
+        <Spacer />
+        <Popover>
+          <PopoverTrigger>
+            <Button
+              borderRadius={"lg"}
+              variant={"outline"}
+              colorScheme={"gray"}
+              width={"fit-content"}
+              size={"sm"}
+            >
+              i
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Data</PopoverHeader>
+            <PopoverBody alignItems={"start"}>
+              {
+                "The statistics shows its corresponding 4-digit ANZSCO code occupation: "
+              }
+              <Text as={"span"} color={"blue.500"} fontWeight={"semibold"}>
+                {occupation_growth.occupation +
+                  " (" +
+                  occupation_growth.anzsco_code +
+                  "). "}
+              </Text>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Flex>
+    </Fragment>
   );
 };
 
@@ -118,7 +232,7 @@ export default function OccupationItem(props: any) {
         p={6}
         overflow={"hidden"}
       >
-        <Stack>
+        <Stack direction={"column"}>
           <Text
             color={"blue.500"}
             textTransform={"uppercase"}
@@ -129,29 +243,33 @@ export default function OccupationItem(props: any) {
           >
             Occupation
           </Text>
-          {/* <Heading
-          fontSize={'2xl'}
-          fontFamily={'body'}>
-          {props.job_name}
-        </Heading> */}
+          <Heading
+            fontSize={{ base: "md", md: "2xl" }}
+            fontFamily={"body"}
+            alignSelf={"start"}
+          >
+            {props.job_name}
+          </Heading>
           {/* <Text color={'gray.500'}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
           erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
           et ea rebum.
         </Text> */}
+          <OccupationGrowth occupation_growth={props.occupation_growth} />
         </Stack>
         <Accordion allowToggle>
           <AccordionItem border={"none"}>
             <AccordionButton paddingLeft={"initial"} paddingTop={"2"}>
               <Box flex="1" textAlign="left">
-                <Heading
+                {/* <Heading
                   // color={useColorModeValue('gray.700', 'white')}
                   fontSize={{ base: "md", md: "2xl" }}
                   fontFamily={"body"}
+                  color={"gray.100"}
                 >
                   {props.job_name}
-                </Heading>
+                </Heading> */}
               </Box>
               <Text fontSize={{ base: "xs", md: "sm" }}>
                 See Available Courses: &nbsp;
