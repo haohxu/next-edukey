@@ -13,6 +13,13 @@ import {
   Heading,
   IconButton,
   Link,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -29,6 +36,7 @@ import {
   TagRightIcon,
   Text,
   Tooltip,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -38,11 +46,13 @@ import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
 import { Fragment } from "react";
 import {
   ArrowDownIcon,
+  ArrowForwardIcon,
   ArrowUpIcon,
   InfoIcon,
+  InfoOutlineIcon,
   MinusIcon,
 } from "@chakra-ui/icons";
-import { MdPeople } from "react-icons/md";
+import { MdFormatListBulleted, MdPeople } from "react-icons/md";
 
 const SelectFavIconButton = ({ course }: { course: course }) => {
   // create custom Toast() to notify no more than 3 can be chosen
@@ -93,45 +103,168 @@ const SelectFavIconButton = ({ course }: { course: course }) => {
   };
 
   return (
-    <IconButton
-      bgColor={"transparent"}
-      size={"xs"}
-      color={"red.500"}
-      variant="solid"
-      icon={isInSelectedCourses ? <AiFillHeart /> : <AiOutlineHeart />}
-      _hover={{
-        colorScheme: "red.500",
-        backgroundColor: "transparent",
-      }}
-      aria-label={"FavoriteIcon" + course.course_code}
-      onClick={setSelectedCoursesHandler}
-    />
+    // <IconButton
+    //   bgColor={"transparent"}
+    //   size={"md"}
+    //   color={"red.500"}
+    //   variant="solid"
+    //   icon={isInSelectedCourses ? <AiFillHeart /> : <AiOutlineHeart />}
+    //   _hover={{
+    //     colorScheme: "red.500",
+    //     backgroundColor: "transparent",
+    //   }}
+    //   aria-label={"FavoriteIcon" + course.course_code}
+    //   onClick={setSelectedCoursesHandler}
+    // />
+    <Fragment>
+      {isInSelectedCourses ? (
+        <Button
+          rightIcon={<AiFillHeart />}
+          variant={"solid"}
+          colorScheme={"red"}
+          size={"xs"}
+          width={"fit-content"}
+          onClick={setSelectedCoursesHandler}
+        >
+          Remove
+        </Button>
+      ) : (
+        <Button
+          rightIcon={<AiOutlineHeart />}
+          variant={"outline"}
+          colorScheme={"red"}
+          size={"xs"}
+          width={"fit-content"}
+          onClick={setSelectedCoursesHandler}
+        >
+          Add Compare
+        </Button>
+      )}
+    </Fragment>
   );
 };
 
 const CourseItem = (props: { course: course }) => {
+  const theCourse = props.course;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <>
-      <Flex>
-        <Box textAlign={"left"}>
-          <Text fontSize={{ base: "sm", md: "md" }}>
-            <SelectFavIconButton course={props.course} />
-            {" - "}
-            <Link as={NextLink} href={"/courses/" + props.course.course_code}>
-              {props.course.course_title +
+    <Fragment>
+      <Flex paddingY={"5px"} direction={{ base: "column", md: "row" }}>
+        <Text fontSize={{ base: "sm", md: "md" }} align={"start"}>
+          {" - "}
+          {/* <Link as={NextLink} href={"/courses/" + theCourse.course_code}>
+              {theCourse.course_title +
                 " " +
                 "(" +
-                props.course.course_code +
+                theCourse.course_code +
                 ")"}
-            </Link>
-          </Text>
-        </Box>
+            </Link> */}
+          <Link onClick={onOpen}>
+            {theCourse.course_title + " " + "(" + theCourse.course_code + ")"}
+          </Link>
+          {/* <Button onClick={onOpen}>Open Modal</Button> */}
+        </Text>
+        <Spacer />
+        <SelectFavIconButton course={theCourse} />
       </Flex>
-    </>
+
+      <Modal
+        size={"lg"}
+        blockScrollOnMount={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        // isCentered
+        motionPreset={"slideInBottom"}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{theCourse.course_title}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Qualification Level: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon /> {theCourse.qualification_level}
+            </Text>
+
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Course Code: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon /> {theCourse.course_code}
+            </Text>
+
+            {theCourse.description !== null && (
+              <Flex direction={"column"}>
+                <Text fontWeight={"bold"} mb="1rem">
+                  {"Course Description: "}
+                </Text>
+                <Text fontWeight={"normal"} mb="1rem">
+                  <MinusIcon /> {theCourse.description}
+                </Text>
+              </Flex>
+            )}
+
+            {theCourse.entry_requirement !== null && (
+              <Flex direction={"column"}>
+                <Text fontWeight={"bold"} mb="1rem">
+                  {"Entry Requirement: "}
+                </Text>
+                <Text fontWeight={"normal"} mb="1rem">
+                  <MinusIcon /> {theCourse.entry_requirement}
+                </Text>
+              </Flex>
+            )}
+
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Course Type: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon /> {theCourse.course_type}
+            </Text>
+
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Government Subsidized: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon />{" "}
+              {theCourse.government_subsidised === 0 ? "No" : "Yes"}
+            </Text>
+
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Apprenticeship: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon /> {theCourse.apprenticeship === 0 ? "No" : "Yes"}
+            </Text>
+
+            <Text fontWeight={"bold"} mb="1rem">
+              {"Traineeship: "}
+            </Text>
+            <Text fontWeight={"normal"} mb="1rem">
+              <MinusIcon /> {theCourse.traineeship === 0 ? "No" : "Yes"}
+            </Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={1} onClick={onClose}>
+              Close
+            </Button>
+            {/* <Button variant="ghost">Secondary Action</Button> */}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Fragment>
   );
 };
 
-const OccupationGrowth = (props: { occupation_growth: occupation_growth }) => {
+const OccupationGrowth = (props: {
+  job_name: string;
+  occupation_growth: occupation_growth;
+}) => {
+  const job_name = props.job_name;
   const occupation_growth = props.occupation_growth;
   const {
     growth_rate_2026,
@@ -142,6 +275,14 @@ const OccupationGrowth = (props: { occupation_growth: occupation_growth }) => {
   return (
     <Fragment>
       <Flex direction={{ base: "column", md: "row" }}>
+        <Heading
+          fontSize={{ base: "md", md: "xl" }}
+          fontFamily={"body"}
+          alignSelf={"start"}
+        >
+          {job_name}
+        </Heading>
+        <Spacer />
         {growth_rate_2026 !== null && (
           <Tag
             size={{ base: "lg" }}
@@ -185,8 +326,8 @@ const OccupationGrowth = (props: { occupation_growth: occupation_growth }) => {
             <TagLabel fontWeight={"bold"}>{future_growth_rate}</TagLabel>
           </Tag>
         )}
-        <Spacer />
-        <Popover>
+        
+        <Popover >
           <PopoverTrigger>
             <Button
               borderRadius={"lg"}
@@ -194,14 +335,15 @@ const OccupationGrowth = (props: { occupation_growth: occupation_growth }) => {
               colorScheme={"gray"}
               width={"fit-content"}
               size={"sm"}
+              margin={"5px"}
             >
-              i
+              <InfoOutlineIcon />
             </Button>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
             <PopoverCloseButton />
-            <PopoverHeader>Data</PopoverHeader>
+            <PopoverHeader>{"Data "}</PopoverHeader>
             <PopoverBody alignItems={"start"}>
               {
                 "The statistics shows its corresponding 4-digit ANZSCO code occupation: "
@@ -244,11 +386,10 @@ export default function OccupationItem(props: any) {
             Occupation
           </Text>
           <Heading
-            fontSize={{ base: "md", md: "2xl" }}
-            fontFamily={"body"}
+            fontSize={{ base: "2xs", md: "sm" }}
             alignSelf={"start"}
           >
-            {props.job_name}
+            {"ANZSCO: "}{props.anzsco}
           </Heading>
           {/* <Text color={'gray.500'}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -256,7 +397,10 @@ export default function OccupationItem(props: any) {
           erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
           et ea rebum.
         </Text> */}
-          <OccupationGrowth occupation_growth={props.occupation_growth} />
+          <OccupationGrowth
+            occupation_growth={props.occupation_growth}
+            job_name={props.job_name}
+          />
         </Stack>
         <Accordion allowToggle>
           <AccordionItem border={"none"}>

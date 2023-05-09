@@ -137,6 +137,7 @@ export default function QuizResultPage() {
                       key={
                         "occupation" + item.anzsic_division + occupation.anzsco
                       }
+                      anzsco={occupation.anzsco}
                       job_name={occupation.job_name}
                       course_occupation={occupation.course_occupation}
                       occupation_growth={occupation.occupation_growth}

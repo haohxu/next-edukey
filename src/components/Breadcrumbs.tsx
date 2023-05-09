@@ -16,7 +16,8 @@ export default function Breadcrumbs() {
     { oldName: "compare-courses", newName: "Compare Courses" },
     { oldName: "find-answer", newName: "Find Suitable Pathways" },
     { oldName: "detailed-table", newName: "Detailed Table - Occupation vs Qualification" },
-    { oldName: "articles", newName: "Informative Reads" }
+    { oldName: "articles", newName: "Informative Reads" },
+    { oldName: "result", newName: "Result" },
   ];
 
   const changeToMeaningfulName = (oldName: string) => {
