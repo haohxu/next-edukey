@@ -18,6 +18,7 @@ export default function Breadcrumbs() {
     { oldName: "detailed-table", newName: "Detailed Table - Occupation vs Qualification" },
     { oldName: "articles", newName: "Informative Reads" },
     { oldName: "result", newName: "Result" },
+    { oldName: "occupations", newName: "Occupations" },
   ];
 
   const changeToMeaningfulName = (oldName: string) => {

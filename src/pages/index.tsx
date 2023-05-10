@@ -23,8 +23,8 @@ export default function IndexPage() {
       <Container maxWidth={"full"} marginX={0} paddingX={0}>
         <CallToAction></CallToAction>
         <Divider marginY={10}></Divider>
-        </Container>
-        <Container maxWidth={"6xl"}>
+      </Container>
+      <Container maxWidth={"6xl"}>
         <StatsTitleDescription />
         <Divider marginY={10}></Divider>
         <DiagramAndTableLink />

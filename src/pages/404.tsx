@@ -178,7 +178,7 @@ const Game = () => {
 
   useEffect(() => {
     setBoard(generateTile(board));
-  }, []);
+  }, [board]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

@@ -338,6 +338,11 @@ const NAV_ITEMS: Array<NavItem> = [
         subLabel: "Between at most 3 different courses",
         href: "/compare-courses",
       },
+      {
+        label: "Explore Occupations' Skills",
+        subLabel: "To see what skills are required for an occupation",
+        href: "/occupations",
+      },
     ],
     href: "",
   },

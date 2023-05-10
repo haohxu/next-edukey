@@ -376,7 +376,7 @@ export default function OccupationItem(props: any) {
       >
         <Stack direction={"column"}>
           <Text
-            color={"blue.500"}
+            color={"purple.500"}
             textTransform={"uppercase"}
             fontWeight={800}
             fontSize={"sm"}

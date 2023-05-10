@@ -134,3 +134,40 @@ model eduation_employment_data {
   year_xi               Float?
   year_x_and_below      Float?
 }
+
+model occupation_description {
+  anzsco_code             String        @id
+  occupation_type         String
+  job_name                String
+  occupation_description  String
+
+  occupation_competencies   occupation_competency[]
+  occupation_tasks          occupation_task[]
+  occupation_techtools      occupation_techtool[]
+}
+
+model occupation_competency {
+  id                      Int             @id
+  anzsco_code             String
+  occupation_description  occupation_description    @relation(fields: [anzsco_code], references: [anzsco_code])
+  core_competency         String
+  competency_score        Int
+  proficiency_level       String
+  proficiency_definition  String
+}
+
+model occupation_task {
+  id                      Int             @id
+  anzsco_code             String
+  occupation_description  occupation_description    @relation(fields: [anzsco_code], references: [anzsco_code])
+  specialist_task         String
+  time_spent_percentage   Float
+}
+
+model occupation_techtool {
+  id                      Int             @id
+  anzsco_code             String
+  occupation_description  occupation_description    @relation(fields: [anzsco_code], references: [anzsco_code])
+  technology_tool         String
+  emerging_trending       String?
+}

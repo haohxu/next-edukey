@@ -121,11 +121,6 @@ export default function CourseItem(props: {
               </Button>
             )}
           </Flex>
-          <NextLink
-            href={"/courses/" + courseItem.course_code}
-            passHref
-            legacyBehavior
-          >
             <Heading
               width={"fit-content"}
               as={"a"}
@@ -134,7 +129,7 @@ export default function CourseItem(props: {
             >
               {courseItem.course_title}
             </Heading>
-          </NextLink>
+          
           <Text>
             {"Course Code: "}
             {courseItem.course_code}

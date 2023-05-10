@@ -31,7 +31,6 @@ export default function DetailedTablePage(props: {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // TODO: only find 18 items
   const tableData = await prisma.eduation_employment_data.findMany({});
 
   return {
