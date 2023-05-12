@@ -17,6 +17,7 @@ import ChakraNextLink from "../chakra-next-link";
 import dynamic from "next/dynamic";
 
 const TableauReact = dynamic(() => import("./Tableau"), { ssr: false });
+const TableauReactMap = dynamic(() => import("./TableauMap"), { ssr: false });
 
 export default function DiagramAndTableLink() {
   const [isTable, setIsTable] = useState(false);
@@ -27,50 +28,13 @@ export default function DiagramAndTableLink() {
         <Stack direction={"column"}>
           <Heading alignSelf={"center"} id={"homepage-stats-2-1412"}>Occupation VS Qualification</Heading>
           <Heading fontSize={"md"}></Heading>
-          {/* <Flex direction={"row"}>
-            <ButtonGroup spacing={0} id={"homepage-stats-2-1412"}>
-              <Button
-                borderRightRadius={"none"}
-                variant={!isTable ? "solid" : "outline"}
-                colorScheme={"blue"}
-                onClick={() => {
-                  setIsTable(false);
-                }}
-              >
-                Diagram
-              </Button>
-              <Button
-                borderLeftRadius={"none"}
-                variant={!isTable ? "outline" : "solid"}
-                colorScheme={"blue"}
-                onClick={() => {
-                  setIsTable(true);
-                }}
-              >
-                Table
-              </Button>
-            </ButtonGroup>
-          </Flex>
-          {isTable ? (
-            <DataTableComponent allTableData={tableData} />
-          ) : (
-            <WordCloud />
-          )} */}
           <Flex
             minHeight={"30vh"}
             // maxHeight={"2xl"}
             maxWidth={"6xl"}
             direction={"column"}
           >
-            <Spacer />
-            {/* <Center>
-              <Tag size={"lg"}>
-                {" "}
-                <MdBarChart /> &nbsp;{" "}
-                {"(Under Testing) This will be a Stacked Bar Chart"}{" "}
-              </Tag>
-            </Center> */}
-            
+            <Spacer />            
             <TableauReact />
             <Spacer />
           </Flex>
@@ -84,6 +48,7 @@ export default function DiagramAndTableLink() {
               Show Detailed Table
             </ChakraNextLink>
           </Center>
+          <TableauReactMap />
         </Stack>
       </Container>
     </Fragment>

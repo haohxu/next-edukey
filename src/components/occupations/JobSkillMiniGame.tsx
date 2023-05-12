@@ -1,5 +1,5 @@
 import { newOccupation } from "@/lib/read_database";
-import { CloseIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Button,
   ButtonGroup,
@@ -8,13 +8,16 @@ import {
   Heading,
   IconButton,
   SimpleGrid,
+  Spacer,
   Tag,
   TagCloseButton,
   TagLabel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { occupation_competency } from "@prisma/client";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import OccupationCard from "./OccupationCard";
+import OccupationDetailModal from "./OccupationDetailModal";
 
 export default function JobSkillMiniGame({
   userChosenOccupation,
@@ -92,24 +95,40 @@ export default function JobSkillMiniGame({
   );
 
   const setSimilarOccupationsHandler = () => {
-    setSimilarOccupations(findSimilarOccupations(selectedSkills));
+    setSimilarOccupations(() => findSimilarOccupations(selectedSkills));
+    setIsShowSimilarOccupations(() => true);
   };
 
   // for show answer
   const [isShowAnswer, setIsShowAnswer] = useState<boolean>(false);
 
+  // for show similar occupations
+  const [isShowSimilarOccupations, setIsShowSimilarOccupations] =
+    useState<boolean>(false);
+
+  // for show occupation modal
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex direction={"column"}>
+      {/* Title Part */}
       {/* <Heading paddingY={"10px"}>Current Occupation:</Heading> */}
       <Heading paddingY={"10px"} fontSize={"2xl"}>
         {userChosenOccupation.job_name}{" "}
         {"(ANZSCO: " + userChosenOccupation.anzsco_code + ")"}
       </Heading>
-      <SimpleGrid columns={4} spacingX={"10px"} spacingY={"10px"}>
+
+      {/* Show available occupation competencies and users choices */}
+      <SimpleGrid
+        columns={{ base: 1, sm: 2, md: 4 }}
+        spacingX={"10px"}
+        spacingY={"10px"}
+      >
         {userChosenOccupation.occupation_competencies.map((o_c) => (
           <Button
             key={"occupation_competency-" + o_c.id}
             value={o_c.id}
+            fontSize={"sm"}
             colorScheme="purple"
             variant={isInSelectedSkills(o_c.id) ? "solid" : "outline"}
             onClick={setSelectedSkillsHandler}
@@ -129,9 +148,9 @@ export default function JobSkillMiniGame({
           >
             <Button
               value={o_c.id}
-              variant={"outline"}
+              variant={"solid"}
               width={"full"}
-              fontSize={"sm"}
+              fontSize={"xs"}
               // onClick={setSelectedSkillsHandler}
             >
               {index + 1}
@@ -147,29 +166,72 @@ export default function JobSkillMiniGame({
             />
           </ButtonGroup>
         ))}
+        {selectedSkills.length < 4 &&
+          Array.from({ length: 4 - selectedSkills.length }).map(
+            (item, index) => (
+              <Button
+                key={
+                  "occupation_competency-chosen-empty-" +
+                  index +
+                  selectedSkills.length
+                }
+                variant={"outline"}
+                width={"full"}
+                colorScheme="purple"
+                fontSize={"sm"}
+
+                // onClick={setSelectedSkillsHandler}
+              >
+                {index + selectedSkills.length + 1}
+                {": "}
+                {"________"}
+              </Button>
+            )
+          )}
       </SimpleGrid>
+
+      {/* Show correct answers */}
       {isShowAnswer && (
         <Fragment>
-          <Heading paddingY={"20px"}>Correct Answer:</Heading>
+          <Heading paddingY={"10px"} fontSize={"md"}>
+            Correct Answer:
+          </Heading>
           <SimpleGrid columns={4} spacingX={"10px"} spacingY={"10px"}>
             {userChosenOccupation.occupation_competencies
               .slice(0, 4)
               .map((o_c, index) => (
-                <Button
+                <ButtonGroup
                   key={"occupation_competency-correct-" + o_c.id}
-                  value={o_c.id}
-                  variant={"outline"}
-                  width={"full"}
-                  fontSize={"md"}
+                  variant={"solid"}
                   colorScheme={
                     o_c.id === selectedSkills[index]?.id ? "green" : "red"
                   }
-                  // onClick={setSelectedSkillsHandler}
+                  isAttached
                 >
-                  {index + 1}
-                  {": "}
-                  {o_c.core_competency}
-                </Button>
+                  <Button
+                    // key={"occupation_competency-correct-" + o_c.id}
+                    // value={o_c.id}
+                    width={"full"}
+                    fontSize={"xs"}
+                    // onClick={setSelectedSkillsHandler}
+                  >
+                    {index + 1}
+                    {": "}
+                    {o_c.core_competency}
+                  </Button>
+                  <IconButton
+                    aria-label={
+                      "occupation_competency-correct-" + o_c.id + "-right-icon"
+                    }
+                    icon={
+                      o_c.id === selectedSkills[index]?.id ? (
+                        <CheckIcon />
+                      ) : (
+                        <CloseIcon />
+                      )
+                    }
+                  />
+                </ButtonGroup>
               ))}
           </SimpleGrid>
         </Fragment>
@@ -189,27 +251,63 @@ export default function JobSkillMiniGame({
             colorScheme="purple"
             variant="ghost"
             fontSize={"sm"}
-            onClick={() => setIsShowAnswer(false)}
+            onClick={() => {
+              setIsShowSimilarOccupations(() => false);
+              setIsShowAnswer(() => false);
+              setSelectedSkills(() => []);
+            }}
           >
             Clear
           </Button>
         </ButtonGroup>
       </Flex>
-      <Heading paddingY={"20px"}>Similar Occupations:</Heading>
-      <Button width={"fit-content"} onClick={setSimilarOccupationsHandler}>
-        Show Similar Occupations
-      </Button>
-      {similarOccupations.length === 0 && (
-        <Heading>No similar occupations found.</Heading>
-      )}
-      <SimpleGrid columns={4} spacingX={"10px"} spacingY={"10px"}>
-        {similarOccupations.slice(0, 8).map((similarOccupation) => (
-          <OccupationCard
-            key={"occupation-similar-" + similarOccupation.anzsco_code}
-            theOccupation={similarOccupation}
+      {isShowAnswer && (
+        <Flex direction={{ base: "column", md: "row" }}>
+          <Heading>Do you satisfy with this result?</Heading>
+          <Spacer />
+          <ButtonGroup colorScheme="purple">
+            <Button onClick={onOpen}>Yes</Button>
+            <Button
+              width={"fit-content"}
+              onClick={setSimilarOccupationsHandler}
+            >
+              No, Show Similar Occupations
+            </Button>
+          </ButtonGroup>
+
+          <OccupationDetailModal
+            theOccupation={userChosenOccupation}
+            isOpen={isOpen}
+            onClose={onClose}
           />
-        ))}
-      </SimpleGrid>
+        </Flex>
+      )}
+
+      {/* Show similar occupations */}
+      {isShowSimilarOccupations && (
+        <Fragment>
+          <Heading paddingY={"20px"}>Similar Occupations:</Heading>
+
+          {similarOccupations.length === 0 && (
+            <Heading paddingY={"10px"}>No similar occupations found.</Heading>
+          )}
+          <SimpleGrid
+            paddingY={"10px"}
+            columns={{ base: 1, sm: 2, md: 4 }}
+            spacingX={"10px"}
+            spacingY={"10px"}
+          >
+            {similarOccupations.slice(0, 8).map((similarOccupation) => (
+              <OccupationCard
+                key={"occupation-similar-" + similarOccupation.anzsco_code}
+                theOccupation={similarOccupation}
+                isSelected={false}
+                selectButtonHandler={undefined}
+              />
+            ))}
+          </SimpleGrid>
+        </Fragment>
+      )}
     </Flex>
   );
 }

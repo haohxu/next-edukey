@@ -138,42 +138,6 @@ export default function CourseItem(props: {
             {courseItem.description?.slice(0, 140) + "..."}
           </Text>
         </Stack>
-        {/* <Accordion allowToggle >
-        <AccordionItem border={'none'}>
-          
-            <AccordionButton 
-              paddingLeft={'initial'} paddingTop={'2'}>
-              <Box  flex='1' textAlign='left'>
-              <Heading
-                // color={useColorModeValue('gray.700', 'white')}
-                fontSize={'2xl'}
-                fontFamily={'body'}>
-                {props.job_name}
-              </Heading>
-              </Box>
-              <Text fontSize={'sm'}>See Available Courses: &nbsp;</Text>
-              <AccordionIcon />
-            </AccordionButton>
-              
-          <AccordionPanel pb={4}>
-            {props.course_occupation.map( (item: {course: course}) =>  
-                (<CourseItem 
-                  key={props.job_name + item.course.course_code}
-                  course={item.course}
-                  ></CourseItem>)
-              )}
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion> */}
-        {/* <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-        <Text fontWeight={600}>Government Website: &nbsp;
-          <Text as={'a'} href={props.job_outlook_url} fontWeight={500} >
-             {props.job_outlook_url}
-          </Text></Text>
-          
-          
-        
-      </Stack> */}
       </Box>
     </Center>
   );

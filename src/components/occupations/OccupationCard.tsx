@@ -2,6 +2,7 @@ import { newOccupation } from "@/lib/read_database";
 import {
   Box,
   Button,
+  Container,
   Flex,
   Heading,
   Spacer,
@@ -15,8 +16,12 @@ import courseItem from "../courses/courseItem";
 
 export default function OccupationCard({
   theOccupation,
+  isSelected,
+  selectButtonHandler,
 }: {
   theOccupation: newOccupation;
+  isSelected: boolean;
+  selectButtonHandler: ((event: any) => void) | undefined;
 }) {
   return (
     <Box
@@ -42,16 +47,18 @@ export default function OccupationCard({
         {"Occupation"}
       </Text>
       <Stack padding={6}>
-        <Heading
-          width={"fit-content"}
-          fontSize={{ base: "md", md: "lg" }}
-          fontFamily={"body"}
-        >
-          {theOccupation.job_name}
-        </Heading>
+        <Container padding={0} minH={{ base: "50px", md: "70px" }}>
+          <Heading
+            width={"fit-content"}
+            fontSize={{ base: "md", md: "lg" }}
+            fontFamily={"body"}
+          >
+            {theOccupation.job_name}
+          </Heading>
+        </Container>
 
         <Text>
-          {"Course Code: "}
+          {"ANZSCO: "}
           {theOccupation.anzsco_code}
         </Text>
         {/* <Text color={"gray.500"}>
@@ -66,12 +73,24 @@ export default function OccupationCard({
               "-" +
               competency.id
             }
+            width={"fit-content"}
           >
             <TagLabel color={"purple.500"} fontWeight={"bold"}>
               {competency.core_competency}
             </TagLabel>
           </Tag>
         ))}
+        <Flex direction={"column"} height={"full"}>
+          <Button
+            alignSelf={"end"}
+            value={theOccupation.anzsco_code}
+            colorScheme="purple"
+            variant={isSelected ? "solid" : "outline"}
+            onClick={selectButtonHandler}
+          >
+            {isSelected ? "Remove" : "Select"}
+          </Button>
+        </Flex>
       </Stack>
     </Box>
   );
