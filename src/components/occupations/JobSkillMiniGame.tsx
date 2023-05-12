@@ -263,7 +263,7 @@ export default function JobSkillMiniGame({
       </Flex>
       {isShowAnswer && (
         <Flex direction={{ base: "column", md: "row" }}>
-          <Heading>Do you satisfy with this result?</Heading>
+          <Heading>Are you satisfied with this result?</Heading>
           <Spacer />
           <ButtonGroup colorScheme="purple">
             <Button onClick={onOpen}>Yes</Button>

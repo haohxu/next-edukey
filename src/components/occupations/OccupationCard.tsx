@@ -34,20 +34,26 @@ export default function OccupationCard({
       overflow={"hidden"}
       minH={"360px"}
     >
-      <Text
+      <Container
+        padding={0}
         backgroundColor={"purple.500"}
-        color={"white"}
-        textTransform={"uppercase"}
-        fontWeight={"bold"}
-        fontSize={"sm"}
-        letterSpacing={1.1}
-        paddingX={6}
-        paddingY={2}
+        minH={{ base: "50px", md: "80px" }}
       >
-        {"Occupation"}
-      </Text>
+        <Text
+          color={"white"}
+          // textTransform={"uppercase"}
+          fontWeight={"bold"}
+          fontSize={"sm"}
+          letterSpacing={1.1}
+          paddingX={2}
+          paddingY={2}
+        >
+          {/* {"Occupation"} */}
+          {theOccupation.job_name}
+        </Text>
+      </Container>
       <Stack padding={6}>
-        <Container padding={0} minH={{ base: "50px", md: "70px" }}>
+        {/* <Container padding={0} minH={{ base: "50px", md: "70px" }}>
           <Heading
             width={"fit-content"}
             fontSize={{ base: "md", md: "lg" }}
@@ -55,16 +61,17 @@ export default function OccupationCard({
           >
             {theOccupation.job_name}
           </Heading>
-        </Container>
+        </Container> */}
 
         <Text>
           {"ANZSCO: "}
           {theOccupation.anzsco_code}
         </Text>
-        {/* <Text color={"gray.500"}>
-          {theOccupation.occupation_description?.slice(0, 100) + "..."}
-        </Text> */}
-        <Text>{"Core Skills: "}</Text>
+        <Text>{"Description: "}</Text>
+        <Text color={"gray.600"}>
+          {theOccupation.occupation_description?.slice(0, 150) + "..."}
+        </Text>
+        {/* <Text>{"Core Skills: "}</Text>
         {theOccupation.occupation_competencies.slice(0, 4).map((competency) => (
           <Tag
             key={
@@ -79,17 +86,19 @@ export default function OccupationCard({
               {competency.core_competency}
             </TagLabel>
           </Tag>
-        ))}
+        ))} */}
         <Flex direction={"column"} height={"full"}>
-          <Button
-            alignSelf={"end"}
-            value={theOccupation.anzsco_code}
-            colorScheme="purple"
-            variant={isSelected ? "solid" : "outline"}
-            onClick={selectButtonHandler}
-          >
-            {isSelected ? "Remove" : "Select"}
-          </Button>
+          {selectButtonHandler !== undefined && (
+            <Button
+              alignSelf={"end"}
+              value={theOccupation.anzsco_code}
+              colorScheme="purple"
+              variant={isSelected ? "solid" : "outline"}
+              onClick={selectButtonHandler}
+            >
+              {isSelected ? "Remove" : "Select"}
+            </Button>
+          )}
         </Flex>
       </Stack>
     </Box>
