@@ -18,6 +18,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useQuizResultStore } from "@/context/QuizResultStore";
 import ChakraNextLink from "@/components/chakra-next-link";
+import ProcessNavBar from "@/components/ProcessNavBar";
 
 const setVariant = (input: boolean) => {
   return input ? "solid" : "outline";
@@ -249,7 +250,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 objectPosition={"top center"}
                 alt={"Indoor"}
                 src={"/static/1-a.png"}
-                onClick={props.onAnswer}
+                // onClick={props.onAnswer}
               />
             </Stack>
             <Stack direction={"column"} p={0}>
@@ -267,7 +268,7 @@ const Form1 = (props: { onAnswer: (event: any) => void; varient: string }) => {
                 objectPosition={"top center"}
                 alt={"Outdoor"}
                 src={"/static/1-b.png"}
-                onClick={props.onAnswer}
+                // onClick={props.onAnswer}
               />
             </Stack>
           </Stack>
@@ -411,6 +412,28 @@ export default function FindAnswerPage() {
       <Head>
         <title>Find Alternative Education for You</title>
       </Head>
+      <ProcessNavBar
+          processList={[
+            {
+              processNumber: 0,
+              whichProcess: "Home",
+              title: "Back To Home Page",
+              href: "/",
+            },
+            {
+              processNumber: 1,
+              whichProcess: "Current",
+              title: "Find Suitable Pathways",
+              href: "/find-answer",
+            },
+            {
+              processNumber: 2,
+              whichProcess: "Next",
+              title: "Occupations VS Qualifications",
+              href: "/detailed-table",
+            },
+          ]}
+        />
       <Box
         borderWidth="1px"
         rounded="lg"

@@ -9,6 +9,7 @@ import {
   Center,
   Stack,
   VStack,
+  CircularProgress,
 } from "@chakra-ui/react";
 
 export default function StatsTitleDescription() {
@@ -41,41 +42,70 @@ export default function StatsTitleDescription() {
         </GridItem>
         <GridItem w="100%">
           <Flex flexDirection={"column"}>
-            <Text
-              fontSize={{ base: "4xl", md: "6xl" }}
-              fontWeight={"bold"}
-              color={"blue.500"}
-            >
-              88%
-            </Text>
+            <Flex direction={"row"}>
+              <CircularProgress
+                value={88}
+                color={"blue.500"}
+                size="50px"
+                alignSelf={"center"}
+              ></CircularProgress>
+              <Text
+                fontSize={{ base: "4xl", md: "6xl" }}
+                fontWeight={"bold"}
+                color={"blue.500"}
+                paddingX={3}
+              >
+                88%
+              </Text>
+            </Flex>
             <Box fontSize={{ base: "xl", md: "2xl" }} fontWeight={"semibold"}>
               Get employed after training
             </Box>
           </Flex>
         </GridItem>
+
         <GridItem w="100%">
           <Flex flexDirection={"column"}>
-            <Text
-              fontSize={{ base: "4xl", md: "6xl" }}
-              fontWeight={"bold"}
-              color={"blue.500"}
-            >
-              74%
-            </Text>
+            <Flex direction={"row"}>
+              <CircularProgress
+                value={74}
+                color={"blue.500"}
+                size={"50px"}
+                alignSelf={"center"}
+              ></CircularProgress>
+              <Text
+                fontSize={{ base: "4xl", md: "6xl" }}
+                fontWeight={"bold"}
+                color={"blue.500"}
+                paddingX={3}
+              >
+                74%
+              </Text>
+            </Flex>
             <Box fontSize={{ base: "xl", md: "2xl" }} fontWeight={"semibold"}>
               Found the training relevant to their current job.
             </Box>
           </Flex>
         </GridItem>
+
         <GridItem w="100%">
           <Flex flexDirection={"column"}>
-            <Text
-              fontSize={{ base: "4xl", md: "6xl" }}
-              fontWeight={"bold"}
-              color={"blue.500"}
-            >
-              78%
-            </Text>
+            <Flex direction={"row"}>
+              <CircularProgress
+                value={78}
+                color={"blue.500"}
+                size="50px"
+                alignSelf={"center"}
+              ></CircularProgress>
+              <Text
+                fontSize={{ base: "4xl", md: "6xl" }}
+                fontWeight={"bold"}
+                color={"blue.500"}
+                paddingX={3}
+              >
+                78%
+              </Text>
+            </Flex>
             <Box fontSize={{ base: "xl", md: "2xl" }} fontWeight={"semibold"}>
               Received at least one job-related benefit.
             </Box>

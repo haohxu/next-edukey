@@ -1,3 +1,4 @@
+import ProcessNavBar from "@/components/ProcessNavBar";
 import ChakraNextLink from "@/components/chakra-next-link";
 import CompareGrid from "@/components/compare-courses/compareGrid";
 import CourseItem from "@/components/compare-courses/courseItem";
@@ -150,9 +151,31 @@ export default function CompareCoursesPage(props: {
   return (
     <Fragment>
       <Head>
-        <title>Compare Courses</title>
+        <title>Compare Courses - EduKey</title>
       </Head>
       <Container marginTop={{ base: "6px" }} maxWidth={"6xl"}>
+        <ProcessNavBar
+          processList={[
+            {
+              processNumber: 4,
+              whichProcess: "Previous",
+              title: "Explore Occupation Skills",
+              href: "/occupations",
+            },
+            {
+              processNumber: 5,
+              whichProcess: "Current",
+              title: "Compare Courses",
+              href: "/compare-courses",
+            },
+            {
+              processNumber: 6,
+              whichProcess: "DONE",
+              title: "Back To Home",
+              href: "/",
+            },
+          ]}
+        />
         <Stack direction={"column"}>
           {/* TODO: for Testing */}
           {/* <HStack>
@@ -174,10 +197,11 @@ export default function CompareCoursesPage(props: {
           </HStack> */}
 
           {/* Compare title and Compare button */}
-          <Flex
-            direction={{ base: "column", md: "row" }}
-          >
-            <Heading fontSize={{ base: "2xl", sm: "3xl", md: "3xl" }} paddingY={"5px"}>
+          <Flex direction={{ base: "column", md: "row" }}>
+            <Heading
+              fontSize={{ base: "2xl", sm: "3xl", md: "3xl" }}
+              paddingY={"5px"}
+            >
               Compare Different Courses
             </Heading>
             <Spacer />
@@ -193,7 +217,6 @@ export default function CompareCoursesPage(props: {
                   Back To Quiz Result
                 </Button>
               </NextLink>
-              
 
               <Button
                 isDisabled={selectedCourses.length <= 1 && !showCompare}

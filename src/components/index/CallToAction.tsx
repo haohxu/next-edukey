@@ -91,13 +91,14 @@ export default function CallToAction() {
                 <NextLink href={"/find-answer"} passHref legacyBehavior>
                   <Button
                     as={"a"}
+                    size={"lg"}
                     colorScheme={"blue"}
                     // bg={'green.400'}
                     rounded={"lg"}
                     rightIcon={<ArrowForwardIcon />}
                     px={6}
                   >
-                    Find Suitable Pathways
+                    1. Find Suitable Pathways
                   </Button>
                 </NextLink>
               </Stack>
@@ -128,11 +129,26 @@ export default function CallToAction() {
               </Box>
             </Stack>
             <Center>
-            <NextLink href={"/#homepage-stats-1-1412"} passHref legacyBehavior>
-              <Button variant={"ghost"} size={"lg"} textColor={"white"} _hover={{bg: "whiteAlpha.100"}}>
-                <ArrowDownIcon />
-              </Button>
-              </NextLink >
+              <NextLink
+                href={"/#homepage-feature-grid-nav-1412"}
+                passHref
+                legacyBehavior
+              >
+                <Button
+                  variant={"ghost"}
+                  size={"lg"}
+                  textColor={"white"}
+                  _hover={{ bg: "whiteAlpha.100" }}
+                >
+                  Or, see recommended process &nbsp; <ArrowDownIcon />
+                </Button>
+              </NextLink>
+            </Center>
+            <Center>
+              <Text color={"gray.200"} size={"sm"}>
+                And, of course, you can freely explore EduKey web application as
+                you want
+              </Text>
             </Center>
           </Stack>
         </Center>

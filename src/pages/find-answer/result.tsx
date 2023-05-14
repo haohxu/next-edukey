@@ -22,6 +22,7 @@ import NextLink from "next/link";
 import { useQuizResultStore } from "@/context/QuizResultStore";
 import { useCompareCoursesStore } from "@/context/CompareCoursesStore";
 import { course, occupation_growth } from "@prisma/client";
+import ProcessNavBar from "@/components/ProcessNavBar";
 
 export default function QuizResultPage() {
   const { quizResultResponse: divisionList, setQuizResultResponse } =
@@ -46,6 +47,28 @@ export default function QuizResultPage() {
       <Head>
         <title>Result - Find Course - EduKey</title>
       </Head>
+      <ProcessNavBar
+          processList={[
+            {
+              processNumber: 0,
+              whichProcess: "Home",
+              title: "Back To Home Page",
+              href: "/",
+            },
+            {
+              processNumber: 1,
+              whichProcess: "Current",
+              title: "Find Suitable Pathways",
+              href: "/find-answer/result",
+            },
+            {
+              processNumber: 2,
+              whichProcess: "Next",
+              title: "Occupations VS Qualifications",
+              href: "/detailed-table",
+            },
+          ]}
+        />
       <Container maxWidth={"6xl"}>
         <Center>
           <Heading marginY={"8"}>Result of Occupation and Courses</Heading>

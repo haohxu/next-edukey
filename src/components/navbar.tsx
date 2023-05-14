@@ -334,15 +334,16 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "/find-answer",
       },
       {
+        label: "Explore Occupation Skills",
+        subLabel: "To see what skills are required for an occupation",
+        href: "/occupations",
+      },
+      {
         label: "Compare Courses",
         subLabel: "Between at most 3 different courses",
         href: "/compare-courses",
       },
-      {
-        label: "Explore Occupations' Skills",
-        subLabel: "To see what skills are required for an occupation",
-        href: "/occupations",
-      },
+      
     ],
     href: "",
   },
@@ -355,9 +356,14 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "/#homepage-stats-1-1412",
       },
       {
-        label: "Statistics on Qualifications",
+        label: "Occupations VS Qualifications",
         subLabel: "To see how qualifications impact occupations",
-        href: "/#homepage-stats-2-1412",
+        href: "/detailed-table",
+      },
+      {
+        label: "Occupations VS Age Groups/States",
+        subLabel: "To see the distribution of occupations across age groups and states",
+        href: "/occupation-age-state",
       },
     ],
     href: "",

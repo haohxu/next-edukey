@@ -19,6 +19,7 @@ export default function Breadcrumbs() {
     { oldName: "articles", newName: "Informative Reads" },
     { oldName: "result", newName: "Result" },
     { oldName: "occupations", newName: "Occupations" },
+    { oldName: "occupation-age-state", newName: "Occupations VS Age Groups and States" },
   ];
 
   const changeToMeaningfulName = (oldName: string) => {

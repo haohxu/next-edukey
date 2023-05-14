@@ -15,6 +15,7 @@ import {
 
 import JobSkillMiniGame from "@/components/occupations/JobSkillMiniGame";
 import OccupationCardGrid from "@/components/occupations/OccupationCardGrid";
+import ProcessNavBar from "@/components/ProcessNavBar";
 
 export default function OccupationsPage({
   occupationList,
@@ -30,8 +31,30 @@ export default function OccupationsPage({
   return (
     <Fragment>
       <Head>
-        <title>Occupations And Skills</title>
+        <title>Occupations And Skills - EduKey</title>
       </Head>
+      <ProcessNavBar
+        processList={[
+          {
+            processNumber: 3,
+            whichProcess: "Previous",
+            title: "Occupations VS Ages/States",
+            href: "/occupation-age-state",
+          },
+          {
+            processNumber: 4,
+            whichProcess: "Current",
+            title: "Explore Occupation Skills",
+            href: "/occupations",
+          },
+          {
+            processNumber: 5,
+            whichProcess: "Next",
+            title: "Compare Courses",
+            href: "/compare-courses",
+          },
+        ]}
+      />
       <Container maxWidth={"6xl"}>
         <Flex
           width={"inherit"}
@@ -69,7 +92,9 @@ export default function OccupationsPage({
         )}
         {showGameProcess && (
           <JobSkillMiniGame
-            userChosenOccupation={currentOccupation ? currentOccupation : occupationList[0]}
+            userChosenOccupation={
+              currentOccupation ? currentOccupation : occupationList[0]
+            }
             occupationList={occupationList}
           />
         )}

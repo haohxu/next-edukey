@@ -65,20 +65,21 @@ export function DataTable<Data extends object>({
   const occupationColumn = table
     .getHeaderGroups()[0]
     ?.headers.find((header) => header.id === "occupation")?.column;
-  console.log(occupationColumn);
+  // console.log(occupationColumn);
+  console.log(table.getRowModel().rows)
 
   return (
     <Stack direction={"column"}>
       <Flex direction={"row"}>
         <Spacer />
         <Filter
-          maxWidth={{base:"80vw", md:"40vw"}}
+          maxWidth={{ base: "80vw", md: "40vw" }}
           column={occupationColumn!}
           table={table}
-          placeholder={'Search "Occupation" here...'}
+          placeholder={'Search "Occupation\'s Name" here...'}
         />
       </Flex>
-      <Container overflow={"auto"} maxWidth={"6xl"}>
+      <Container overflow={"auto"} maxWidth={"inherit"}>
         <Table>
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -113,8 +114,8 @@ export function DataTable<Data extends object>({
             ))}
           </Thead>
           <Tbody>
-            {table.getRowModel().rows.map((row) => (
-              <Tr key={row.id}>
+            {table.getRowModel().rows.map((row, index) => (
+              <Tr key={row.id} backgroundColor={ index % 2 == 0 ? "#F0F8FF" : "white"}>
                 {row.getVisibleCells().map((cell) => {
                   // see https://tanstack.com/table/v8/docs/api/core/column-def#meta to type this correctly
                   const meta: any = cell.column.columnDef.meta;
@@ -123,7 +124,8 @@ export function DataTable<Data extends object>({
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
-                      )}
+                      )}{" "}
+                      {cell.column.id === 'occupation' ? "" : "%"}
                     </Td>
                   );
                 })}

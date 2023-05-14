@@ -7,6 +7,7 @@ import StatsTitleDescription from "@/components/index/StatsTitleDescription";
 
 import { top_three_articles } from "@/lib/all_statistic_articles";
 import Script from "next/script";
+import FeatureGridNav from "@/components/index/FeatureGridNav";
 
 export default function IndexPage() {
   const statisticArticleList = top_three_articles();
@@ -25,10 +26,12 @@ export default function IndexPage() {
         <Divider marginY={10}></Divider>
       </Container>
       <Container maxWidth={"6xl"}>
+        <FeatureGridNav />
+        <Divider marginY={10} />
         <StatsTitleDescription />
-        <Divider marginY={10}></Divider>
+        <Divider marginY={10} />
         <DiagramAndTableLink />
-        <Divider marginY={10}></Divider>
+        <Divider marginY={10} />
         <ArticlePreview articlePreview={statisticArticleList} />
       </Container>
     </>

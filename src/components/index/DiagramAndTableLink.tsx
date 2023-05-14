@@ -48,7 +48,7 @@ export default function DiagramAndTableLink() {
               Show Detailed Table
             </ChakraNextLink>
           </Center>
-          <TableauReactMap />
+          {/* <TableauReactMap /> */}
         </Stack>
       </Container>
     </Fragment>
