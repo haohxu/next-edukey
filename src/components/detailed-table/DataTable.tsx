@@ -66,7 +66,7 @@ export function DataTable<Data extends object>({
     .getHeaderGroups()[0]
     ?.headers.find((header) => header.id === "occupation")?.column;
   // console.log(occupationColumn);
-  console.log(table.getRowModel().rows)
+  // console.log(table.getRowModel().rows)
 
   return (
     <Stack direction={"column"}>

@@ -1,5 +1,5 @@
 import ProcessNavBar from "@/components/ProcessNavBar";
-import TableauReactMap from "@/components/index/TableauMap";
+import DiagramMap from "@/components/occupation-age-state/DiagramMap";
 import { Center, Container, Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { Fragment } from "react";
@@ -53,7 +53,7 @@ export default function OccupationAgeStatePage() {
             </Heading>
           </Center>
         </Flex>
-        <TableauReactMap />
+        <DiagramMap />
       </Container>
     </Fragment>
   );
