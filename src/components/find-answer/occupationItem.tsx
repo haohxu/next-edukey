@@ -315,7 +315,7 @@ const OccupationGrowth = (props: {
           </Tag>
         )}
 
-        {future_growth_rate !== null && future_growth_rate === 0 && (
+        {future_growth_rate !== null && future_growth_rate !== "0" && (
           <Tag
             size={{ base: "lg" }}
             width={"fit-content"}
