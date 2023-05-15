@@ -30,7 +30,7 @@ export default function FourOhFourPage() {
             </ChakraNextLink>{" "}
           </Heading>
 
-          <Center paddingBottom={"20px"}>
+           <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
               You mistakenly entered the void space, but we prepare this Easter
               Egg to you!
@@ -178,7 +178,7 @@ const Game = () => {
 
   useEffect(() => {
     setBoard(generateTile(board));
-  }, [board]);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -322,6 +322,8 @@ const Game = () => {
         setBoard(generateTile(newBoard));
       }
     };
+
+    console.log(board);
 
     window.addEventListener("keydown", handleKeyDown);
 

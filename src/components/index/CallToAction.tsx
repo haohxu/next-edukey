@@ -15,11 +15,19 @@ import {
 import { ArrowDownIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
-export default function CallToAction() {
+export default function CallToAction({featuresRef} : {featuresRef: any}) {
+
+  const scrollTo = (ref: any) => {
+    window.scrollTo({
+      top: ref.current.offsetTop, 
+      behavior: "smooth", // Optional, adds animation
+    });
+  };
+
   return (
     <Flex
       direction={"column"}
-      minHeight={{ base: "75vh", md: "90vh" }}
+      minHeight={{ base: "75vh", md: "95vh" }}
       backgroundImage={"/static/homePg-Carousel.jpg"}
       backgroundSize={"cover"}
       backgroundPosition={"top center"}
@@ -31,7 +39,7 @@ export default function CallToAction() {
         backdropBlur={"8px"}
         backdropBrightness={"62%"}
       >
-        <Spacer />
+        <Spacer paddingTop={20}/>
         <Center>
           <Stack
             direction={"column"}
@@ -129,20 +137,16 @@ export default function CallToAction() {
               </Box>
             </Stack>
             <Center>
-              <NextLink
-                href={"/#homepage-feature-grid-nav-1412"}
-                passHref
-                legacyBehavior
-              >
                 <Button
                   variant={"ghost"}
                   size={"lg"}
                   textColor={"white"}
                   _hover={{ bg: "whiteAlpha.100" }}
+                  onClick={() => scrollTo(featuresRef)}
                 >
                   Or, see recommended process &nbsp; <ArrowDownIcon />
                 </Button>
-              </NextLink>
+
             </Center>
             <Center>
               <Text color={"gray.200"} size={"sm"}>
@@ -152,7 +156,7 @@ export default function CallToAction() {
             </Center>
           </Stack>
         </Center>
-        <Spacer />
+        <Spacer paddingBottom={20}/>
       </Flex>
     </Flex>
   );

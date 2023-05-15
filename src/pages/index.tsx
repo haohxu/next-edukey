@@ -8,9 +8,11 @@ import StatsTitleDescription from "@/components/index/StatsTitleDescription";
 import { top_three_articles } from "@/lib/all_statistic_articles";
 import Script from "next/script";
 import FeatureGridNav from "@/components/index/FeatureGridNav";
+import { useRef } from "react";
 
 export default function IndexPage() {
   const statisticArticleList = top_three_articles();
+  const featuresRef = useRef();
 
   return (
     <>
@@ -22,11 +24,11 @@ export default function IndexPage() {
         ></Script> */}
       </Head>
       <Container maxWidth={"full"} marginX={0} paddingX={0}>
-        <CallToAction></CallToAction>
+        <CallToAction featuresRef={featuresRef}></CallToAction>
         <Divider marginY={10}></Divider>
       </Container>
       <Container maxWidth={"6xl"}>
-        <FeatureGridNav />
+        <FeatureGridNav featuresRef={featuresRef} />
         <Divider marginY={10} />
         <StatsTitleDescription />
         <Divider marginY={10} />

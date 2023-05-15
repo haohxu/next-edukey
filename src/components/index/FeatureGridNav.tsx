@@ -74,9 +74,9 @@ const FeatureCard = ({ heading, description, icon, href }: CardProps) => {
   );
 };
 
-export default function FeatureGridNav() {
+export default function FeatureGridNav({featuresRef} : {featuresRef: any}) {
   return (
-    <Box p={4} id="homepage-feature-grid-nav-1412">
+    <Box p={4} id="homepage-feature-grid-nav-1412" ref={featuresRef}>
       <Stack spacing={4} as={Container} maxW={"6xl"} textAlign={"center"}>
         <Heading
           fontSize={{ base: "2xl", sm: "4xl", md: "5xl" }}
