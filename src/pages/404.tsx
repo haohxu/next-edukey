@@ -31,19 +31,24 @@ export default function FourOhFourPage() {
           </Heading>
 
           <Center paddingBottom={"20px"}>
-            <Heading fontSize={"lg"}>
-              You mistakenly entered the void space, but we prepare this Easter
-              Egg to you!
+            <Heading fontSize={"lg"} textAlign={"center"}>
+              Hi
             </Heading>
           </Center>
           <Center paddingBottom={"20px"}>
-            <Heading fontSize={"lg"}>
+            <Heading fontSize={"lg"} textAlign={"center"}>
+              It seems you have mistakenly entered the void space, but we
+              prepare this Easter Egg to you!
+            </Heading>
+          </Center>
+          <Center paddingBottom={"20px"}>
+            <Heading fontSize={"lg"} textAlign={"center"}>
               You can play this{" "}
               <Heading
                 as={"span"}
-                color={"red.500"}
-                fontSize={"lg"}
-                fontWeight={"semibold"}
+                color={"blue.500"}
+                fontSize={"2xl"}
+                fontWeight={"bold"}
               >
                 {" brain-training "}
               </Heading>{" "}
@@ -51,7 +56,7 @@ export default function FourOhFourPage() {
             </Heading>
           </Center>
           <Center paddingBottom={"40px"}>
-            <Heading fontSize={"lg"}>
+            <Heading fontSize={"lg"} textAlign={"center"}>
               <Tag>LEFT</Tag> : <Kbd>←</Kbd>, <Kbd>A</Kbd>, <Kbd>H</Kbd>
               {" | "}
               <Tag>DOWN</Tag> : <Kbd>↓</Kbd>, <Kbd>S</Kbd>, <Kbd>J</Kbd> {" | "}
@@ -121,17 +126,19 @@ interface TileProps {
 
 const Tile = ({ value }: TileProps) => {
   const colors: { [key: string]: string } = {
-    "2": "gray.400",
-    "4": "green.400",
-    "8": "purple.400",
-    "16": "pink.400",
-    "32": "orange.400",
-    "64": "yellow.400",
-    "128": "cyan.400",
-    "256": "teal.400",
-    "512": "red.400",
-    "1024": "blue.400",
-    "2048": "indigo.400",
+    "0": "#EEF1FF",
+    "2": "#eee4da",
+    "4": "#ede0c8",
+    "8": "#f2b179",
+    "16": "#f59563",
+    "32": "#f67c5f",
+    "64": "#f65e3b",
+    "128": "#edcf72",
+    "256": "#edcc61",
+    "512": "#edc850",
+    "1024": "#edc53f",
+    "2048": "#edc22e",
+    // "super": "#3c3a32",
   };
 
   return (
@@ -143,18 +150,18 @@ const Tile = ({ value }: TileProps) => {
       transition={{ duration: 0.1 }}
     >
       <Box
-        w={{ base: "50px", md: "60px" }}
-        h={{ base: "50px", md: "60px" }}
-        bg={colors[value.toString()]}
-        borderRadius={{ md: "8px" }}
+        w={{ base: "50px", sm: "60px", md: "80px" }}
+        h={{ base: "50px", sm: "60px", md: "80px" }}
+        backgroundColor={value > 2048 ? "#3c3a32" : colors[value.toString()]}
+        borderRadius={{ md: "4px" }}
         display="flex"
         justifyContent="center"
         alignItems="center"
         fontWeight="bold"
-        fontSize={{ base: "sm", md: "3xl" }}
-        color="white"
+        fontSize={{ base: "sm", md: "2xl" }}
+        color={value <= 4 ? "gray.700" : "white"}
       >
-        {value}
+        {value === 0 ? " " : value}
       </Box>
     </motion.div>
   );
@@ -168,7 +175,7 @@ const Board = ({ board }: { board: BoardType }) => {
       {board.map((row, i) => (
         <Box key={i} display="flex">
           {row.map((value, j) => (
-            <Box key={i * 4 + j} m="2">
+            <Box key={i * 4 + j} m={{ base: 1, md: 2 }}>
               <Tile value={value} />
             </Box>
           ))}
@@ -181,14 +188,14 @@ const Board = ({ board }: { board: BoardType }) => {
 const Game = () => {
   const [board, setBoard] = useState<BoardType>(getInitialBoard());
 
-  const generateTileTwiceWhenMount = useCallback(() => {
+  const generateTileOnceWhenMount = useCallback(() => {
     console.log(`Mount 2048`);
-    setBoard((board) => generateTile(generateTile(board)));
+    setBoard((board) => generateTile(board));
   }, []);
 
   useEffect(() => {
-    generateTileTwiceWhenMount();
-  }, [generateTileTwiceWhenMount]);
+    generateTileOnceWhenMount();
+  }, [generateTileOnceWhenMount]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -345,7 +352,13 @@ const Game = () => {
   const score = getScore(board);
 
   return (
-    <Box bg="gray.900" color="white" w="fit-content" p="6">
+    <Box
+      backgroundColor={"#F9F9F9"}
+      textColor="black"
+      w="fit-content"
+      p="6"
+      boxShadow={"lg"}
+    >
       <Heading as="h1" size="xl" mb="6">
         2048 Game
       </Heading>
@@ -354,7 +367,12 @@ const Game = () => {
         <Button
           colorScheme="blue"
           onClick={() => {
-            // setBoard(getInitialBoard())
+            // setBoard([
+            //   [2, 4, 8, 16],
+            //   [32, 64, 128, 256],
+            //   [512, 1024, 2048, 4096],
+            //   [8192, 0, 0, 0],
+            // ]);
             setBoard(generateTile(generateTile(getInitialBoard())));
           }}
         >
