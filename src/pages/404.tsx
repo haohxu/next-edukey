@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useCallback } from "react";
 
 export default function FourOhFourPage() {
   return (
@@ -30,7 +30,7 @@ export default function FourOhFourPage() {
             </ChakraNextLink>{" "}
           </Heading>
 
-           <Center paddingBottom={"20px"}>
+          <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
               You mistakenly entered the void space, but we prepare this Easter
               Egg to you!
@@ -39,7 +39,12 @@ export default function FourOhFourPage() {
           <Center paddingBottom={"20px"}>
             <Heading fontSize={"lg"}>
               You can play this{" "}
-              <Heading as={"span"} color={"red.500"} fontSize={"lg"} fontWeight={"semibold"}>
+              <Heading
+                as={"span"}
+                color={"red.500"}
+                fontSize={"lg"}
+                fontWeight={"semibold"}
+              >
                 {" brain-training "}
               </Heading>{" "}
               2048 game. Have Fun!
@@ -176,9 +181,14 @@ const Board = ({ board }: { board: BoardType }) => {
 const Game = () => {
   const [board, setBoard] = useState<BoardType>(getInitialBoard());
 
-  useEffect(() => {
-    setBoard(generateTile(board));
+  const generateTileTwiceWhenMount = useCallback(() => {
+    console.log(`Mount 2048`);
+    setBoard((board) => generateTile(generateTile(board)));
   }, []);
+
+  useEffect(() => {
+    generateTileTwiceWhenMount();
+  }, [generateTileTwiceWhenMount]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -345,7 +355,7 @@ const Game = () => {
           colorScheme="blue"
           onClick={() => {
             // setBoard(getInitialBoard())
-            setBoard(generateTile(getInitialBoard()));
+            setBoard(generateTile(generateTile(getInitialBoard())));
           }}
         >
           New Game
