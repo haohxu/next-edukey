@@ -2,16 +2,19 @@ EduKey is a university project, powered by [Next.js](https://nextjs.org/) and bo
 
 ## Branches
 - main: is the up-to-date version of this project
+- iteration-3-archive: is the archive version by the end of iteration 3 (May-23-2023)
 - iteration-2-archive: is the archive version by the end of iteration 2 (May-01-2023)
 - iteration-1-archive: is the archive version by the end of iteration 1 (Apr-17-2023)
 
 ## Technology Stacks
 - [Vercel](https://vercel.com/), a platform to deploy NextJS web applications.
 - [Supabase](https://supabase.com/), a open source Postgres database hosting service. 
-- [Prisma](https://www.prisma.io/), a next-generation Node.js and TypeScript ORM
+- [NodeJS](https://nodejs.org/), an open-source, cross-platform JavaScript runtime environment.
+- [Prisma](https://www.prisma.io/), a next-generation Node.js and TypeScript ORM.
 - [NextJS](https://nextjs.org/), a framework created for React to build full-stack web applications. 
-- [React](https://react.dev/), a library for web and native user interfaces
+- [React](https://react.dev/), a library for web and native user interfaces.
 - [Chakra UI](https://chakra-ui.com/), a simple, modular and accessible UI component library for React. 
+- [Tableau](https://www.tableau.com/), a visual analytics platform. 
  
 
 ## FAQs
